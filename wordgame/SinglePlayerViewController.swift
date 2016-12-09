@@ -22,6 +22,7 @@ class SinglePlayerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        currentWordTextField.autocorrectionType = .no
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -33,20 +34,6 @@ class SinglePlayerViewController: UIViewController {
         addBottomBorder(oponentWordLabel)
         addBorderToScoreAndTimeView()
         addBorder(wordView)
-        
-        let range = NSMakeRange(0, oponentWordLabel.text!.characters.count)
-//        let rect = oponentWordLabel.boundingRectForCharacterRange(range: range)
-        
-
-        let rect = scoreLabel.textRect(forBounds: scoreLabel.frame, limitedToNumberOfLines: 1)
-        
-        print(rect)
-//
-        let layer = CALayer()
-        layer.frame = rect
-        layer.backgroundColor = UIColor.red.cgColor
-        scoreLabel.layer.addSublayer(layer)
-
     }
 
     /*
