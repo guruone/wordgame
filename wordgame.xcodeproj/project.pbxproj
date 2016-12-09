@@ -13,6 +13,7 @@
 		20C007701DFAC93100772B50 /* wordgame.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 20C0076E1DFAC93100772B50 /* wordgame.xcdatamodeld */; };
 		20C007721DFAC93100772B50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20C007711DFAC93100772B50 /* Assets.xcassets */; };
 		20C007751DFAC93100772B50 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20C007731DFAC93100772B50 /* LaunchScreen.storyboard */; };
+		20C0077D1DFACF7C00772B50 /* SinglePlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C0077C1DFACF7C00772B50 /* SinglePlayerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		20C007711DFAC93100772B50 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		20C007741DFAC93100772B50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		20C007761DFAC93100772B50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		20C0077C1DFACF7C00772B50 /* SinglePlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SinglePlayerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,9 +58,10 @@
 		20C007661DFAC93100772B50 /* wordgame */ = {
 			isa = PBXGroup;
 			children = (
-				20C007671DFAC93100772B50 /* AppDelegate.swift */,
-				20C007691DFAC93100772B50 /* ViewController.swift */,
 				20C0076B1DFAC93100772B50 /* Main.storyboard */,
+				20C0077C1DFACF7C00772B50 /* SinglePlayerViewController.swift */,
+				20C007691DFAC93100772B50 /* ViewController.swift */,
+				20C007671DFAC93100772B50 /* AppDelegate.swift */,
 				20C007711DFAC93100772B50 /* Assets.xcassets */,
 				20C007731DFAC93100772B50 /* LaunchScreen.storyboard */,
 				20C007761DFAC93100772B50 /* Info.plist */,
@@ -142,6 +145,7 @@
 			files = (
 				20C0076A1DFAC93100772B50 /* ViewController.swift in Sources */,
 				20C007681DFAC93100772B50 /* AppDelegate.swift in Sources */,
+				20C0077D1DFACF7C00772B50 /* SinglePlayerViewController.swift in Sources */,
 				20C007701DFAC93100772B50 /* wordgame.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

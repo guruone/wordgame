@@ -1,26 +1,109 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Single Player View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="SinglePlayerViewController" customModule="wordgame" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pTn-IW-Vih" userLabel="Word View">
+                                <rect key="frame" x="24" y="227" width="272" height="114"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Current Text" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cVp-sE-5Yw">
+                                        <rect key="frame" x="0.0" y="57" width="272" height="57"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Oponent Text" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="boL-kM-7OW">
+                                        <rect key="frame" x="0.0" y="0.0" width="272" height="57"/>
+                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.9882352941176471" green="0.9137254901960784" blue="0.83137254901960778" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="boL-kM-7OW" firstAttribute="top" secondItem="pTn-IW-Vih" secondAttribute="top" id="6OM-Y4-xlZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="cVp-sE-5Yw" secondAttribute="trailing" id="71M-Cn-Hp9"/>
+                                    <constraint firstItem="boL-kM-7OW" firstAttribute="height" secondItem="pTn-IW-Vih" secondAttribute="height" multiplier="0.5" id="AfE-Wx-3J6"/>
+                                    <constraint firstItem="boL-kM-7OW" firstAttribute="leading" secondItem="pTn-IW-Vih" secondAttribute="leading" id="f3A-44-ZmB"/>
+                                    <constraint firstItem="cVp-sE-5Yw" firstAttribute="height" secondItem="pTn-IW-Vih" secondAttribute="height" multiplier="0.5" id="jmd-dB-oMK"/>
+                                    <constraint firstAttribute="bottom" secondItem="cVp-sE-5Yw" secondAttribute="bottom" id="pjf-hw-FnN"/>
+                                    <constraint firstItem="cVp-sE-5Yw" firstAttribute="leading" secondItem="pTn-IW-Vih" secondAttribute="leading" id="yGZ-wT-vOw"/>
+                                    <constraint firstAttribute="trailing" secondItem="boL-kM-7OW" secondAttribute="trailing" id="yNk-og-nbt"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tnd-5u-atf" userLabel="Score/Time View">
+                                <rect key="frame" x="78.5" y="170" width="163" height="57"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SCORE: 120" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bAu-mX-6q5">
+                                        <rect key="frame" x="0.0" y="0.0" width="163" height="28.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TIME: 9s" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1od-nV-aOc">
+                                        <rect key="frame" x="0.0" y="28.5" width="163" height="28.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.98823529409999999" green="0.91372549020000005" blue="0.83137254900000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="1od-nV-aOc" firstAttribute="leading" secondItem="Tnd-5u-atf" secondAttribute="leading" id="23Q-p5-XnU"/>
+                                    <constraint firstItem="1od-nV-aOc" firstAttribute="height" secondItem="Tnd-5u-atf" secondAttribute="height" multiplier="0.5" id="PEh-Xe-TL7"/>
+                                    <constraint firstItem="bAu-mX-6q5" firstAttribute="top" secondItem="Tnd-5u-atf" secondAttribute="top" id="fLj-n5-Vo1"/>
+                                    <constraint firstAttribute="bottom" secondItem="1od-nV-aOc" secondAttribute="bottom" id="ijk-Lu-Rkl"/>
+                                    <constraint firstItem="bAu-mX-6q5" firstAttribute="height" secondItem="Tnd-5u-atf" secondAttribute="height" multiplier="0.5" id="jNL-Cg-G7U"/>
+                                    <constraint firstItem="bAu-mX-6q5" firstAttribute="leading" secondItem="Tnd-5u-atf" secondAttribute="leading" id="p7F-2g-zbB"/>
+                                    <constraint firstAttribute="trailing" secondItem="1od-nV-aOc" secondAttribute="trailing" id="tI1-rW-2Ir"/>
+                                    <constraint firstAttribute="trailing" secondItem="bAu-mX-6q5" secondAttribute="trailing" id="ziH-58-i28"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.69411764705882351" green="0.85098039215686272" blue="0.90588235294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="pTn-IW-Vih" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.2" id="5S9-vW-ycQ"/>
+                            <constraint firstItem="pTn-IW-Vih" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="8" id="80c-w8-eBJ"/>
+                            <constraint firstItem="Tnd-5u-atf" firstAttribute="width" secondItem="pTn-IW-Vih" secondAttribute="width" multiplier="0.6" id="Ppl-Gf-EBG"/>
+                            <constraint firstItem="Tnd-5u-atf" firstAttribute="height" secondItem="pTn-IW-Vih" secondAttribute="height" multiplier="0.5" id="dTo-ub-VHH"/>
+                            <constraint firstItem="pTn-IW-Vih" firstAttribute="top" secondItem="Tnd-5u-atf" secondAttribute="bottom" id="ixV-O3-NkE"/>
+                            <constraint firstItem="pTn-IW-Vih" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="jxB-eD-AAc"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="pTn-IW-Vih" secondAttribute="trailing" constant="8" id="sP0-Io-3mE"/>
+                            <constraint firstItem="Tnd-5u-atf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="wOl-jd-gVg"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="currentWordTextField" destination="cVp-sE-5Yw" id="LCO-rR-KDk"/>
+                        <outlet property="oponentWordLabel" destination="boL-kM-7OW" id="KYo-9d-Pgc"/>
+                        <outlet property="scoreAndTimeView" destination="Tnd-5u-atf" id="Tgk-4c-KdW"/>
+                        <outlet property="scoreLabel" destination="bAu-mX-6q5" id="Zcf-AQ-b3w"/>
+                        <outlet property="timeLabel" destination="1od-nV-aOc" id="bCI-gl-BRG"/>
+                        <outlet property="wordView" destination="pTn-IW-Vih" id="OKB-ir-Kfh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="136.875" y="137.32394366197184"/>
         </scene>
     </scenes>
 </document>
