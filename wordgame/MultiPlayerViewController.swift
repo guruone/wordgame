@@ -1,5 +1,5 @@
 //
-//  SinglePlayerViewController.swift
+//  MultiPlayerViewController.swift
 //  wordgame
 //
 //  Created by Marek Mako on 09/12/2016.
@@ -7,9 +7,18 @@
 //
 
 import UIKit
+import GameKit
 
-
-class SinglePlayerViewController: UIViewController {
+class MultiPlayerViewController: UIViewController {
+    
+    // from segue
+    var oponent: GKPlayer?
+    var match: GKMatch?
+    
+    @IBOutlet weak var oponentLabel: UILabel!
+    @IBOutlet weak var oponentScoreAndTimeView: UIView!
+    @IBOutlet weak var oponentNameLabel: UILabel!
+    @IBOutlet weak var oponentScoreLabel: UILabel!
     
     @IBOutlet weak var scoreAndTimeView: UIView!
     @IBOutlet weak var scoreLabel: UILabel!
@@ -20,14 +29,18 @@ class SinglePlayerViewController: UIViewController {
     @IBOutlet weak var currentWordTextField: UITextField!
     
     @IBAction func onDismissClick() {
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: {
+            // TODO: MATCH DISAPEAR/DISCONNECT
+            self.match?.disconnect()
+        })
     }
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        currentWordTextField.autocorrectionType = .no
+        guard oponent != nil, match != nil else {
+            fatalError()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -35,21 +48,14 @@ class SinglePlayerViewController: UIViewController {
         
         // GRAFIKA
         view.extAddCenterRound()
+        view.extAddVerticalLinesFromTop(to: oponentScoreAndTimeView, offsetFromEdges: 10)
         view.extAddVerticalLinesFromTop(to: wordView, offsetFromEdges: 20)
         scoreLabel.extAddBottomBorder()
         oponentWordLabel.extAddBottomBorder()
+        oponentNameLabel.extAddBottomBorder()
         scoreAndTimeView.extAddLeftTopRighBorder()
+        oponentLabel.extAddLeftTopRighBorder()
+        oponentScoreAndTimeView.extAddBorder()
         wordView.extAddBorder()
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
