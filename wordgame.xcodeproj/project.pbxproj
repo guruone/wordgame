@@ -7,25 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		207E316A1DFDB6A200453EF6 /* MultiPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207E31691DFDB6A200453EF6 /* MultiPlayer.swift */; };
+		207E316E1DFDC63C00453EF6 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207E316D1DFDC63C00453EF6 /* UIView+.swift */; };
 		20C007681DFAC93100772B50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C007671DFAC93100772B50 /* AppDelegate.swift */; };
-		20C0076A1DFAC93100772B50 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C007691DFAC93100772B50 /* ViewController.swift */; };
 		20C0076D1DFAC93100772B50 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20C0076B1DFAC93100772B50 /* Main.storyboard */; };
 		20C007701DFAC93100772B50 /* wordgame.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 20C0076E1DFAC93100772B50 /* wordgame.xcdatamodeld */; };
 		20C007721DFAC93100772B50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20C007711DFAC93100772B50 /* Assets.xcassets */; };
 		20C007751DFAC93100772B50 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20C007731DFAC93100772B50 /* LaunchScreen.storyboard */; };
 		20C0077D1DFACF7C00772B50 /* SinglePlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C0077C1DFACF7C00772B50 /* SinglePlayerViewController.swift */; };
+		20C0077F1DFB3D4000772B50 /* MultiPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C0077E1DFB3D4000772B50 /* MultiPlayerViewController.swift */; };
+		20C007811DFDA4ED00772B50 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C007801DFDA4ED00772B50 /* MenuViewController.swift */; };
+		20C007831DFDAB0A00772B50 /* PlayerAuthentificator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C007821DFDAB0A00772B50 /* PlayerAuthentificator.swift */; };
+		20C007861DFDAF0500772B50 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20C007851DFDAF0500772B50 /* GameKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		207E31691DFDB6A200453EF6 /* MultiPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiPlayer.swift; sourceTree = "<group>"; };
+		207E316D1DFDC63C00453EF6 /* UIView+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+.swift"; path = "../UIView+.swift"; sourceTree = "<group>"; };
 		20C007641DFAC93100772B50 /* wordgame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wordgame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20C007671DFAC93100772B50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		20C007691DFAC93100772B50 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		20C0076C1DFAC93100772B50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		20C0076F1DFAC93100772B50 /* wordgame.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = wordgame.xcdatamodel; sourceTree = "<group>"; };
 		20C007711DFAC93100772B50 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		20C007741DFAC93100772B50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		20C007761DFAC93100772B50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		20C0077C1DFACF7C00772B50 /* SinglePlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SinglePlayerViewController.swift; sourceTree = "<group>"; };
+		20C0077E1DFB3D4000772B50 /* MultiPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiPlayerViewController.swift; sourceTree = "<group>"; };
+		20C007801DFDA4ED00772B50 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		20C007821DFDAB0A00772B50 /* PlayerAuthentificator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerAuthentificator.swift; sourceTree = "<group>"; };
+		20C007851DFDAF0500772B50 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20C007861DFDAF0500772B50 /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +55,7 @@
 			children = (
 				20C007661DFAC93100772B50 /* wordgame */,
 				20C007651DFAC93100772B50 /* Products */,
+				20C007841DFDAF0500772B50 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -59,15 +71,27 @@
 			isa = PBXGroup;
 			children = (
 				20C0076B1DFAC93100772B50 /* Main.storyboard */,
+				207E31691DFDB6A200453EF6 /* MultiPlayer.swift */,
+				20C0077E1DFB3D4000772B50 /* MultiPlayerViewController.swift */,
 				20C0077C1DFACF7C00772B50 /* SinglePlayerViewController.swift */,
-				20C007691DFAC93100772B50 /* ViewController.swift */,
+				20C007801DFDA4ED00772B50 /* MenuViewController.swift */,
+				20C007821DFDAB0A00772B50 /* PlayerAuthentificator.swift */,
 				20C007671DFAC93100772B50 /* AppDelegate.swift */,
+				207E316D1DFDC63C00453EF6 /* UIView+.swift */,
 				20C007711DFAC93100772B50 /* Assets.xcassets */,
 				20C007731DFAC93100772B50 /* LaunchScreen.storyboard */,
 				20C007761DFAC93100772B50 /* Info.plist */,
 				20C0076E1DFAC93100772B50 /* wordgame.xcdatamodeld */,
 			);
 			path = wordgame;
+			sourceTree = "<group>";
+		};
+		20C007841DFDAF0500772B50 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				20C007851DFDAF0500772B50 /* GameKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -104,6 +128,11 @@
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = 4HFWK8AXKL;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.GameCenter = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -143,10 +172,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				20C0076A1DFAC93100772B50 /* ViewController.swift in Sources */,
+				20C007831DFDAB0A00772B50 /* PlayerAuthentificator.swift in Sources */,
+				20C007811DFDA4ED00772B50 /* MenuViewController.swift in Sources */,
 				20C007681DFAC93100772B50 /* AppDelegate.swift in Sources */,
 				20C0077D1DFACF7C00772B50 /* SinglePlayerViewController.swift in Sources */,
+				207E316E1DFDC63C00453EF6 /* UIView+.swift in Sources */,
 				20C007701DFAC93100772B50 /* wordgame.xcdatamodeld in Sources */,
+				20C0077F1DFB3D4000772B50 /* MultiPlayerViewController.swift in Sources */,
+				207E316A1DFDB6A200453EF6 /* MultiPlayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,6 +341,7 @@
 				20C0077B1DFAC93100772B50 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
