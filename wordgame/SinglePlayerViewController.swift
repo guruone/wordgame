@@ -23,10 +23,9 @@ class SinglePlayerViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         currentWordTextField.autocorrectionType = .no
     }
     

@@ -111,7 +111,7 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="Cnd-mR-vCD" firstAttribute="leading" secondItem="UeP-nm-i8R" secondAttribute="leadingMargin" constant="8" id="CCe-Om-uKP"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Cnd-mR-vCD" secondAttribute="trailing" constant="8" id="RAE-zI-eaz"/>
@@ -378,7 +378,46 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.875" y="137.32394366197184"/>
+            <point key="canvasLocation" x="148" y="138"/>
+        </scene>
+        <!--Choose Word Category-->
+        <scene sceneID="jb5-kD-IyV">
+            <objects>
+                <viewController storyboardIdentifier="ChooseWordCategoryViewController" id="hmN-eb-gjJ" userLabel="Choose Word Category" customClass="ChooseWordCategoryViewController" customModule="wordgame" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="0cE-WP-8pL"/>
+                        <viewControllerLayoutGuide type="bottom" id="OTa-Ls-d8c"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Xaf-9b-R7w">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZZu-f8-c1y">
+                                <rect key="frame" x="27.5" y="225" width="320" height="216"/>
+                            </pickerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9PQ-pS-yRo">
+                                <rect key="frame" x="172" y="449" width="30" height="30"/>
+                                <state key="normal" title="OK"/>
+                                <connections>
+                                    <action selector="onOKClick" destination="hmN-eb-gjJ" eventType="touchUpInside" id="rdD-tz-jlE"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ZZu-f8-c1y" firstAttribute="centerY" secondItem="Xaf-9b-R7w" secondAttribute="centerY" id="H07-5p-uKX"/>
+                            <constraint firstItem="9PQ-pS-yRo" firstAttribute="centerX" secondItem="Xaf-9b-R7w" secondAttribute="centerX" id="LDs-sA-IV2"/>
+                            <constraint firstItem="ZZu-f8-c1y" firstAttribute="centerX" secondItem="Xaf-9b-R7w" secondAttribute="centerX" id="WTU-Qg-Ycu"/>
+                            <constraint firstItem="9PQ-pS-yRo" firstAttribute="top" secondItem="ZZu-f8-c1y" secondAttribute="bottom" constant="8" id="kyt-xq-6kP"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="categoryPickerView" destination="ZZu-f8-c1y" id="u4X-8t-1B4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EPv-Lc-IrW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1001" y="-230"/>
         </scene>
     </scenes>
 </document>

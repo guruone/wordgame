@@ -10,6 +10,12 @@ import UIKit
 
 // MARK: GRAFIKA
 extension UIView {
+    
+    func extSetLetterBlueBackground() {
+        let image = UIImage(named: "background")!
+        let color = UIColor(patternImage: image)
+        backgroundColor = color
+    }
 
     func extAddCenterRound() {
         let round = CALayer()

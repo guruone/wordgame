@@ -49,6 +49,8 @@ class MenuViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.extSetLetterBlueBackground()
 
         buttonsDisabled()
         
@@ -102,8 +104,8 @@ extension MenuViewController: MatchMakerDelegate {
     
     func started(match: GKMatch, with oponent: GKPlayer) {
         let vc = storyboard?.instantiateViewController(withIdentifier: String(describing: MultiPlayerViewController.self)) as! MultiPlayerViewController
-        vc.match = match
-        vc.oponent = oponent
+        vc.gkmatch = match
+        vc.gkoponent = oponent
         present(vc, animated: true, completion: nil)
     }
     
