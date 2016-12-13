@@ -67,9 +67,9 @@ class MultiPlayerViewController: UIViewController, GameViewController, UITextFie
     
     fileprivate var timer: Timer?
     
-    private var timeRemaining: Int? {
+    fileprivate var timeRemaining: Int? {
         didSet {
-            timeLabel.text = "\(timeRemaining!) s"
+            timeLabel.text = "TIME: \(timeRemaining!) s"
         }
     }
     
@@ -156,6 +156,7 @@ extension MultiPlayerViewController {
         currentWordTextField.autocorrectionType = .no
         
         oponentNameLabel.text = gkoponent?.alias
+        timeRemaining = MAX_TIME_FOR_WORD
         score = 0
     }
     
@@ -184,6 +185,7 @@ extension MultiPlayerViewController {
 extension MultiPlayerViewController: MatchDelegate {
     
     func ended() {
+        timer?.invalidate()
         DispatchQueue.main.async {
             self.presentGameOver()
         }

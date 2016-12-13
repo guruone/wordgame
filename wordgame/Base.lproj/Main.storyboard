@@ -392,27 +392,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZZu-f8-c1y">
-                                <rect key="frame" x="27.5" y="225" width="320" height="216"/>
-                            </pickerView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9PQ-pS-yRo">
-                                <rect key="frame" x="172" y="449" width="30" height="30"/>
-                                <state key="normal" title="OK"/>
-                                <connections>
-                                    <action selector="onOKClick" destination="hmN-eb-gjJ" eventType="touchUpInside" id="rdD-tz-jlE"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="wE0-mG-3TP">
+                                <rect key="frame" x="24" y="233.5" width="327" height="200"/>
+                                <subviews>
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZZu-f8-c1y">
+                                        <rect key="frame" x="0.0" y="0.0" width="327" height="140"/>
+                                        <color key="backgroundColor" red="0.98823529409999999" green="0.91372549020000005" blue="0.83137254900000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    </pickerView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9PQ-pS-yRo">
+                                        <rect key="frame" x="0.0" y="160" width="327" height="40"/>
+                                        <color key="backgroundColor" red="0.98823529409999999" green="0.91372549020000005" blue="0.83137254900000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="OK"/>
+                                        <connections>
+                                            <action selector="onOKClick" destination="hmN-eb-gjJ" eventType="touchUpInside" id="rdD-tz-jlE"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="9PQ-pS-yRo" firstAttribute="height" secondItem="wE0-mG-3TP" secondAttribute="height" multiplier="0.2" id="Ah7-57-vCl"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ZZu-f8-c1y" firstAttribute="centerY" secondItem="Xaf-9b-R7w" secondAttribute="centerY" id="H07-5p-uKX"/>
-                            <constraint firstItem="9PQ-pS-yRo" firstAttribute="centerX" secondItem="Xaf-9b-R7w" secondAttribute="centerX" id="LDs-sA-IV2"/>
-                            <constraint firstItem="ZZu-f8-c1y" firstAttribute="centerX" secondItem="Xaf-9b-R7w" secondAttribute="centerX" id="WTU-Qg-Ycu"/>
-                            <constraint firstItem="9PQ-pS-yRo" firstAttribute="top" secondItem="ZZu-f8-c1y" secondAttribute="bottom" constant="8" id="kyt-xq-6kP"/>
+                            <constraint firstItem="wE0-mG-3TP" firstAttribute="height" secondItem="Xaf-9b-R7w" secondAttribute="height" multiplier="0.3" id="S19-my-tf4"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="wE0-mG-3TP" secondAttribute="trailing" constant="8" id="UuC-pI-VqU"/>
+                            <constraint firstItem="wE0-mG-3TP" firstAttribute="centerY" secondItem="Xaf-9b-R7w" secondAttribute="centerY" id="YvC-nO-Roh"/>
+                            <constraint firstItem="wE0-mG-3TP" firstAttribute="leading" secondItem="Xaf-9b-R7w" secondAttribute="leadingMargin" constant="8" id="tcg-Ee-VTn"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="categoryPickerView" destination="ZZu-f8-c1y" id="u4X-8t-1B4"/>
+                        <outlet property="okButton" destination="9PQ-pS-yRo" id="Ubg-QR-B8A"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EPv-Lc-IrW" userLabel="First Responder" sceneMemberID="firstResponder"/>

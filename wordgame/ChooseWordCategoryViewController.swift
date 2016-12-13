@@ -11,6 +11,7 @@ import UIKit
 class ChooseWordCategoryViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
 
     @IBOutlet weak var categoryPickerView: UIPickerView!
+    @IBOutlet weak var okButton: UIButton!
     
     @IBAction func onOKClick() {
         guard let gameVC = self.presentingViewController! as? GameViewController else {
@@ -25,8 +26,18 @@ class ChooseWordCategoryViewController: UIViewController, UIPickerViewDataSource
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.extSetLetterBlueBackground()
+        
         categoryPickerView.delegate = self
         categoryPickerView.dataSource = self
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        view.extAddCenterRound()
+        categoryPickerView.extAddBorder()
+        okButton.extAddBorder()
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
