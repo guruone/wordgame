@@ -129,6 +129,10 @@ class SinglePlayerViewController: UIViewController, GameViewController {
 extension SinglePlayerViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        guard textField.text?.characters.first != nil else {
+            return false
+        }
+        
         let lastChar = oponentWord!.characters.last!
         let firstChar = textField.text!.characters.first!
         
