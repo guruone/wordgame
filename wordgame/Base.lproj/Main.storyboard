@@ -365,15 +365,25 @@
                                     <action selector="onDismissClick" destination="BYZ-38-t0r" eventType="touchUpInside" id="Y4D-ZE-ptQ"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E5b-LM-Bjz">
+                                <rect key="frame" x="16" y="28" width="30" height="30"/>
+                                <color key="backgroundColor" red="0.96862745100000003" green="0.72941176470000002" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Hint"/>
+                                <connections>
+                                    <action selector="onHintClick" destination="BYZ-38-t0r" eventType="touchUpInside" id="gn3-6i-Ous"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.27450980390000002" green="0.49803921569999998" blue="0.84313725490000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="pTn-IW-Vih" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.2" id="5S9-vW-ycQ"/>
                             <constraint firstItem="pTn-IW-Vih" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="8" id="80c-w8-eBJ"/>
                             <constraint firstItem="Tnd-5u-atf" firstAttribute="width" secondItem="pTn-IW-Vih" secondAttribute="width" multiplier="0.6" id="Ppl-Gf-EBG"/>
+                            <constraint firstItem="E5b-LM-Bjz" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="SZz-AD-W35"/>
                             <constraint firstItem="Rhi-Ce-o9X" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="U4S-nG-LGw"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Rhi-Ce-o9X" secondAttribute="trailing" id="baQ-G8-QgD"/>
                             <constraint firstItem="Tnd-5u-atf" firstAttribute="height" secondItem="pTn-IW-Vih" secondAttribute="height" multiplier="0.5" id="dTo-ub-VHH"/>
+                            <constraint firstItem="E5b-LM-Bjz" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="f37-qY-1gX"/>
                             <constraint firstItem="pTn-IW-Vih" firstAttribute="top" secondItem="Tnd-5u-atf" secondAttribute="bottom" id="ixV-O3-NkE"/>
                             <constraint firstItem="pTn-IW-Vih" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="jxB-eD-AAc"/>
                             <constraint firstAttribute="trailingMargin" secondItem="pTn-IW-Vih" secondAttribute="trailing" constant="8" id="sP0-Io-3mE"/>

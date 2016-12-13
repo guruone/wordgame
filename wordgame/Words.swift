@@ -39,6 +39,16 @@ class WordRepository {
         return result[rand] as! NSManagedObject
     }
     
+    func findRandomOne(for category: WordCategory, startWith char: String) -> NSManagedObject {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: category.entityName())
+        request.predicate = NSPredicate(format: "name BEGINSWITH[c] %@", char)
+        let result = try! managedObjectContext.fetch(request)
+        
+        let rand = Int(arc4random_uniform(UInt32(result.count + 1)))
+        
+        return result[rand] as! NSManagedObject
+    }
+    
     func findPoints(forCategory category: WordCategory, startsWith char: String) -> Points {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: String(describing: Points.self))
         request.predicate = NSPredicate(format: "category = %@ and char = %@", category.rawValue, char)

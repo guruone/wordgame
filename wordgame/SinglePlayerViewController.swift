@@ -83,6 +83,11 @@ class SinglePlayerViewController: UIViewController, GameViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func onHintClick() {
+        let lastChar = "\(oponentWord!.characters.last!)"
+        currentWordTextField.text = wordRepo.findRandomOne(for: selectedCategory!, startWith: lastChar).value(forKey: "name") as? String
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
