@@ -28,6 +28,9 @@ class MultiPlayerViewController: UIViewController, GameViewController, UITextFie
     
     fileprivate let wordRepo = WordRepository()
     
+    /// uz pouzite slova su zakazane
+    fileprivate var forbiddenWords = [String]()
+    
     fileprivate var gameState: GameState = .waitingToPlayerValue
     
     // from segue
@@ -45,6 +48,8 @@ class MultiPlayerViewController: UIViewController, GameViewController, UITextFie
     fileprivate var oponentWord: String? {
         didSet {
             oponentWordLabel.text = oponentWord!
+            
+            forbiddenWords.append(oponentWord!)
             
             let lastChar = "\(oponentWord!.characters.last!)"
             currentWordTextField.text = lastChar
@@ -127,6 +132,12 @@ class MultiPlayerViewController: UIViewController, GameViewController, UITextFie
         guard textField.text?.characters.first != nil else {
             return false
         }
+        
+        guard forbiddenWords.contains(textField.text!) == false else {
+            presentAlreadyUsed(word: textField.text!)
+            return false
+        }
+        
         
         let lastChar = oponentWord!.characters.last!
         let firstChar = textField.text!.characters.first!
@@ -253,6 +264,7 @@ extension MultiPlayerViewController: MatchDelegate {
     
     func sendCurrentWord() {
         presentWaitingForOponentWord {
+            self.forbiddenWords.append(self.currentWordTextField.text!)
             self.timer?.invalidate()
             self.score! += self.pointsForCurrentWord!
             self.match.sendWord(self.currentWordTextField.text!)
@@ -317,6 +329,12 @@ extension MultiPlayerViewController {
     func presentWaitingForOponentWord(completion: @escaping () -> Void) {
         let vc = UIAlertController(title: "Oponent typing word", message: "please wait ...", preferredStyle: .alert)
         present(vc, animated: true, completion: completion)
+    }
+    
+    func presentAlreadyUsed(word: String) {
+        let alertVC = UIAlertController(title: "Slovo \(word) uz bolo pouzite", message: nil, preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        present(alertVC, animated: true, completion: nil)
     }
     
     func presentCharacterAreNotEqual(leftchar: String, rightChar: String) {

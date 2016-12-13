@@ -17,6 +17,9 @@ class SinglePlayerViewController: UIViewController, GameViewController {
     
     fileprivate let wordRepo = WordRepository()
     
+    /// uz pouzite slova su zakazane
+    fileprivate var forbiddenWords = [String]()
+    
     fileprivate var gameState: GameState = .waitingToWordCategory
     
     fileprivate var selectedCategory: WordCategory? {
@@ -28,6 +31,8 @@ class SinglePlayerViewController: UIViewController, GameViewController {
     fileprivate var oponentWord: String? {
         didSet {
             oponentWordLabel.text = oponentWord!
+            
+            forbiddenWords.append(oponentWord!)
             
             let lastChar = "\(oponentWord!.characters.last!)"
             currentWordTextField.text = lastChar
@@ -133,6 +138,11 @@ extension SinglePlayerViewController: UITextFieldDelegate {
             return false
         }
         
+        guard forbiddenWords.contains(textField.text!) == false else {
+            presentAlreadyUsed(word: textField.text!)
+            return false
+        }
+        
         let lastChar = oponentWord!.characters.last!
         let firstChar = textField.text!.characters.first!
         
@@ -159,6 +169,12 @@ extension SinglePlayerViewController {
     func presentChooseCategory() {
         let vc = storyboard?.instantiateViewController(withIdentifier: String(describing: ChooseWordCategoryViewController.self))
         present(vc!, animated: true, completion: nil)
+    }
+    
+    func presentAlreadyUsed(word: String) {
+        let alertVC = UIAlertController(title: "Slovo \(word) uz bolo pouzite", message: nil, preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        present(alertVC, animated: true, completion: nil)
     }
     
     func presentCharacterAreNotEqual(leftchar: String, rightChar: String) {
