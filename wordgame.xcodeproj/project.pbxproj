@@ -13,6 +13,7 @@
 		20113F9E1DFEA205003E045A /* names.csv in Resources */ = {isa = PBXBuildFile; fileRef = 20113F9D1DFEA205003E045A /* names.csv */; };
 		20113FA01DFEA21C003E045A /* nouns.csv in Resources */ = {isa = PBXBuildFile; fileRef = 20113F9F1DFEA21C003E045A /* nouns.csv */; };
 		20113FA21DFEB20D003E045A /* ChooseWordCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20113FA11DFEB20D003E045A /* ChooseWordCategoryViewController.swift */; };
+		20113FA41DFFD9EF003E045A /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20113FA31DFFD9EF003E045A /* Player.swift */; };
 		207E316A1DFDB6A200453EF6 /* MultiPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207E31691DFDB6A200453EF6 /* MultiPlayer.swift */; };
 		207E316E1DFDC63C00453EF6 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207E316D1DFDC63C00453EF6 /* UIView+.swift */; };
 		20C007681DFAC93100772B50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C007671DFAC93100772B50 /* AppDelegate.swift */; };
@@ -34,6 +35,7 @@
 		20113F9D1DFEA205003E045A /* names.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = names.csv; sourceTree = "<group>"; };
 		20113F9F1DFEA21C003E045A /* nouns.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = nouns.csv; sourceTree = "<group>"; };
 		20113FA11DFEB20D003E045A /* ChooseWordCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseWordCategoryViewController.swift; sourceTree = "<group>"; };
+		20113FA31DFFD9EF003E045A /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		207E31691DFDB6A200453EF6 /* MultiPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiPlayer.swift; sourceTree = "<group>"; };
 		207E316D1DFDC63C00453EF6 /* UIView+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+.swift"; path = "../UIView+.swift"; sourceTree = "<group>"; };
 		20C007641DFAC93100772B50 /* wordgame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wordgame.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -83,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				20C0076B1DFAC93100772B50 /* Main.storyboard */,
+				20113FA31DFFD9EF003E045A /* Player.swift */,
 				207E31691DFDB6A200453EF6 /* MultiPlayer.swift */,
 				20C0077E1DFB3D4000772B50 /* MultiPlayerViewController.swift */,
 				20C0077C1DFACF7C00772B50 /* SinglePlayerViewController.swift */,
@@ -197,6 +200,7 @@
 				20113F981DFE93BA003E045A /* CSVToCoreData.swift in Sources */,
 				20C007811DFDA4ED00772B50 /* MenuViewController.swift in Sources */,
 				20C007681DFAC93100772B50 /* AppDelegate.swift in Sources */,
+				20113FA41DFFD9EF003E045A /* Player.swift in Sources */,
 				20C0077D1DFACF7C00772B50 /* SinglePlayerViewController.swift in Sources */,
 				207E316E1DFDC63C00453EF6 /* UIView+.swift in Sources */,
 				20C007701DFAC93100772B50 /* wordgame.xcdatamodeld in Sources */,

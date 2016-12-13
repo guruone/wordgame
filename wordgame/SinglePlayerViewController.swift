@@ -13,6 +13,8 @@ class SinglePlayerViewController: UIViewController, GameViewController {
     
     let MAX_TIME_FOR_WORD = 20
     
+    fileprivate let gkscore = Score()
+    
     fileprivate let wordRepo = WordRepository()
     
     fileprivate var gameState: GameState = .waitingToWordCategory
@@ -113,7 +115,8 @@ class SinglePlayerViewController: UIViewController, GameViewController {
     }
     
     fileprivate func gameOver() {
-        presentGameOver()
+        gkscore.report(score: score!)
+        presentGameOver(yourPoints: score!)
     }
 }
 
@@ -160,9 +163,9 @@ extension SinglePlayerViewController {
         self.present(alertVC, animated: true, completion: nil)
     }
     
-    func presentGameOver() {
+    func presentGameOver(yourPoints: Int) {
         func completion() {
-            let alertVC = UIAlertController(title: "Game Over", message: "😳 🐓 ta nejde 🐓 😳", preferredStyle: .alert)
+            let alertVC = UIAlertController(title: "Game Over", message: "na tvoje konto bolo pripocitanych \(yourPoints) bodov", preferredStyle: .alert)
             alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (_) in
                 self.dismiss(animated: true, completion: nil)
             }))

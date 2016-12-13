@@ -19,6 +19,10 @@ class MenuViewController: UIViewController {
         return maker
     }()
     
+    fileprivate lazy var gkscore: Score = {
+        return Score()
+    }()
+    
     fileprivate var playerIsAuthetificated = false {
         didSet {
             if presentedViewController != nil { // alert pozri viewDidApear
@@ -34,8 +38,15 @@ class MenuViewController: UIViewController {
         }
     }
     
+    @IBOutlet weak var leaderBoardButton: UIButton!
     @IBOutlet weak var singlePlayerButton: UIButton!
     @IBOutlet weak var multiPlayerButton: UIButton!
+    
+    @IBAction func onLeaderBoardClick() {
+        let leaderBoardVC = gkscore.createLeaderBoard(delegateView: self)
+        present(leaderBoardVC, animated: true, completion: nil)
+    }
+    
     
     @IBAction func onSinglePlayerClick() {
         let vc = storyboard?.instantiateViewController(withIdentifier: String(describing: SinglePlayerViewController.self))
@@ -59,11 +70,13 @@ class MenuViewController: UIViewController {
     }
     
     private func buttonsDisabled() {
+        leaderBoardButton.isEnabled = false
         singlePlayerButton.isEnabled = false
         multiPlayerButton.isEnabled = false
     }
     
     private func buttonsEnabled() {
+        leaderBoardButton.isEnabled = true
         singlePlayerButton.isEnabled = true
         multiPlayerButton.isEnabled = true
     }
@@ -111,5 +124,13 @@ extension MenuViewController: MatchMakerDelegate {
     
     func ended(with error: Error?) {
         print(error!.localizedDescription)
+    }
+}
+
+// MARK: UINavigationControllerDelegate LEADER BOARD DELEGATE
+extension MenuViewController: GKGameCenterControllerDelegate {
+    
+    func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
+        gameCenterViewController.dismiss(animated: true, completion: nil)
     }
 }

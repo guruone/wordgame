@@ -24,6 +24,8 @@ class MultiPlayerViewController: UIViewController, GameViewController, UITextFie
     
     fileprivate let myValue = arc4random()
     
+    fileprivate let gkScore = Score()
+    
     fileprivate let wordRepo = WordRepository()
     
     fileprivate var gameState: GameState = .waitingToPlayerValue
@@ -157,6 +159,7 @@ extension MultiPlayerViewController {
         
         oponentNameLabel.text = gkoponent?.alias
         timeRemaining = MAX_TIME_FOR_WORD
+        oponentScore = 0
         score = 0
     }
     
@@ -187,7 +190,10 @@ extension MultiPlayerViewController: MatchDelegate {
     func ended() {
         timer?.invalidate()
         DispatchQueue.main.async {
-            self.presentGameOver()
+            let totalScore = self.oponentScore! + self.score!
+            self.gkScore.report(score: totalScore)
+            
+            self.presentGameOver(yourPoints: self.score!, oponentPoints: self.oponentScore!)
         }
     }
     
@@ -277,8 +283,11 @@ extension MultiPlayerViewController: MatchDelegate {
     }
     
     func received(gameOverWithOponentPoints points: Int) {
+        let totalScore = points + score!
+        gkScore.report(score: totalScore)
+        
         match.cancelFromUser()
-        presentWin()
+        presentWin(yourPoints: score!, oponentPoints: points)
     }
 }
 
@@ -335,9 +344,9 @@ extension MultiPlayerViewController {
         }
     }
     
-    func presentWin() {
+    func presentWin(yourPoints: Int, oponentPoints: Int) {
         func completion() {
-            let alertVC = UIAlertController(title: "🐭 Vyhral ši dilino 🐭", message: nil, preferredStyle: .alert)
+            let alertVC = UIAlertController(title: "Vyhral si \(yourPoints + oponentPoints) bodov", message: "na tvoje konto bolo pripocitanych \(yourPoints) + \(oponentPoints) oponentovych bodov", preferredStyle: .alert)
             alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (_) in
                 self.dismiss(animated: true, completion: nil)
             }))
@@ -352,9 +361,9 @@ extension MultiPlayerViewController {
         }
     }
     
-    func presentGameOver() {
+    func presentGameOver(yourPoints: Int, oponentPoints: Int) {
         func completion() {
-            let alertVC = UIAlertController(title: "Game Over", message: "😳 🐓 ta nejde 🐓 😳", preferredStyle: .alert)
+            let alertVC = UIAlertController(title: "Game Over \(yourPoints + oponentPoints) bodov", message: "na tvoje konto bolo pripocitanych \(yourPoints) + \(oponentPoints) oponentovych bodov", preferredStyle: .alert)
             alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (_) in
                 self.dismiss(animated: true, completion: nil)
             }))
