@@ -23,7 +23,7 @@ extension UIView {
                              y: center.y - frame.width / 2,
                              width: frame.width,
                              height: frame.width)
-        round.backgroundColor = UIColor(red: 167/255, green: 224/255, blue: 165/255, alpha: 1).cgColor
+        round.backgroundColor = UIColor(red: 124/255, green: 209/255, blue: 117/255, alpha: 1).cgColor
         round.zPosition = -1
         round.cornerRadius = frame.width / 2
         layer.addSublayer(round)
@@ -35,13 +35,13 @@ extension UIView {
                                     y: frame.height,
                                     width: frame.width,
                                     height: 1)
-        bottomBorder.backgroundColor = UIColor.gray.cgColor
+        bottomBorder.backgroundColor = UIColor.black.cgColor
         
         layer.addSublayer(bottomBorder)
     }
     
     func extAddBorder() {
-        layer.borderColor = UIColor.white.cgColor
+        layer.borderColor = UIColor(red: 252/255, green: 233/255, blue: 212/255, alpha: 1).cgColor
         layer.borderWidth = 5
     }
     
@@ -51,7 +51,7 @@ extension UIView {
                                 y: 0,
                                 width: 2,
                                 height: destinationView.frame.origin.y)
-        leftLine.backgroundColor = UIColor.white.cgColor
+        leftLine.backgroundColor = UIColor(red: 252/255, green: 233/255, blue: 212/255, alpha: 1).cgColor
         self.layer.addSublayer(leftLine)
         
         let rightLine = CALayer()
@@ -59,7 +59,7 @@ extension UIView {
                                  y: 0,
                                  width: 2,
                                  height: destinationView.frame.origin.y)
-        rightLine.backgroundColor = UIColor.white.cgColor
+        rightLine.backgroundColor = UIColor(red: 252/255, green: 233/255, blue: 212/255, alpha: 1).cgColor
         self.layer.addSublayer(rightLine)
     }
     
@@ -69,7 +69,7 @@ extension UIView {
                                   y: 0,
                                   width: 5,
                                   height: frame.height)
-        leftBorder.backgroundColor = UIColor.white.cgColor
+        leftBorder.backgroundColor = UIColor(red: 252/255, green: 233/255, blue: 212/255, alpha: 1).cgColor
         layer.addSublayer(leftBorder)
         
         let topBorder = CALayer()
@@ -77,7 +77,7 @@ extension UIView {
                                  y: 0,
                                  width: frame.width,
                                  height: 5)
-        topBorder.backgroundColor = UIColor.white.cgColor
+        topBorder.backgroundColor = UIColor(red: 252/255, green: 233/255, blue: 212/255, alpha: 1).cgColor
         layer.addSublayer(topBorder)
         
         let rightBorder = CALayer()
@@ -85,7 +85,7 @@ extension UIView {
                                    y: 0,
                                    width: 5,
                                    height: frame.height)
-        rightBorder.backgroundColor = UIColor.white.cgColor
+        rightBorder.backgroundColor = UIColor(red: 252/255, green: 233/255, blue: 212/255, alpha: 1).cgColor
         layer.addSublayer(rightBorder)
     }
 }

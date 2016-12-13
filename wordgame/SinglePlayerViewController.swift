@@ -79,6 +79,7 @@ class SinglePlayerViewController: UIViewController, GameViewController {
     @IBOutlet weak var currentWordTextField: UITextField!
     
     @IBAction func onDismissClick() {
+        timer?.invalidate()
         dismiss(animated: true, completion: nil)
     }
     

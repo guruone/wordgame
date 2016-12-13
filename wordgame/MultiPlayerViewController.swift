@@ -108,6 +108,7 @@ class MultiPlayerViewController: UIViewController, GameViewController, UITextFie
     @IBOutlet weak var currentWordTextField: UITextField!
     
     @IBAction func onDismissClick() {
+        timer?.invalidate()
         dismiss(animated: true, completion: {
             // TODO: MATCH DISAPEAR/DISCONNECT
             self.gkmatch?.disconnect()
