@@ -37,7 +37,7 @@ class CSVToCoreData {
                 if 2 == rowValues.count {
                     // import
                     let entity = NSEntityDescription.insertNewObject(forEntityName: category.entityName(), into: managedObjectContext)
-                    entity.setValue(Int16(rowValues[0])!, forKey: "id")
+                    entity.setValue(Int64(rowValues[0])!, forKey: "id")
                     entity.setValue(rowValues[1], forKey: "name")
                 }
             }

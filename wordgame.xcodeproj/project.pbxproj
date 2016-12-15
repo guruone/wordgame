@@ -9,9 +9,6 @@
 /* Begin PBXBuildFile section */
 		20113F981DFE93BA003E045A /* CSVToCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20113F971DFE93BA003E045A /* CSVToCoreData.swift */; };
 		20113F9A1DFE98E9003E045A /* Words.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20113F991DFE98E9003E045A /* Words.swift */; };
-		20113F9C1DFEA1DE003E045A /* points.csv in Resources */ = {isa = PBXBuildFile; fileRef = 20113F9B1DFEA1DE003E045A /* points.csv */; };
-		20113F9E1DFEA205003E045A /* names.csv in Resources */ = {isa = PBXBuildFile; fileRef = 20113F9D1DFEA205003E045A /* names.csv */; };
-		20113FA01DFEA21C003E045A /* nouns.csv in Resources */ = {isa = PBXBuildFile; fileRef = 20113F9F1DFEA21C003E045A /* nouns.csv */; };
 		20113FA21DFEB20D003E045A /* ChooseWordCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20113FA11DFEB20D003E045A /* ChooseWordCategoryViewController.swift */; };
 		20113FA41DFFD9EF003E045A /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20113FA31DFFD9EF003E045A /* Player.swift */; };
 		207E316A1DFDB6A200453EF6 /* MultiPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207E31691DFDB6A200453EF6 /* MultiPlayer.swift */; };
@@ -26,14 +23,14 @@
 		20C007811DFDA4ED00772B50 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C007801DFDA4ED00772B50 /* MenuViewController.swift */; };
 		20C007831DFDAB0A00772B50 /* PlayerAuthentificator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C007821DFDAB0A00772B50 /* PlayerAuthentificator.swift */; };
 		20C007861DFDAF0500772B50 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20C007851DFDAF0500772B50 /* GameKit.framework */; };
+		20D57DDC1E01C35E00C51DD5 /* names.csv in Resources */ = {isa = PBXBuildFile; fileRef = 20D57DDA1E01C35E00C51DD5 /* names.csv */; };
+		20D57DDD1E01C35E00C51DD5 /* nouns.csv in Resources */ = {isa = PBXBuildFile; fileRef = 20D57DDB1E01C35E00C51DD5 /* nouns.csv */; };
+		20D57DDF1E01C36A00C51DD5 /* points.csv in Resources */ = {isa = PBXBuildFile; fileRef = 20D57DDE1E01C36A00C51DD5 /* points.csv */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		20113F971DFE93BA003E045A /* CSVToCoreData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSVToCoreData.swift; sourceTree = "<group>"; };
 		20113F991DFE98E9003E045A /* Words.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Words.swift; sourceTree = "<group>"; };
-		20113F9B1DFEA1DE003E045A /* points.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = points.csv; sourceTree = "<group>"; };
-		20113F9D1DFEA205003E045A /* names.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = names.csv; sourceTree = "<group>"; };
-		20113F9F1DFEA21C003E045A /* nouns.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = nouns.csv; sourceTree = "<group>"; };
 		20113FA11DFEB20D003E045A /* ChooseWordCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseWordCategoryViewController.swift; sourceTree = "<group>"; };
 		20113FA31DFFD9EF003E045A /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		207E31691DFDB6A200453EF6 /* MultiPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiPlayer.swift; sourceTree = "<group>"; };
@@ -50,6 +47,9 @@
 		20C007801DFDA4ED00772B50 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		20C007821DFDAB0A00772B50 /* PlayerAuthentificator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerAuthentificator.swift; sourceTree = "<group>"; };
 		20C007851DFDAF0500772B50 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		20D57DDA1E01C35E00C51DD5 /* names.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = names.csv; sourceTree = "<group>"; };
+		20D57DDB1E01C35E00C51DD5 /* nouns.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = nouns.csv; sourceTree = "<group>"; };
+		20D57DDE1E01C36A00C51DD5 /* points.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = points.csv; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,9 +100,9 @@
 				20C007731DFAC93100772B50 /* LaunchScreen.storyboard */,
 				20C007761DFAC93100772B50 /* Info.plist */,
 				20C0076E1DFAC93100772B50 /* wordgame.xcdatamodeld */,
-				20113F9B1DFEA1DE003E045A /* points.csv */,
-				20113F9D1DFEA205003E045A /* names.csv */,
-				20113F9F1DFEA21C003E045A /* nouns.csv */,
+				20D57DDE1E01C36A00C51DD5 /* points.csv */,
+				20D57DDA1E01C35E00C51DD5 /* names.csv */,
+				20D57DDB1E01C35E00C51DD5 /* nouns.csv */,
 			);
 			path = wordgame;
 			sourceTree = "<group>";
@@ -180,12 +180,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				20113FA01DFEA21C003E045A /* nouns.csv in Resources */,
 				20C007751DFAC93100772B50 /* LaunchScreen.storyboard in Resources */,
-				20113F9C1DFEA1DE003E045A /* points.csv in Resources */,
 				20C007721DFAC93100772B50 /* Assets.xcassets in Resources */,
 				20C0076D1DFAC93100772B50 /* Main.storyboard in Resources */,
-				20113F9E1DFEA205003E045A /* names.csv in Resources */,
+				20D57DDC1E01C35E00C51DD5 /* names.csv in Resources */,
+				20D57DDD1E01C35E00C51DD5 /* nouns.csv in Resources */,
+				20D57DDF1E01C36A00C51DD5 /* points.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
