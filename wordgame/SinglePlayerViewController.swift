@@ -70,6 +70,8 @@ class SinglePlayerViewController: UIViewController, GameViewController {
     
     fileprivate var pointsForCurrentWord: Int? {
         didSet {
+            pointForCurrentWordLabel.text = "\(pointsForCurrentWord!)"
+            
             let bonusInPerc = bonus.currBonusInPerc
             bonusLabel.text = "BONUS \(bonusInPerc)%"
             
@@ -77,7 +79,6 @@ class SinglePlayerViewController: UIViewController, GameViewController {
             let nextBonusInPerc = bonus.nextBonusInPerc
             
             bonusInfoLabel.text = "\(wordsToNextBonus) TO \(nextBonusInPerc)%"
-            // TODO: zobrazit body ktore je mozne ziskat za aktualne slovo
         }
     }
     
@@ -102,6 +103,7 @@ class SinglePlayerViewController: UIViewController, GameViewController {
     @IBOutlet weak var wordView: UIView!
     @IBOutlet weak var oponentWordLabel: UILabel!
     @IBOutlet weak var currentWordTextField: UITextField!
+    @IBOutlet weak var pointForCurrentWordLabel: UILabel!
     
     @IBAction func onDismissClick() {
         timer?.invalidate()
@@ -138,6 +140,8 @@ class SinglePlayerViewController: UIViewController, GameViewController {
         categoryLabel.extAddBorder([.bottom(width: 1)])
         bonusLabel.extAddBorder([.right(width: 0.5)])
         bonusInfoLabel.extAddBorder([.left(width: 0.5)])
+        
+        pointForCurrentWordLabel.extAddBorder([.top(width: 5), .right(width: 5)])
         
         if gameState == .waitingToWordCategory {
             gameState = .waitingToOponentWord

@@ -85,6 +85,8 @@ class MultiPlayerViewController: UIViewController, GameViewController, UITextFie
     
     fileprivate var pointsForCurrentWord: Int? {
         didSet {
+            pointForCurrentWordLabel.text = "\(pointsForCurrentWord!)"
+            
             let bonusInPerc = bonus.currBonusInPerc
             bonusLabel.text = "BONUS \(bonusInPerc)%"
             
@@ -92,7 +94,6 @@ class MultiPlayerViewController: UIViewController, GameViewController, UITextFie
             let nextBonusInPerc = bonus.nextBonusInPerc
             
             bonusInfoLabel.text = "\(wordsToNextBonus) TO \(nextBonusInPerc)%"
-            // TODO: zobrazit body ktore je mozne ziskat za aktualne slovo
         }
     }
     
@@ -126,6 +127,7 @@ class MultiPlayerViewController: UIViewController, GameViewController, UITextFie
     @IBOutlet weak var wordView: UIView!
     @IBOutlet weak var oponentWordLabel: UILabel!
     @IBOutlet weak var currentWordTextField: UITextField!
+    @IBOutlet weak var pointForCurrentWordLabel: UILabel!
     
     @IBAction func onDismissClick() {
         timer?.invalidate()
@@ -213,6 +215,8 @@ extension MultiPlayerViewController {
         categoryLabel.extAddBorder([.bottom(width: 1)])
         bonusLabel.extAddBorder([.right(width: 0.5)])
         bonusInfoLabel.extAddBorder([.left(width: 0.5)])
+        
+        pointForCurrentWordLabel.extAddBorder([.top(width: 5), .right(width: 5)])
         
         if gameState == .waitingToPlayerValue {
             sendPlayerValue()

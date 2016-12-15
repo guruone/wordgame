@@ -165,14 +165,24 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tfh-Rt-x24">
+                                        <rect key="frame" x="0.0" y="100" width="49" height="33"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.96862745100000003" green="0.72941176470000002" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="5e0-aZ-hJd" firstAttribute="leading" secondItem="sph-vK-0B9" secondAttribute="leading" id="3eg-Ay-VKA"/>
+                                    <constraint firstItem="Tfh-Rt-x24" firstAttribute="leading" secondItem="sph-vK-0B9" secondAttribute="leading" id="41d-tC-xRu"/>
+                                    <constraint firstItem="Tfh-Rt-x24" firstAttribute="height" secondItem="6CH-3e-Lyb" secondAttribute="height" multiplier="0.5" id="5Vk-lO-sLx"/>
                                     <constraint firstAttribute="trailing" secondItem="5e0-aZ-hJd" secondAttribute="trailing" id="DAh-fe-Whg"/>
                                     <constraint firstItem="5e0-aZ-hJd" firstAttribute="height" secondItem="sph-vK-0B9" secondAttribute="height" multiplier="0.5" id="Ifi-Ju-823"/>
                                     <constraint firstItem="5e0-aZ-hJd" firstAttribute="top" secondItem="sph-vK-0B9" secondAttribute="top" id="Qho-ej-Dtt"/>
                                     <constraint firstAttribute="bottom" secondItem="6CH-3e-Lyb" secondAttribute="bottom" id="UeU-kZ-Ib7"/>
+                                    <constraint firstItem="Tfh-Rt-x24" firstAttribute="width" secondItem="6CH-3e-Lyb" secondAttribute="width" multiplier="0.15" id="Umj-La-X1K"/>
+                                    <constraint firstAttribute="bottom" secondItem="Tfh-Rt-x24" secondAttribute="bottom" id="l60-OA-NfR"/>
                                     <constraint firstItem="6CH-3e-Lyb" firstAttribute="leading" secondItem="sph-vK-0B9" secondAttribute="leading" id="mFc-P5-Dql"/>
                                     <constraint firstItem="6CH-3e-Lyb" firstAttribute="height" secondItem="sph-vK-0B9" secondAttribute="height" multiplier="0.5" id="mZ7-m0-6jR"/>
                                     <constraint firstAttribute="trailing" secondItem="6CH-3e-Lyb" secondAttribute="trailing" id="rnD-6B-WF0"/>
@@ -327,6 +337,7 @@
                         <outlet property="oponentScoreAndTimeView" destination="ZAp-y2-Ikk" id="39m-Hn-2DH"/>
                         <outlet property="oponentScoreLabel" destination="hRJ-Lv-kQd" id="fwk-Km-QG9"/>
                         <outlet property="oponentWordLabel" destination="5e0-aZ-hJd" id="8TK-4u-yAC"/>
+                        <outlet property="pointForCurrentWordLabel" destination="Tfh-Rt-x24" id="I2i-6v-cJZ"/>
                         <outlet property="scoreAndTimeView" destination="NeR-sj-CUT" id="C2n-sl-sCr"/>
                         <outlet property="scoreLabel" destination="vxe-5l-60D" id="AzX-Za-ulK"/>
                         <outlet property="timeLabel" destination="6Lw-z6-oaU" id="Jme-cm-gNi"/>
@@ -364,13 +375,23 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r9g-mH-lkK">
+                                        <rect key="frame" x="0.0" y="100" width="49" height="33"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.96862745100000003" green="0.72941176470000002" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="boL-kM-7OW" firstAttribute="top" secondItem="pTn-IW-Vih" secondAttribute="top" id="6OM-Y4-xlZ"/>
                                     <constraint firstAttribute="trailing" secondItem="cVp-sE-5Yw" secondAttribute="trailing" id="71M-Cn-Hp9"/>
                                     <constraint firstItem="boL-kM-7OW" firstAttribute="height" secondItem="pTn-IW-Vih" secondAttribute="height" multiplier="0.5" id="AfE-Wx-3J6"/>
+                                    <constraint firstAttribute="bottom" secondItem="r9g-mH-lkK" secondAttribute="bottom" id="CkG-NW-OZe"/>
+                                    <constraint firstItem="r9g-mH-lkK" firstAttribute="height" secondItem="cVp-sE-5Yw" secondAttribute="height" multiplier="0.5" id="HwK-JM-eTg"/>
+                                    <constraint firstItem="r9g-mH-lkK" firstAttribute="width" secondItem="cVp-sE-5Yw" secondAttribute="width" multiplier="0.15" id="Tor-bH-hih"/>
                                     <constraint firstItem="boL-kM-7OW" firstAttribute="leading" secondItem="pTn-IW-Vih" secondAttribute="leading" id="f3A-44-ZmB"/>
+                                    <constraint firstItem="r9g-mH-lkK" firstAttribute="leading" secondItem="pTn-IW-Vih" secondAttribute="leading" id="hSc-Tv-YQw"/>
                                     <constraint firstItem="cVp-sE-5Yw" firstAttribute="height" secondItem="pTn-IW-Vih" secondAttribute="height" multiplier="0.5" id="jmd-dB-oMK"/>
                                     <constraint firstAttribute="bottom" secondItem="cVp-sE-5Yw" secondAttribute="bottom" id="pjf-hw-FnN"/>
                                     <constraint firstItem="cVp-sE-5Yw" firstAttribute="leading" secondItem="pTn-IW-Vih" secondAttribute="leading" id="yGZ-wT-vOw"/>
@@ -489,6 +510,7 @@
                         <outlet property="categoryLabel" destination="52i-XG-tSV" id="7GY-4c-0un"/>
                         <outlet property="currentWordTextField" destination="cVp-sE-5Yw" id="LCO-rR-KDk"/>
                         <outlet property="oponentWordLabel" destination="boL-kM-7OW" id="KYo-9d-Pgc"/>
+                        <outlet property="pointForCurrentWordLabel" destination="r9g-mH-lkK" id="RO9-z7-uoE"/>
                         <outlet property="scoreAndTimeView" destination="Tnd-5u-atf" id="Tgk-4c-KdW"/>
                         <outlet property="scoreLabel" destination="bAu-mX-6q5" id="Zcf-AQ-b3w"/>
                         <outlet property="timeLabel" destination="1od-nV-aOc" id="bCI-gl-BRG"/>
@@ -497,7 +519,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="148" y="138"/>
+            <point key="canvasLocation" x="148" y="137.18140929535232"/>
         </scene>
         <!--Choose Word Category-->
         <scene sceneID="jb5-kD-IyV">
