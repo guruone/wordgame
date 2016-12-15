@@ -29,20 +29,60 @@ extension UIView {
         layer.addSublayer(round)
     }
     
-    func extAddBottomBorder() {
-        let bottomBorder = CALayer()
-        bottomBorder.frame = CGRect(x: 0,
-                                    y: frame.height,
-                                    width: frame.width,
-                                    height: 1)
-        bottomBorder.backgroundColor = UIColor.black.cgColor
-        
-        layer.addSublayer(bottomBorder)
+    enum ExtBorderOrientation {
+        case left(width: CGFloat), right(width: CGFloat), top(width: CGFloat), bottom(width: CGFloat), all(width: CGFloat)
     }
     
-    func extAddBorder() {
-        layer.borderColor = UIColor(red: 252/255, green: 233/255, blue: 212/255, alpha: 1).cgColor
-        layer.borderWidth = 5
+    //TODO: orientation to Set<ExtBorderOrientation>
+    func extAddBorder(_ orientation: [ExtBorderOrientation]) {
+        let borderColor = UIColor(red: 252/255, green: 233/255, blue: 212/255, alpha: 1).cgColor
+        
+        for borderOrientation in orientation {
+            
+            if case .all(let width) = borderOrientation {
+                layer.borderColor = borderColor
+                layer.borderWidth = width
+                
+            } else {
+                let border = CALayer()
+                
+                switch borderOrientation {
+                case .left(let width):
+                    border.frame = CGRect(x: 0,
+                                          y: 0,
+                                          width: width,
+                                          height: frame.height)
+                    break
+                    
+                case .right(let width):
+                    border.frame = CGRect(x: frame.width,
+                                          y: 0,
+                                          width: width,
+                                          height: frame.height)
+                    break
+                    
+                case .top(let width):
+                    border.frame = CGRect(x: 0,
+                                          y: 0,
+                                          width: frame.width,
+                                          height: width)
+                    break
+                    
+                case .bottom(let width):
+                    border.frame = CGRect(x: 0,
+                                          y: frame.height,
+                                          width: frame.width,
+                                          height: width)
+                    
+                    break
+                case .all(_):
+                    break
+                }
+                
+                border.backgroundColor = borderColor
+                layer.addSublayer(border)
+            }
+        }
     }
     
     func extAddVerticalLinesFromTop(to destinationView: UIView, offsetFromEdges offset: CGFloat) {
@@ -61,31 +101,5 @@ extension UIView {
                                  height: destinationView.frame.origin.y)
         rightLine.backgroundColor = UIColor(red: 252/255, green: 233/255, blue: 212/255, alpha: 1).cgColor
         self.layer.addSublayer(rightLine)
-    }
-    
-    func extAddLeftTopRighBorder() {
-        let leftBorder = CALayer()
-        leftBorder.frame = CGRect(x: 0,
-                                  y: 0,
-                                  width: 5,
-                                  height: frame.height)
-        leftBorder.backgroundColor = UIColor(red: 252/255, green: 233/255, blue: 212/255, alpha: 1).cgColor
-        layer.addSublayer(leftBorder)
-        
-        let topBorder = CALayer()
-        topBorder.frame = CGRect(x: 0,
-                                 y: 0,
-                                 width: frame.width,
-                                 height: 5)
-        topBorder.backgroundColor = UIColor(red: 252/255, green: 233/255, blue: 212/255, alpha: 1).cgColor
-        layer.addSublayer(topBorder)
-        
-        let rightBorder = CALayer()
-        rightBorder.frame = CGRect(x: frame.width,
-                                   y: 0,
-                                   width: 5,
-                                   height: frame.height)
-        rightBorder.backgroundColor = UIColor(red: 252/255, green: 233/255, blue: 212/255, alpha: 1).cgColor
-        layer.addSublayer(rightBorder)
     }
 }

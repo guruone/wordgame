@@ -36,8 +36,8 @@ class ChooseWordCategoryViewController: UIViewController, UIPickerViewDataSource
         super.viewDidAppear(animated)
         
         view.extAddCenterRound()
-        categoryPickerView.extAddBorder()
-        okButton.extAddBorder()
+        categoryPickerView.extAddBorder([.all(width: 5)])
+        okButton.extAddBorder([.all(width: 5)])
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

@@ -108,7 +108,16 @@ extension MenuViewController: PlayerAuthentificatorDelagate {
     }
 
     func present(authentification viewController: UIViewController) {
-        present(viewController, animated: true, completion: nil)
+        func completion() {
+            present(viewController, animated: true, completion: nil)
+        }
+        
+        if presentedViewController != nil {
+            presentedViewController!.dismiss(animated: true, completion: completion)
+            
+        } else {
+            completion()
+        }
     }
 }
 

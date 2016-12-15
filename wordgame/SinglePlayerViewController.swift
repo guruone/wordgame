@@ -109,10 +109,10 @@ class SinglePlayerViewController: UIViewController, GameViewController {
         // GRAFIKA
         view.extAddCenterRound()
         view.extAddVerticalLinesFromTop(to: wordView, offsetFromEdges: 20)
-        scoreLabel.extAddBottomBorder()
-        oponentWordLabel.extAddBottomBorder()
-        scoreAndTimeView.extAddLeftTopRighBorder()
-        wordView.extAddBorder()
+        scoreLabel.extAddBorder([.bottom(width: 1)])
+        oponentWordLabel.extAddBorder([.bottom(width: 1)])
+        scoreAndTimeView.extAddBorder([.left(width: 5), .top(width: 5), .right(width: 5)])
+        wordView.extAddBorder([.all(width: 5)])
         
         if gameState == .waitingToWordCategory {
             gameState = .waitingToOponentWord
