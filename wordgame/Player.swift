@@ -42,3 +42,37 @@ class Score {
         return gkVC
     }
 }
+
+class BonusPoints {
+    
+    private let BONUS_STEP = 0.1
+    private let CNT_MAX_TO_BONUS_STEP = 10
+    
+    private var cntToNextBonus = 0 {
+        didSet {
+            if cntToNextBonus == CNT_MAX_TO_BONUS_STEP {
+                cntToNextBonus = 1
+                currBonus += BONUS_STEP
+            }
+        }
+    }
+    
+    private var currBonus: Double = 1
+    
+    var currBonusInPerc: Int {
+        return Int(round((self.currBonus - 1 ) * 100.0))
+    }
+    
+    var nextBonusInPerc: Int {
+        return Int(round((self.currBonus + BONUS_STEP - 1 ) * 100))
+    }
+    
+    var nextBonusStepRemaining: Int {
+        return CNT_MAX_TO_BONUS_STEP - cntToNextBonus
+    }
+    
+    func pointsWithAddedBonus(points: Int) -> Int {
+        cntToNextBonus += 1
+        return Int(round(Double(points) * currBonus))
+    }
+}

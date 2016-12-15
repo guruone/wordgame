@@ -17,6 +17,8 @@ class SinglePlayerViewController: UIViewController, GameViewController {
     
     fileprivate let wordRepo = WordRepository()
     
+    fileprivate let bonus = BonusPoints()
+    
     /// uz pouzite slova su zakazane
     fileprivate var forbiddenWords = [String]()
     
@@ -24,7 +26,7 @@ class SinglePlayerViewController: UIViewController, GameViewController {
     
     fileprivate var selectedCategory: WordCategory? {
         didSet {
-            // TODO: nastavit label kategorii
+            categoryLabel.text = "CATEGORY: \(selectedCategory!.rawValue)"
         }
     }
     
@@ -37,7 +39,10 @@ class SinglePlayerViewController: UIViewController, GameViewController {
             let lastChar = "\(oponentWord!.characters.last!)"
             currentWordTextField.text = lastChar
             
-            pointsForCurrentWord = Int(wordRepo.findPoints(forCategory: selectedCategory!, startsWith: lastChar).points)
+            let wordPoints = Int(wordRepo.findPoints(forCategory: selectedCategory!, startsWith: lastChar).points)
+            pointsForCurrentWord = bonus.pointsWithAddedBonus(points: wordPoints)
+            
+            print("points:", wordPoints, pointsForCurrentWord!)
             
             // MARK: START WORD TIMER
             timeRemaining = MAX_TIME_FOR_WORD
@@ -65,6 +70,13 @@ class SinglePlayerViewController: UIViewController, GameViewController {
     
     fileprivate var pointsForCurrentWord: Int? {
         didSet {
+            let bonusInPerc = bonus.currBonusInPerc
+            bonusLabel.text = "BONUS \(bonusInPerc)%"
+            
+            let wordsToNextBonus = bonus.nextBonusStepRemaining
+            let nextBonusInPerc = bonus.nextBonusInPerc
+            
+            bonusInfoLabel.text = "\(wordsToNextBonus) TO \(nextBonusInPerc)%"
             // TODO: zobrazit body ktore je mozne ziskat za aktualne slovo
         }
     }
@@ -74,6 +86,14 @@ class SinglePlayerViewController: UIViewController, GameViewController {
             scoreLabel.text = "SCORE: \(score!)"
         }
     }
+    
+    
+    
+    
+    @IBOutlet weak var categoryAndBonusView: UIView!
+    @IBOutlet weak var categoryLabel: UILabel!
+    @IBOutlet weak var bonusLabel: UILabel!
+    @IBOutlet weak var bonusInfoLabel: UILabel!
     
     @IBOutlet weak var scoreAndTimeView: UIView!
     @IBOutlet weak var scoreLabel: UILabel!
@@ -113,6 +133,11 @@ class SinglePlayerViewController: UIViewController, GameViewController {
         oponentWordLabel.extAddBorder([.bottom(width: 1)])
         scoreAndTimeView.extAddBorder([.left(width: 5), .top(width: 5), .right(width: 5)])
         wordView.extAddBorder([.all(width: 5)])
+        
+        categoryAndBonusView.extAddBorder([.all(width: 5)])
+        categoryLabel.extAddBorder([.bottom(width: 1)])
+        bonusLabel.extAddBorder([.right(width: 0.5)])
+        bonusInfoLabel.extAddBorder([.left(width: 0.5)])
         
         if gameState == .waitingToWordCategory {
             gameState = .waitingToOponentWord
