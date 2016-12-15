@@ -28,6 +28,8 @@ class MultiPlayerViewController: UIViewController, GameViewController, UITextFie
     
     fileprivate let wordRepo = WordRepository()
     
+    fileprivate let bonus = BonusPoints()
+    
     /// uz pouzite slova su zakazane
     fileprivate var forbiddenWords = [String]()
     
@@ -41,7 +43,7 @@ class MultiPlayerViewController: UIViewController, GameViewController, UITextFie
     
     fileprivate var selectedCategory: WordCategory? {
         didSet {
-            // TODO: zobrazit nazov kategorie
+            categoryLabel.text = "CATEGORY: \(selectedCategory!.rawValue)"
         }
     }
     
@@ -54,7 +56,8 @@ class MultiPlayerViewController: UIViewController, GameViewController, UITextFie
             let lastChar = "\(oponentWord!.characters.last!)"
             currentWordTextField.text = lastChar
             
-            pointsForCurrentWord = Int(wordRepo.findPoints(forCategory: selectedCategory!, startsWith: lastChar).points)
+            let wordPoints = Int(wordRepo.findPoints(forCategory: selectedCategory!, startsWith: lastChar).points)
+            pointsForCurrentWord = bonus.pointsWithAddedBonus(points: wordPoints)
             
             // MARK: START WORD TIMER
             timeRemaining = MAX_TIME_FOR_WORD
@@ -82,6 +85,13 @@ class MultiPlayerViewController: UIViewController, GameViewController, UITextFie
     
     fileprivate var pointsForCurrentWord: Int? {
         didSet {
+            let bonusInPerc = bonus.currBonusInPerc
+            bonusLabel.text = "BONUS \(bonusInPerc)%"
+            
+            let wordsToNextBonus = bonus.nextBonusStepRemaining
+            let nextBonusInPerc = bonus.nextBonusInPerc
+            
+            bonusInfoLabel.text = "\(wordsToNextBonus) TO \(nextBonusInPerc)%"
             // TODO: zobrazit body ktore je mozne ziskat za aktualne slovo
         }
     }
@@ -98,6 +108,11 @@ class MultiPlayerViewController: UIViewController, GameViewController, UITextFie
             oponentScoreLabel.text = "SCORE: \(oponentScore!)"
         }
     }
+    
+    @IBOutlet weak var categoryAndBonusView: UIView!
+    @IBOutlet weak var categoryLabel: UILabel!
+    @IBOutlet weak var bonusLabel: UILabel!
+    @IBOutlet weak var bonusInfoLabel: UILabel!
     
     @IBOutlet weak var oponentLabel: UILabel!
     @IBOutlet weak var oponentScoreAndTimeView: UIView!
@@ -193,6 +208,11 @@ extension MultiPlayerViewController {
         oponentLabel.extAddBorder([.left(width: 5), .top(width: 5), .right(width: 5)])
         oponentScoreAndTimeView.extAddBorder([.all(width: 5)])
         wordView.extAddBorder([.all(width: 5)])
+        
+        categoryAndBonusView.extAddBorder([.all(width: 5)])
+        categoryLabel.extAddBorder([.bottom(width: 1)])
+        bonusLabel.extAddBorder([.right(width: 0.5)])
+        bonusInfoLabel.extAddBorder([.left(width: 0.5)])
         
         if gameState == .waitingToPlayerValue {
             sendPlayerValue()

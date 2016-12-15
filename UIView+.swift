@@ -87,6 +87,7 @@ extension UIView {
     
     func extAddVerticalLinesFromTop(to destinationView: UIView, offsetFromEdges offset: CGFloat) {
         let leftLine = CALayer()
+        leftLine.zPosition = -1
         leftLine.frame = CGRect(x: destinationView.frame.origin.x + offset,
                                 y: 0,
                                 width: 2,
@@ -95,6 +96,7 @@ extension UIView {
         self.layer.addSublayer(leftLine)
         
         let rightLine = CALayer()
+        rightLine.zPosition = -1
         rightLine.frame = CGRect(x: destinationView.frame.origin.x + destinationView.frame.width - offset,
                                  y: 0,
                                  width: 2,
