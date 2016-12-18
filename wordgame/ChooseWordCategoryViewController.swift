@@ -8,18 +8,24 @@
 
 import UIKit
 
-class ChooseWordCategoryViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
-
-    @IBOutlet weak var categoryPickerView: UIPickerView!
-    @IBOutlet weak var okButton: UIButton!
+class ChooseWordCategoryViewController: UIViewController {
     
-    @IBAction func onOKClick() {
+    @IBOutlet weak var categoryStackView: UIStackView!
+    
+    @IBAction func onNounsClick() {
+        onClick(WordCategory.nouns)
+    }
+    
+    @IBAction func onNamesClick() {
+        onClick(WordCategory.names)
+    }
+    
+    private func onClick(_ category: WordCategory) {
         guard let gameVC = self.presentingViewController! as? GameViewController else {
             fatalError("parent viewController musi implementovat GameViewController")
         }
         dismiss(animated: true, completion: {
-            let selectedCategoryIndex = self.categoryPickerView.selectedRow(inComponent: 0)
-            gameVC.setSelectedWordCategory(WordCategory.allValues[selectedCategoryIndex])
+            gameVC.setSelectedWordCategory(category)
         })
     }
 
@@ -27,28 +33,12 @@ class ChooseWordCategoryViewController: UIViewController, UIPickerViewDataSource
         super.viewDidLoad()
         
         view.extSetLetterBlueBackground()
-        
-        categoryPickerView.delegate = self
-        categoryPickerView.dataSource = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         view.extAddCenterRound()
-        categoryPickerView.extAddBorder([.all(width: 5)])
-        okButton.extAddBorder([.all(width: 5)])
-    }
-    
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return WordCategory.allValues.count
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return WordCategory.allValues[row].rawValue
+        view.extAddVerticalLinesFromTop(to: categoryStackView, offsetFromEdges: 30)
     }
 }

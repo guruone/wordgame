@@ -91,16 +91,16 @@ extension UIView {
         leftLine.frame = CGRect(x: destinationView.frame.origin.x + offset,
                                 y: 0,
                                 width: 2,
-                                height: destinationView.frame.origin.y)
+                                height: destinationView.frame.origin.y + destinationView.frame.height)
         leftLine.backgroundColor = UIColor(red: 252/255, green: 233/255, blue: 212/255, alpha: 1).cgColor
         self.layer.addSublayer(leftLine)
         
         let rightLine = CALayer()
         rightLine.zPosition = -1
-        rightLine.frame = CGRect(x: destinationView.frame.origin.x + destinationView.frame.width - offset,
+        rightLine.frame = CGRect(x: destinationView.frame.origin.x + destinationView.frame.width - offset - 2,
                                  y: 0,
                                  width: 2,
-                                 height: destinationView.frame.origin.y)
+                                 height: destinationView.frame.origin.y + destinationView.frame.height)
         rightLine.backgroundColor = UIColor(red: 252/255, green: 233/255, blue: 212/255, alpha: 1).cgColor
         self.layer.addSublayer(rightLine)
     }

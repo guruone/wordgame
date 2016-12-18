@@ -41,6 +41,9 @@ class MenuViewController: UIViewController {
     @IBOutlet weak var leaderBoardButton: UIButton!
     @IBOutlet weak var singlePlayerButton: UIButton!
     @IBOutlet weak var multiPlayerButton: UIButton!
+
+    @IBOutlet weak var gameMenuStackView: UIStackView!
+    @IBOutlet weak var leaderBoardView: UIView!
     
     @IBAction func onLeaderBoardClick() {
         let leaderBoardVC = gkscore.createLeaderBoard(delegateView: self)
@@ -86,6 +89,8 @@ class MenuViewController: UIViewController {
         
         // GRAFIKA
         view.extAddCenterRound()
+        view.extAddVerticalLinesFromTop(to: gameMenuStackView, offsetFromEdges: 50)
+        view.extAddVerticalLinesFromTop(to: leaderBoardView, offsetFromEdges: 33)
         
         if !playerIsAuthetificated {
             let alert = UIAlertController(title: "Player Authentification", message: "please wait ...", preferredStyle: .alert)
