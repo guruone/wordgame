@@ -105,6 +105,9 @@ class SinglePlayerViewController: UIViewController, GameViewController {
     @IBOutlet weak var currentWordTextField: UITextField!
     @IBOutlet weak var pointForCurrentWordLabel: UILabel!
     
+    @IBOutlet weak var hintButton: UIButton!
+    
+    
     @IBAction func onDismissClick() {
         timer?.invalidate()
         dismiss(animated: true, completion: nil)
@@ -143,6 +146,7 @@ class SinglePlayerViewController: UIViewController, GameViewController {
         bonusInfoLabel.extAddBorder([.left(width: 0.5)])
         
         pointForCurrentWordLabel.extAddBorder([.top(width: 5), .right(width: 5)])
+        hintButton.extAddBorder([.top(width: 5), .left(width: 5)])
         
         if gameState == .waitingToWordCategory {
             gameState = .waitingToOponentWord
