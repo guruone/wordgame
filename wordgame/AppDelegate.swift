@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import GoogleMobileAds
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -24,6 +25,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             installData()
             UserDefaults.standard.set(dataVersion, forKey: kDataVersion)
         }
+        
+        // MARK: ADS
+        GADMobileAds.configure(withApplicationID: "ca-app-pub-3278005872817682~8486070675")
         
         return true
     }

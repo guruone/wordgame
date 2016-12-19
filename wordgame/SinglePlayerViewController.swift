@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 
 class SinglePlayerViewController: UIViewController, GameViewController {
     
     let MAX_TIME_FOR_WORD = 20
+    
+    fileprivate let videoAd = VideoInterstitialAd()
     
     fileprivate let gkscore = Score()
     
@@ -118,8 +121,20 @@ class SinglePlayerViewController: UIViewController, GameViewController {
         currentWordTextField.text = wordRepo.findRandomOne(for: selectedCategory!, startWith: lastChar).value(forKey: "name") as? String
     }
     
+    var ad: GADInterstitial?
+    
+    @IBOutlet weak var pauseButton: UIButton!
+    
+    @IBAction func onPauseClick() {
+        timer?.invalidate()
+        ad?.present(fromRootViewController: self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        pauseButton.isEnabled = false
+        videoAd.delegate = self
         
         currentWordTextField.autocorrectionType = .no
         currentWordTextField.delegate = self
@@ -194,6 +209,22 @@ extension SinglePlayerViewController: UITextFieldDelegate {
         oponentWord = textField.text
         
         return true
+    }
+}
+
+// MARK: InterstitialAdDelegate
+extension SinglePlayerViewController: InterstitialAdDelegate {
+    
+    func adIsReady(_ ad: GADInterstitial) {
+        self.ad = ad
+        pauseButton.isEnabled = true
+    }
+    
+    func adDidDismissScreen() {
+        pauseButton.isEnabled = false
+        // spustim timer od zaciatku
+        let tmp = oponentWord
+        oponentWord = tmp
     }
 }
 
