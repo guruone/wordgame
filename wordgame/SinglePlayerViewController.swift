@@ -255,11 +255,11 @@ extension SinglePlayerViewController {
     
     func presentGameOver(yourPoints: Int) {
         func completion() {
-            let alertVC = UIAlertController(title: "Game Over", message: "na tvoje konto bolo pripocitanych \(yourPoints) bodov", preferredStyle: .alert)
-            alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (_) in
-                self.dismiss(animated: true, completion: nil)
-            }))
-            self.present(alertVC, animated: true, completion: nil)
+            
+            let vc = storyboard?.instantiateViewController(withIdentifier: String(describing: GameSumaryViewController.self)) as! GameSumaryViewController
+            vc.earnedPoints = yourPoints
+            vc.category = selectedCategory
+            present(vc, animated: true, completion: nil)
         }
         
         if presentedViewController != nil {

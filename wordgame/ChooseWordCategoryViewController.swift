@@ -39,6 +39,6 @@ class ChooseWordCategoryViewController: UIViewController {
         super.viewDidAppear(animated)
         
         view.extAddCenterRound()
-        view.extAddVerticalLinesFromTop(to: categoryStackView, offsetFromEdges: 30)
+        view.extAddVerticalLinesFromTop(to: categoryStackView, offsetFromEdges: 50)
     }
 }

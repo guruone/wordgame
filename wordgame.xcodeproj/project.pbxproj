@@ -20,6 +20,7 @@
 		2077D1481E07D37E000E8454 /* GoogleToolboxForMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2077D1421E07D37E000E8454 /* GoogleToolboxForMac.framework */; };
 		2077D14A1E07D396000E8454 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2077D1491E07D396000E8454 /* GoogleMobileAds.framework */; };
 		2077D14E1E07F703000E8454 /* Ads.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2077D14D1E07F703000E8454 /* Ads.swift */; };
+		2077D1501E0810DD000E8454 /* GameSumaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2077D14F1E0810DD000E8454 /* GameSumaryViewController.swift */; };
 		207E316A1DFDB6A200453EF6 /* MultiPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207E31691DFDB6A200453EF6 /* MultiPlayer.swift */; };
 		207E316E1DFDC63C00453EF6 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207E316D1DFDC63C00453EF6 /* UIView+.swift */; };
 		20C007681DFAC93100772B50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C007671DFAC93100772B50 /* AppDelegate.swift */; };
@@ -50,6 +51,7 @@
 		2077D1421E07D37E000E8454 /* GoogleToolboxForMac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleToolboxForMac.framework; sourceTree = "<group>"; };
 		2077D1491E07D396000E8454 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
 		2077D14D1E07F703000E8454 /* Ads.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ads.swift; sourceTree = "<group>"; };
+		2077D14F1E0810DD000E8454 /* GameSumaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSumaryViewController.swift; sourceTree = "<group>"; };
 		207E31691DFDB6A200453EF6 /* MultiPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiPlayer.swift; sourceTree = "<group>"; };
 		207E316D1DFDC63C00453EF6 /* UIView+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+.swift"; path = "../UIView+.swift"; sourceTree = "<group>"; };
 		20C007641DFAC93100772B50 /* wordgame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wordgame.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -127,6 +129,7 @@
 				20113F971DFE93BA003E045A /* CSVToCoreData.swift */,
 				20113F991DFE98E9003E045A /* Words.swift */,
 				2077D14D1E07F703000E8454 /* Ads.swift */,
+				2077D14F1E0810DD000E8454 /* GameSumaryViewController.swift */,
 				20C007711DFAC93100772B50 /* Assets.xcassets */,
 				20C007731DFAC93100772B50 /* LaunchScreen.storyboard */,
 				20C007761DFAC93100772B50 /* Info.plist */,
@@ -228,6 +231,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2077D14E1E07F703000E8454 /* Ads.swift in Sources */,
+				2077D1501E0810DD000E8454 /* GameSumaryViewController.swift in Sources */,
 				20C007831DFDAB0A00772B50 /* PlayerAuthentificator.swift in Sources */,
 				20113F981DFE93BA003E045A /* CSVToCoreData.swift in Sources */,
 				20C007811DFDA4ED00772B50 /* MenuViewController.swift in Sources */,
