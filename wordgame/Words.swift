@@ -34,7 +34,7 @@ class WordRepository {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: category.entityName())
         let result = try! managedObjectContext.fetch(request)
         
-        let rand = Int(arc4random_uniform(UInt32(result.count + 1)))
+        let rand = Int(arc4random_uniform(UInt32(result.count)))
         
         return result[rand] as! NSManagedObject
     }
@@ -44,7 +44,7 @@ class WordRepository {
         request.predicate = NSPredicate(format: "name BEGINSWITH[c] %@", char)
         let result = try! managedObjectContext.fetch(request)
         
-        let rand = Int(arc4random_uniform(UInt32(result.count + 1)))
+        let rand = Int(arc4random_uniform(UInt32(result.count)))
         
         return result[rand] as! NSManagedObject
     }

@@ -57,7 +57,7 @@ class BonusPoints {
         }
     }
     
-    private var currBonus: Double = 1
+    private var currBonus: Double
     
     var currBonusInPerc: Int {
         return Int(round((self.currBonus - 1 ) * 100.0))
@@ -74,5 +74,13 @@ class BonusPoints {
     func pointsWithAddedBonus(points: Int) -> Int {
         cntToNextBonus += 1
         return Int(round(Double(points) * currBonus))
+    }
+    
+    convenience init() {
+        self.init(withBonus: 1)
+    }
+    
+    init(withBonus bonus: Double) {
+        currBonus = bonus
     }
 }

@@ -408,28 +408,15 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E5b-LM-Bjz">
-                                        <rect key="frame" x="261.5" y="100" width="65.5" height="33"/>
-                                        <color key="backgroundColor" red="0.96862745100000003" green="0.72941176470000002" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                        <state key="normal" title="Hint"/>
-                                        <connections>
-                                            <action selector="onHintClick" destination="BYZ-38-t0r" eventType="touchUpInside" id="gn3-6i-Ous"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.96862745100000003" green="0.72941176470000002" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="E5b-LM-Bjz" secondAttribute="bottom" id="33f-L1-3ms"/>
                                     <constraint firstItem="boL-kM-7OW" firstAttribute="top" secondItem="pTn-IW-Vih" secondAttribute="top" id="6OM-Y4-xlZ"/>
                                     <constraint firstAttribute="trailing" secondItem="cVp-sE-5Yw" secondAttribute="trailing" id="71M-Cn-Hp9"/>
                                     <constraint firstItem="boL-kM-7OW" firstAttribute="height" secondItem="pTn-IW-Vih" secondAttribute="height" multiplier="0.5" id="AfE-Wx-3J6"/>
                                     <constraint firstAttribute="bottom" secondItem="r9g-mH-lkK" secondAttribute="bottom" id="CkG-NW-OZe"/>
                                     <constraint firstItem="r9g-mH-lkK" firstAttribute="height" secondItem="cVp-sE-5Yw" secondAttribute="height" multiplier="0.5" id="HwK-JM-eTg"/>
-                                    <constraint firstItem="E5b-LM-Bjz" firstAttribute="width" secondItem="cVp-sE-5Yw" secondAttribute="width" multiplier="0.2" id="I6q-uV-QFB"/>
-                                    <constraint firstAttribute="trailing" secondItem="E5b-LM-Bjz" secondAttribute="trailing" id="LdF-qo-jIy"/>
                                     <constraint firstItem="r9g-mH-lkK" firstAttribute="width" secondItem="cVp-sE-5Yw" secondAttribute="width" multiplier="0.2" id="Tor-bH-hih"/>
-                                    <constraint firstItem="E5b-LM-Bjz" firstAttribute="height" secondItem="cVp-sE-5Yw" secondAttribute="height" multiplier="0.5" id="ULv-4n-k89"/>
                                     <constraint firstItem="boL-kM-7OW" firstAttribute="leading" secondItem="pTn-IW-Vih" secondAttribute="leading" id="f3A-44-ZmB"/>
                                     <constraint firstItem="r9g-mH-lkK" firstAttribute="leading" secondItem="pTn-IW-Vih" secondAttribute="leading" id="hSc-Tv-YQw"/>
                                     <constraint firstItem="cVp-sE-5Yw" firstAttribute="height" secondItem="pTn-IW-Vih" secondAttribute="height" multiplier="0.5" id="jmd-dB-oMK"/>
@@ -549,7 +536,6 @@
                         <outlet property="categoryAndBonusView" destination="Q9k-wF-XZ5" id="I5I-aE-h7I"/>
                         <outlet property="categoryLabel" destination="52i-XG-tSV" id="7GY-4c-0un"/>
                         <outlet property="currentWordTextField" destination="cVp-sE-5Yw" id="LCO-rR-KDk"/>
-                        <outlet property="hintButton" destination="E5b-LM-Bjz" id="YEU-wM-4YO"/>
                         <outlet property="oponentWordLabel" destination="boL-kM-7OW" id="KYo-9d-Pgc"/>
                         <outlet property="pauseButton" destination="iqi-qh-xQk" id="44s-5J-ncP"/>
                         <outlet property="pointForCurrentWordLabel" destination="r9g-mH-lkK" id="RO9-z7-uoE"/>

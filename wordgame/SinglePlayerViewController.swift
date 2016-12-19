@@ -9,7 +9,6 @@
 import UIKit
 import GoogleMobileAds
 
-
 class SinglePlayerViewController: UIViewController, GameViewController {
     
     let MAX_TIME_FOR_WORD = 20
@@ -69,7 +68,7 @@ class SinglePlayerViewController: UIViewController, GameViewController {
     
     fileprivate var timer: Timer?
     
-    private var timeRemaining: Int? {
+    fileprivate var timeRemaining: Int? {
         didSet {
             timeLabel.text = "TIME: \(timeRemaining!) s"
         }
@@ -108,9 +107,6 @@ class SinglePlayerViewController: UIViewController, GameViewController {
     @IBOutlet weak var oponentWordLabel: UILabel!
     @IBOutlet weak var currentWordTextField: UITextField!
     @IBOutlet weak var pointForCurrentWordLabel: UILabel!
-    
-    @IBOutlet weak var hintButton: UIButton!
-    
     
     @IBAction func onDismissClick() {
         timer?.invalidate()
@@ -162,7 +158,6 @@ class SinglePlayerViewController: UIViewController, GameViewController {
         bonusInfoLabel.extAddBorder([.left(width: 0.5)])
         
         pointForCurrentWordLabel.extAddBorder([.top(width: 5), .right(width: 5)])
-        hintButton.extAddBorder([.top(width: 5), .left(width: 5)])
         
         if gameState == .waitingToWordCategory {
             gameState = .waitingToOponentWord
@@ -237,7 +232,18 @@ extension SinglePlayerViewController {
     
     func presentAlreadyUsed(word: String) {
         let alertVC = UIAlertController(title: "Slovo \(word) uz bolo pouzite", message: nil, preferredStyle: .alert)
-        alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        alertVC.addAction(UIAlertAction(title: "Try another word", style: .cancel, handler: nil))
+        if ad != nil && ad!.isReady {
+            alertVC.addAction(UIAlertAction(title: "Watch short movie to accept word", style: .default, handler: { (action: UIAlertAction) in
+                self.ad?.present(fromRootViewController: self)
+                self.timeRemaining = self.MAX_TIME_FOR_WORD
+                self.timer?.invalidate()
+                let index = self.forbiddenWords.index(of: word)
+                self.forbiddenWords.remove(at: index!)
+                self.oponentWord = word
+                
+            }))
+        }
         present(alertVC, animated: true, completion: nil)
     }
     
@@ -249,7 +255,15 @@ extension SinglePlayerViewController {
     
     func presentWordDoesNotExists(_ word: String) {
         let alertVC = UIAlertController(title: "\(word) som nenasiel.", message: "Skus ine", preferredStyle: .alert)
-        alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        alertVC.addAction(UIAlertAction(title: "Try another word", style: .cancel, handler: nil))
+        if ad != nil && ad!.isReady {
+            alertVC.addAction(UIAlertAction(title: "Watch short movie to hint", style: .default, handler: { (action: UIAlertAction) in
+                self.ad?.present(fromRootViewController: self)
+                self.timeRemaining = self.MAX_TIME_FOR_WORD
+                self.timer?.invalidate()
+                self.onHintClick()
+            }))
+        }
         self.present(alertVC, animated: true, completion: nil)
     }
     
