@@ -15,6 +15,8 @@ class GameSumaryViewController: UIViewController {
     /// from segue
     var earnedPoints: Int?
     
+    @IBOutlet weak var earnedPointsView: UIView!
+    
     @IBOutlet weak var earnedPointsLabel: UILabel!
     
     @IBAction func onDismissClick(_ sender: Any) {
@@ -38,5 +40,11 @@ class GameSumaryViewController: UIViewController {
         earnedPointsLabel.text = earnedPointsLabel.text?.replacingOccurrences(of: "%@", with: "\(earnedPoints!)")
         
         view.extSetLetterBlueBackground()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        view.extAddVerticalLinesFromTop(to: earnedPointsView, offsetFromEdges: 30)
     }
 }
