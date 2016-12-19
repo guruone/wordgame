@@ -91,9 +91,6 @@ class SinglePlayerViewController: UIViewController, GameViewController {
         }
     }
     
-    
-    
-    
     @IBOutlet weak var categoryAndBonusView: UIView!
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var bonusLabel: UILabel!

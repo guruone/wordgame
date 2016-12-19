@@ -19,7 +19,6 @@
 		2077D1471E07D37E000E8454 /* GoogleSymbolUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2077D1411E07D37E000E8454 /* GoogleSymbolUtilities.framework */; };
 		2077D1481E07D37E000E8454 /* GoogleToolboxForMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2077D1421E07D37E000E8454 /* GoogleToolboxForMac.framework */; };
 		2077D14A1E07D396000E8454 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2077D1491E07D396000E8454 /* GoogleMobileAds.framework */; };
-		2077D14C1E07D4E2000E8454 /* TestAdsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2077D14B1E07D4E2000E8454 /* TestAdsViewController.swift */; };
 		2077D14E1E07F703000E8454 /* Ads.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2077D14D1E07F703000E8454 /* Ads.swift */; };
 		207E316A1DFDB6A200453EF6 /* MultiPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207E31691DFDB6A200453EF6 /* MultiPlayer.swift */; };
 		207E316E1DFDC63C00453EF6 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207E316D1DFDC63C00453EF6 /* UIView+.swift */; };
@@ -50,7 +49,6 @@
 		2077D1411E07D37E000E8454 /* GoogleSymbolUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleSymbolUtilities.framework; sourceTree = "<group>"; };
 		2077D1421E07D37E000E8454 /* GoogleToolboxForMac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleToolboxForMac.framework; sourceTree = "<group>"; };
 		2077D1491E07D396000E8454 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
-		2077D14B1E07D4E2000E8454 /* TestAdsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestAdsViewController.swift; sourceTree = "<group>"; };
 		2077D14D1E07F703000E8454 /* Ads.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ads.swift; sourceTree = "<group>"; };
 		207E31691DFDB6A200453EF6 /* MultiPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiPlayer.swift; sourceTree = "<group>"; };
 		207E316D1DFDC63C00453EF6 /* UIView+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+.swift"; path = "../UIView+.swift"; sourceTree = "<group>"; };
@@ -136,7 +134,6 @@
 				20D57DDA1E01C35E00C51DD5 /* names.csv */,
 				20D57DDB1E01C35E00C51DD5 /* nouns.csv */,
 				2048C60C1E02D8D6009758A5 /* points.csv */,
-				2077D14B1E07D4E2000E8454 /* TestAdsViewController.swift */,
 			);
 			path = wordgame;
 			sourceTree = "<group>";
@@ -234,7 +231,6 @@
 				20C007831DFDAB0A00772B50 /* PlayerAuthentificator.swift in Sources */,
 				20113F981DFE93BA003E045A /* CSVToCoreData.swift in Sources */,
 				20C007811DFDA4ED00772B50 /* MenuViewController.swift in Sources */,
-				2077D14C1E07D4E2000E8454 /* TestAdsViewController.swift in Sources */,
 				20C007681DFAC93100772B50 /* AppDelegate.swift in Sources */,
 				20113FA41DFFD9EF003E045A /* Player.swift in Sources */,
 				20C0077D1DFACF7C00772B50 /* SinglePlayerViewController.swift in Sources */,
