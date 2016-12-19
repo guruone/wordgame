@@ -50,17 +50,21 @@ class SinglePlayerViewController: UIViewController, GameViewController {
             // MARK: START WORD TIMER
             timeRemaining = MAX_TIME_FOR_WORD
             timer?.invalidate()
-            timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (timer: Timer) in
-                if self.timeRemaining! == 0 {
-                    // MARK: GAME OVER
-                    timer.invalidate()
-                    self.gameOver()
-                    
-                } else {
-                    self.timeRemaining! -= 1
-                }
-            })
+            scheduledTimer()
         }
+    }
+    
+    fileprivate func scheduledTimer() {
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (timer: Timer) in
+            if self.timeRemaining! == 0 {
+                // MARK: GAME OVER
+                timer.invalidate()
+                self.gameOver()
+                
+            } else {
+                self.timeRemaining! -= 1
+            }
+        })
     }
     
     fileprivate var timer: Timer?
@@ -219,9 +223,7 @@ extension SinglePlayerViewController: InterstitialAdDelegate {
     
     func adDidDismissScreen() {
         pauseButton.isEnabled = false
-        // spustim timer od zaciatku
-        let tmp = oponentWord
-        oponentWord = tmp
+        scheduledTimer()
     }
 }
 
