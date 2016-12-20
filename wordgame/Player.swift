@@ -45,6 +45,11 @@ class Score {
 
 class BonusPoints {
     
+    static let shared = BonusPoints()
+    
+    private let userDefaults = UserDefaults.standard
+    private let kBonus = "BONUS"
+    
     private let BONUS_STEP = 0.1
     private let CNT_MAX_TO_BONUS_STEP = 10
     
@@ -57,7 +62,17 @@ class BonusPoints {
         }
     }
     
-    private var currBonus: Double
+    private var currBonus: Double {
+        get {
+            return userDefaults.double(forKey: kBonus) == 0 ? 1 : userDefaults.double(forKey: kBonus)
+        }
+        set {
+            userDefaults.set(newValue, forKey: kBonus)
+            userDefaults.synchronize()
+        }
+    }
+    
+    private init() {}
     
     var currBonusInPerc: Int {
         return Int(round((self.currBonus - 1 ) * 100.0))
@@ -76,11 +91,11 @@ class BonusPoints {
         return Int(round(Double(points) * currBonus))
     }
     
-    convenience init() {
-        self.init(withBonus: 1)
+    func addBonus(_ bonus: Double) {
+        currBonus += bonus
     }
     
-    init(withBonus bonus: Double) {
-        currBonus = bonus
+    func clearBonus() {
+        currBonus = 1
     }
 }

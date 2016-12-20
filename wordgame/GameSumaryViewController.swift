@@ -18,6 +18,8 @@ class GameSumaryViewController: UIViewController {
     @IBOutlet weak var earnedPointsView: UIView!
     
     @IBOutlet weak var earnedPointsLabel: UILabel!
+
+    @IBOutlet weak var categoryImageView: UIImageView!
     
     @IBAction func onDismissClick(_ sender: Any) {
         let presentingViewController = self.presentingViewController!
@@ -38,6 +40,8 @@ class GameSumaryViewController: UIViewController {
         }
         
         earnedPointsLabel.text = earnedPointsLabel.text?.replacingOccurrences(of: "%@", with: "\(earnedPoints!)")
+        categoryImageView.image = category?.gameSumaryImage()
+        
         
         view.extSetLetterBlueBackground()
     }

@@ -22,6 +22,15 @@ enum WordCategory: String {
             return String(describing: Nouns.self)
         }
     }
+    
+    func gameSumaryImage() -> UIImage {
+        switch self {
+        case .names:
+            return UIImage(named: "names-game-sumary")!
+        case .nouns:
+            return UIImage(named: "names-game-sumary")!
+        }
+    }
 }
 
 class WordRepository {

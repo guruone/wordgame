@@ -8,6 +8,7 @@
 
 import UIKit
 import GameKit
+import GoogleMobileAds
 
 class MenuViewController: UIViewController {
     
@@ -22,6 +23,10 @@ class MenuViewController: UIViewController {
     fileprivate lazy var gkscore: Score = {
         return Score()
     }()
+    
+    fileprivate let bonus = BonusPoints.shared
+    
+    fileprivate let videoAd = VideoInterstitialAd()
     
     fileprivate var playerIsAuthetificated = false {
         didSet {
@@ -42,7 +47,10 @@ class MenuViewController: UIViewController {
     @IBOutlet weak var singlePlayerButton: UIButton!
     @IBOutlet weak var multiPlayerButton: UIButton!
 
-    @IBOutlet weak var gameMenuStackView: UIStackView!
+    @IBOutlet weak var bonusNextGameLabel: UILabel!
+    fileprivate var bonusNextGameLabelTemplate = ""
+    
+    @IBOutlet weak var watchVideoButtonView: UIView!
     @IBOutlet weak var leaderBoardView: UIView!
     
     @IBAction func onLeaderBoardClick() {
@@ -61,6 +69,14 @@ class MenuViewController: UIViewController {
         present(vc, animated: true, completion: nil)
     }
     
+    fileprivate var ad: GADInterstitial?
+    
+    @IBOutlet weak var watchVideoToBonusButton: UIButton!
+    
+    @IBAction func onWatchVideoToBonus(_ sender: Any) {
+        ad?.present(fromRootViewController: self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -70,6 +86,10 @@ class MenuViewController: UIViewController {
         
         playerAuth.delegate = self
         playerAuth.authentificate()
+        
+        bonusNextGameLabelTemplate = bonusNextGameLabel.text!
+        watchVideoToBonusButton.isEnabled = false
+        videoAd.delegate = self
     }
     
     private func buttonsDisabled() {
@@ -87,13 +107,15 @@ class MenuViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        bonusNextGameLabel.text = bonusNextGameLabelTemplate.replacingOccurrences(of: "%@", with: "\(bonus.currBonusInPerc)")
+        
         // GRAFIKA
         view.extAddCenterRound()
-        view.extAddVerticalLinesFromTop(to: gameMenuStackView, offsetFromEdges: 50)
+        view.extAddVerticalLinesFromTop(to: watchVideoButtonView, offsetFromEdges: 50)
         view.extAddVerticalLinesFromTop(to: leaderBoardView, offsetFromEdges: 33)
         
         if !playerIsAuthetificated {
-            let alert = UIAlertController(title: "Player Authentification", message: "please wait ...", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Player Authentification", message: "please wait ...", preferredStyle: .actionSheet)
             present(alert, animated: true, completion: nil)
         }
     }
@@ -146,5 +168,20 @@ extension MenuViewController: GKGameCenterControllerDelegate {
     
     func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
         gameCenterViewController.dismiss(animated: true, completion: nil)
+    }
+}
+
+// MARK: InterstitialAdDelegate
+extension MenuViewController: InterstitialAdDelegate {
+    
+    func adIsReady(_ ad: GADInterstitial) {
+        self.ad = ad
+        watchVideoToBonusButton.isEnabled = true
+    }
+    
+    func adDidDismissScreen() {
+        watchVideoToBonusButton.isEnabled = false
+        bonus.addBonus(0.1)
+        bonusNextGameLabel.text = bonusNextGameLabelTemplate.replacingOccurrences(of: "%@", with: "\(bonus.currBonusInPerc)")
     }
 }

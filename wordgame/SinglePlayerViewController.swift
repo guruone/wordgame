@@ -19,7 +19,7 @@ class SinglePlayerViewController: UIViewController, GameViewController {
     
     fileprivate let wordRepo = WordRepository()
     
-    fileprivate let bonus = BonusPoints()
+    fileprivate let bonus = BonusPoints.shared
     
     /// uz pouzite slova su zakazane
     fileprivate var forbiddenWords = [String]()
@@ -109,6 +109,7 @@ class SinglePlayerViewController: UIViewController, GameViewController {
     @IBOutlet weak var pointForCurrentWordLabel: UILabel!
     
     @IBAction func onDismissClick() {
+        bonus.clearBonus()
         timer?.invalidate()
         dismiss(animated: true, completion: nil)
     }
@@ -171,6 +172,7 @@ class SinglePlayerViewController: UIViewController, GameViewController {
     }
     
     fileprivate func gameOver() {
+        bonus.clearBonus()
         gkscore.report(score: score!)
         presentGameOver(yourPoints: score!)
     }
@@ -231,7 +233,7 @@ extension SinglePlayerViewController {
     }
     
     func presentAlreadyUsed(word: String) {
-        let alertVC = UIAlertController(title: "Slovo \(word) uz bolo pouzite", message: nil, preferredStyle: .alert)
+        let alertVC = UIAlertController(title: "Slovo \(word) uz bolo pouzite", message: nil, preferredStyle: .actionSheet)
         alertVC.addAction(UIAlertAction(title: "Try another word", style: .cancel, handler: nil))
         if ad != nil && ad!.isReady {
             alertVC.addAction(UIAlertAction(title: "Watch short movie to accept word", style: .default, handler: { (action: UIAlertAction) in
@@ -248,13 +250,13 @@ extension SinglePlayerViewController {
     }
     
     func presentCharacterAreNotEqual(leftchar: String, rightChar: String) {
-        let alertVC = UIAlertController(title: "Chyba", message: "\(leftchar) != \(rightChar)", preferredStyle: .alert)
+        let alertVC = UIAlertController(title: "Chyba", message: "\(leftchar) != \(rightChar)", preferredStyle: .actionSheet)
         alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         present(alertVC, animated: true, completion: nil)
     }
     
     func presentWordDoesNotExists(_ word: String) {
-        let alertVC = UIAlertController(title: "\(word) som nenasiel.", message: "Skus ine", preferredStyle: .alert)
+        let alertVC = UIAlertController(title: "\(word) som nenasiel.", message: "Skus ine", preferredStyle: .actionSheet)
         alertVC.addAction(UIAlertAction(title: "Try another word", style: .cancel, handler: nil))
         if ad != nil && ad!.isReady {
             alertVC.addAction(UIAlertAction(title: "Watch short movie to hint", style: .default, handler: { (action: UIAlertAction) in
