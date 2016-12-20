@@ -12,6 +12,20 @@ import CoreData
 
 // MARK: MATCHMAKER
 
+protocol MatchInviteDelegate {
+    /// pri notifikacii volam MatchMaker:createViewController:forInvite
+    func matchDidInvite(_ invite: GKInvite)
+}
+
+class MatchInviteListener: NSObject, GKLocalPlayerListener {
+    
+    var delegate: MatchInviteDelegate?
+    
+    func player(_ player: GKPlayer, didAccept invite: GKInvite) {
+        delegate?.matchDidInvite(invite)
+    }
+}
+
 protocol MatchMakerDelegate {
     func started(match: GKMatch, with oponent: GKPlayer)
     func ended(with error: Error?)
@@ -27,6 +41,12 @@ class MatchMaker: NSObject {
         request.maxPlayers = 2
         
         let matchmakerVC = GKMatchmakerViewController(matchRequest: request)
+        matchmakerVC?.matchmakerDelegate = self
+        return matchmakerVC!
+    }
+    
+    func createViewController(forInvite invite: GKInvite) -> GKMatchmakerViewController {
+        let matchmakerVC = GKMatchmakerViewController(invite: invite)
         matchmakerVC?.matchmakerDelegate = self
         return matchmakerVC!
     }
@@ -216,3 +236,6 @@ extension Match {
         }
     }
 }
+
+
+

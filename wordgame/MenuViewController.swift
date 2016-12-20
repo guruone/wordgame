@@ -126,6 +126,10 @@ extension MenuViewController: PlayerAuthentificatorDelagate {
     
     func authentification(success player: GKLocalPlayer) {
         playerIsAuthetificated = true
+        player.unregisterAllListeners()
+        let listener = MatchInviteListener()
+        listener.delegate = self
+        player.register(listener)
     }
     
     internal func authentification(failed error: Error) {
@@ -183,5 +187,14 @@ extension MenuViewController: InterstitialAdDelegate {
         watchVideoToBonusButton.isEnabled = false
         bonus.addBonus(0.1)
         bonusNextGameLabel.text = bonusNextGameLabelTemplate.replacingOccurrences(of: "%@", with: "\(bonus.currBonusInPerc)")
+    }
+}
+
+extension MenuViewController: MatchInviteDelegate {
+    
+    func matchDidInvite(_ invite: GKInvite) {
+        print("matchDidInvite")
+        let vc = multiPlayerMatchMaker.createViewController(forInvite: invite)
+        present(vc, animated: true, completion: nil)
     }
 }
