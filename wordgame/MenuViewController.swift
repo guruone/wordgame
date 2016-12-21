@@ -84,8 +84,12 @@ class MenuViewController: UIViewController {
 
         buttonsDisabled()
         
-        playerAuth.delegate = self
-        playerAuth.authentificate()
+//        playerAuth.delegate = self
+//        playerAuth.authentificate()
+        NotificationCenter.default.addObserver(self, selector: #selector(authentificationSuccess(notification:)), name: PlayerAuthentificator.authentificatedNotificationName, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(presentAuthViewController(notification:)), name: PlayerAuthentificator.presentVCNotificationName, object: nil)
+        
         
         bonusNextGameLabelTemplate = bonusNextGameLabel.text!
         watchVideoToBonusButton.isEnabled = false
@@ -124,6 +128,12 @@ class MenuViewController: UIViewController {
 // MARK: PlayerAuthentificatorDelagate
 extension MenuViewController: PlayerAuthentificatorDelagate {
     
+    func authentificationSuccess(notification: Notification) {
+        if let playerAuth = notification.object as? PlayerAuthentificator {
+            authentification(success: playerAuth.authentificatedLocalPlayer!)
+        }
+    }
+    
     func authentification(success player: GKLocalPlayer) {
         playerIsAuthetificated = true
         player.unregisterAllListeners()
@@ -136,6 +146,12 @@ extension MenuViewController: PlayerAuthentificatorDelagate {
         //TODO: OSETRIT ERROR PRI AUTHENTIFIKACII
         print(error.localizedDescription)
         playerIsAuthetificated = false
+    }
+    
+    func presentAuthViewController(notification: Notification) {
+        if let authPlayer = notification.object as? PlayerAuthentificator {
+            present(authentification: authPlayer.authentificationViewController!)
+        }
     }
 
     func present(authentification viewController: UIViewController) {
@@ -190,6 +206,7 @@ extension MenuViewController: InterstitialAdDelegate {
     }
 }
 
+// MARK: MatchInviteDelegate
 extension MenuViewController: MatchInviteDelegate {
     
     func matchDidInvite(_ invite: GKInvite) {

@@ -17,6 +17,12 @@ protocol PlayerAuthentificatorDelagate {
 
 class PlayerAuthentificator {
     
+    static let presentVCNotificationName = Notification.Name("presentAuthetificationVCNotificationName")
+    var authentificationViewController: UIViewController?
+    
+    static let authentificatedNotificationName = Notification.Name("authentificatedLocalPlayerNotificationName")
+    var authentificatedLocalPlayer: GKLocalPlayer?
+    
     var delegate: PlayerAuthentificatorDelagate?
     
     func authentificate() {
@@ -24,6 +30,7 @@ class PlayerAuthentificator {
         
         if localPlayer.isAuthenticated {
             delegate?.authentification(success: localPlayer)
+            NotificationCenter.default.post(name: PlayerAuthentificator.authentificatedNotificationName, object: self)
             
         } else {
             localPlayer.authenticateHandler = { (viewController: UIViewController?, error: Error?) in
@@ -34,9 +41,14 @@ class PlayerAuthentificator {
                 
                 if viewController != nil {
                     self.delegate?.present(authentification: viewController!)
+                    self.authentificationViewController = viewController
+                    NotificationCenter.default.post(name: PlayerAuthentificator.presentVCNotificationName, object: self)
+                    
                     
                 } else if localPlayer.isAuthenticated {
                     self.delegate?.authentification(success: localPlayer)
+                    self.authentificatedLocalPlayer = localPlayer
+                    NotificationCenter.default.post(name: PlayerAuthentificator.authentificatedNotificationName, object: self)
                     
                 } else {
                     fatalError()

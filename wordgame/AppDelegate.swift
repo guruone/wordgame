@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     private let kDataVersion = "data_version"
-    private let dataVersion = 3
+    private let dataVersion = 4
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -28,6 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // MARK: ADS
         GADMobileAds.configure(withApplicationID: "ca-app-pub-3278005872817682~8486070675")
+        
+        PlayerAuthentificator().authentificate()
         
         return true
     }
