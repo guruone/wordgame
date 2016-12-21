@@ -12,13 +12,6 @@
 		20113FA21DFEB20D003E045A /* ChooseWordCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20113FA11DFEB20D003E045A /* ChooseWordCategoryViewController.swift */; };
 		20113FA41DFFD9EF003E045A /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20113FA31DFFD9EF003E045A /* Player.swift */; };
 		2048C60D1E02D8D6009758A5 /* points.csv in Resources */ = {isa = PBXBuildFile; fileRef = 2048C60C1E02D8D6009758A5 /* points.csv */; };
-		2077D1431E07D37E000E8454 /* FirebaseAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2077D13D1E07D37E000E8454 /* FirebaseAnalytics.framework */; };
-		2077D1441E07D37E000E8454 /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2077D13E1E07D37E000E8454 /* FirebaseCore.framework */; };
-		2077D1451E07D37E000E8454 /* FirebaseInstanceID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2077D13F1E07D37E000E8454 /* FirebaseInstanceID.framework */; };
-		2077D1461E07D37E000E8454 /* GoogleInterchangeUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2077D1401E07D37E000E8454 /* GoogleInterchangeUtilities.framework */; };
-		2077D1471E07D37E000E8454 /* GoogleSymbolUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2077D1411E07D37E000E8454 /* GoogleSymbolUtilities.framework */; };
-		2077D1481E07D37E000E8454 /* GoogleToolboxForMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2077D1421E07D37E000E8454 /* GoogleToolboxForMac.framework */; };
-		2077D14A1E07D396000E8454 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2077D1491E07D396000E8454 /* GoogleMobileAds.framework */; };
 		2077D14E1E07F703000E8454 /* Ads.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2077D14D1E07F703000E8454 /* Ads.swift */; };
 		2077D1501E0810DD000E8454 /* GameSumaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2077D14F1E0810DD000E8454 /* GameSumaryViewController.swift */; };
 		207E316A1DFDB6A200453EF6 /* MultiPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207E31691DFDB6A200453EF6 /* MultiPlayer.swift */; };
@@ -43,13 +36,6 @@
 		20113FA11DFEB20D003E045A /* ChooseWordCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseWordCategoryViewController.swift; sourceTree = "<group>"; };
 		20113FA31DFFD9EF003E045A /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		2048C60C1E02D8D6009758A5 /* points.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = points.csv; sourceTree = "<group>"; };
-		2077D13D1E07D37E000E8454 /* FirebaseAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseAnalytics.framework; sourceTree = "<group>"; };
-		2077D13E1E07D37E000E8454 /* FirebaseCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseCore.framework; sourceTree = "<group>"; };
-		2077D13F1E07D37E000E8454 /* FirebaseInstanceID.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseInstanceID.framework; sourceTree = "<group>"; };
-		2077D1401E07D37E000E8454 /* GoogleInterchangeUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleInterchangeUtilities.framework; sourceTree = "<group>"; };
-		2077D1411E07D37E000E8454 /* GoogleSymbolUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleSymbolUtilities.framework; sourceTree = "<group>"; };
-		2077D1421E07D37E000E8454 /* GoogleToolboxForMac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleToolboxForMac.framework; sourceTree = "<group>"; };
-		2077D1491E07D396000E8454 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
 		2077D14D1E07F703000E8454 /* Ads.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ads.swift; sourceTree = "<group>"; };
 		2077D14F1E0810DD000E8454 /* GameSumaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSumaryViewController.swift; sourceTree = "<group>"; };
 		207E31691DFDB6A200453EF6 /* MultiPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiPlayer.swift; sourceTree = "<group>"; };
@@ -75,14 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2077D1481E07D37E000E8454 /* GoogleToolboxForMac.framework in Frameworks */,
-				2077D1471E07D37E000E8454 /* GoogleSymbolUtilities.framework in Frameworks */,
-				2077D14A1E07D396000E8454 /* GoogleMobileAds.framework in Frameworks */,
-				2077D1431E07D37E000E8454 /* FirebaseAnalytics.framework in Frameworks */,
 				20C007861DFDAF0500772B50 /* GameKit.framework in Frameworks */,
-				2077D1441E07D37E000E8454 /* FirebaseCore.framework in Frameworks */,
-				2077D1451E07D37E000E8454 /* FirebaseInstanceID.framework in Frameworks */,
-				2077D1461E07D37E000E8454 /* GoogleInterchangeUtilities.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,13 +71,6 @@
 		20C0075B1DFAC93100772B50 = {
 			isa = PBXGroup;
 			children = (
-				2077D1491E07D396000E8454 /* GoogleMobileAds.framework */,
-				2077D13D1E07D37E000E8454 /* FirebaseAnalytics.framework */,
-				2077D13E1E07D37E000E8454 /* FirebaseCore.framework */,
-				2077D13F1E07D37E000E8454 /* FirebaseInstanceID.framework */,
-				2077D1401E07D37E000E8454 /* GoogleInterchangeUtilities.framework */,
-				2077D1411E07D37E000E8454 /* GoogleSymbolUtilities.framework */,
-				2077D1421E07D37E000E8454 /* GoogleToolboxForMac.framework */,
 				20C007661DFAC93100772B50 /* wordgame */,
 				20C007651DFAC93100772B50 /* Products */,
 				20C007841DFDAF0500772B50 /* Frameworks */,
