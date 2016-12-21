@@ -10,6 +10,16 @@ import UIKit
 
 class ChooseWordCategoryViewController: UIViewController {
     
+    fileprivate lazy var viewMask: CALayer = {
+        let image = UIImage(named: "background")!
+        let color = UIColor(patternImage: image)
+        let mask = CALayer()
+        mask.frame = self.view.bounds
+        mask.backgroundColor = color.cgColor
+        mask.zPosition = CGFloat.greatestFiniteMagnitude
+        return mask
+    }()
+    
     @IBOutlet weak var categoryStackView: UIStackView!
     
     @IBAction func onNounsClick() {
@@ -32,6 +42,8 @@ class ChooseWordCategoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.layer.addSublayer(viewMask)
+        
         view.extSetLetterBlueBackground()
     }
     
@@ -40,5 +52,9 @@ class ChooseWordCategoryViewController: UIViewController {
         
         view.extAddCenterRound()
         view.extAddVerticalLinesFromTop(to: categoryStackView, offsetFromEdges: 50)
+        
+        view.extRemoveWithAnimation(layer: viewMask)
     }
+    
+
 }

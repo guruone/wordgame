@@ -22,6 +22,15 @@ class MultiPlayerViewController: UIViewController, GameViewController, UITextFie
     
     let MAX_TIME_FOR_WORD = 20
     
+    fileprivate lazy var viewMask: CALayer = {
+        let color = UIColor(red: 70/255, green: 127/255, blue: 215/255, alpha: 1)
+        let mask = CALayer()
+        mask.frame = self.view.bounds
+        mask.backgroundColor = color.cgColor
+        mask.zPosition = CGFloat.greatestFiniteMagnitude
+        return mask
+    }()
+    
     fileprivate let myValue = arc4random()
     
     fileprivate let gkScore = Score()
@@ -182,6 +191,8 @@ extension MultiPlayerViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.layer.addSublayer(viewMask)
+        
         guard gkoponent != nil, gkmatch != nil else {
             fatalError()
         }
@@ -218,6 +229,8 @@ extension MultiPlayerViewController {
         bonusInfoLabel.extAddBorder([.left(width: 0.5)])
         
         pointForCurrentWordLabel.extAddBorder([.top(width: 5), .right(width: 5)])
+        
+        view.extRemoveWithAnimation(layer: viewMask)
         
         if gameState == .waitingToPlayerValue {
             sendPlayerValue()

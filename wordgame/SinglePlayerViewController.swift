@@ -13,6 +13,15 @@ class SinglePlayerViewController: UIViewController, GameViewController {
     
     let MAX_TIME_FOR_WORD = 20
     
+    fileprivate lazy var viewMask: CALayer = {
+        let color = UIColor(red: 70/255, green: 127/255, blue: 215/255, alpha: 1)        
+        let mask = CALayer()
+        mask.frame = self.view.bounds
+        mask.backgroundColor = color.cgColor
+        mask.zPosition = CGFloat.greatestFiniteMagnitude
+        return mask
+    }()
+    
     fileprivate let videoAd = VideoInterstitialAd()
     
     fileprivate let gkscore = Score()
@@ -128,8 +137,25 @@ class SinglePlayerViewController: UIViewController, GameViewController {
         ad?.present(fromRootViewController: self)
     }
     
+    func setSelectedWordCategory(_ category: WordCategory) {
+        selectedCategory = category
+        oponentWord = wordRepo.findRandomOne(for: selectedCategory!).value(forKey: "name") as? String
+    }
+    
+    fileprivate func gameOver() {
+        bonus.clearBonus()
+        gkscore.report(score: score!)
+        presentGameOver(yourPoints: score!)
+    }
+}
+
+// MARK: LIFECYCLE
+extension SinglePlayerViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.layer.addSublayer(viewMask)
         
         pauseButton.isEnabled = false
         videoAd.delegate = self
@@ -160,24 +186,16 @@ class SinglePlayerViewController: UIViewController, GameViewController {
         
         pointForCurrentWordLabel.extAddBorder([.top(width: 5), .right(width: 5)])
         
+        view.extRemoveWithAnimation(layer: viewMask)
+        
         if gameState == .waitingToWordCategory {
             gameState = .waitingToOponentWord
             presentChooseCategory()
         }
     }
-    
-    func setSelectedWordCategory(_ category: WordCategory) {
-        selectedCategory = category
-        oponentWord = wordRepo.findRandomOne(for: selectedCategory!).value(forKey: "name") as? String
-    }
-    
-    fileprivate func gameOver() {
-        bonus.clearBonus()
-        gkscore.report(score: score!)
-        presentGameOver(yourPoints: score!)
-    }
 }
 
+// MARK: UITextFieldDelegate - VALIDATCIA ZADANEHO SLOVA
 extension SinglePlayerViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

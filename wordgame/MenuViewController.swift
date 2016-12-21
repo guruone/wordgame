@@ -12,6 +12,16 @@ import GoogleMobileAds
 
 class MenuViewController: UIViewController {
     
+    fileprivate lazy var viewMask: CALayer = {
+        let image = UIImage(named: "background")!
+        let color = UIColor(patternImage: image)
+        let mask = CALayer()
+        mask.frame = self.view.bounds
+        mask.backgroundColor = color.cgColor
+        mask.zPosition = CGFloat.greatestFiniteMagnitude
+        return mask
+    }()
+    
     fileprivate let playerAuth = PlayerAuthentificator()
     
     fileprivate lazy var multiPlayerMatchMaker: MatchMaker = {
@@ -77,26 +87,7 @@ class MenuViewController: UIViewController {
         ad?.present(fromRootViewController: self)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        view.extSetLetterBlueBackground()
-
-        buttonsDisabled()
-        
-//        playerAuth.delegate = self
-//        playerAuth.authentificate()
-        NotificationCenter.default.addObserver(self, selector: #selector(authentificationSuccess(notification:)), name: PlayerAuthentificator.authentificatedNotificationName, object: nil)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(presentAuthViewController(notification:)), name: PlayerAuthentificator.presentVCNotificationName, object: nil)
-        
-        
-        bonusNextGameLabelTemplate = bonusNextGameLabel.text!
-        watchVideoToBonusButton.isEnabled = false
-        videoAd.delegate = self
-    }
-    
-    private func buttonsDisabled() {
+    fileprivate func buttonsDisabled() {
         leaderBoardButton.isEnabled = false
         singlePlayerButton.isEnabled = false
         multiPlayerButton.isEnabled = false
@@ -107,7 +98,31 @@ class MenuViewController: UIViewController {
         singlePlayerButton.isEnabled = true
         multiPlayerButton.isEnabled = true
     }
+}
 
+// MARK: LIFECYCLE
+extension MenuViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.layer.addSublayer(viewMask)
+        
+        view.extSetLetterBlueBackground()
+        
+        buttonsDisabled()
+        
+        //        playerAuth.delegate = self
+        //        playerAuth.authentificate()
+        NotificationCenter.default.addObserver(self, selector: #selector(authentificationSuccess(notification:)), name: PlayerAuthentificator.authentificatedNotificationName, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(presentAuthViewController(notification:)), name: PlayerAuthentificator.presentVCNotificationName, object: nil)
+        
+        bonusNextGameLabelTemplate = bonusNextGameLabel.text!
+        watchVideoToBonusButton.isEnabled = false
+        videoAd.delegate = self
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -117,6 +132,8 @@ class MenuViewController: UIViewController {
         view.extAddCenterRound()
         view.extAddVerticalLinesFromTop(to: watchVideoButtonView, offsetFromEdges: 50)
         view.extAddVerticalLinesFromTop(to: leaderBoardView, offsetFromEdges: 33)
+        
+        view.extRemoveWithAnimation(layer: viewMask)
         
         if !playerIsAuthetificated {
             let alert = UIAlertController(title: "Player Authentification", message: "please wait ...", preferredStyle: .actionSheet)

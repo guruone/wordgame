@@ -11,6 +11,19 @@ import UIKit
 // MARK: GRAFIKA
 extension UIView {
     
+    func extRemoveWithAnimation(layer: CALayer) {
+        CATransaction.begin()
+        CATransaction.setCompletionBlock {
+            layer.removeFromSuperlayer()
+        }
+        let maskAnimation = CABasicAnimation(keyPath: "opacity")
+        maskAnimation.fillMode = kCAFillModeForwards
+        maskAnimation.toValue = 0
+        maskAnimation.duration = 0.5
+        maskAnimation.isRemovedOnCompletion = false
+        layer.add(maskAnimation, forKey: "opacity")
+    }
+    
     func extSetLetterBlueBackground() {
         let image = UIImage(named: "background")!
         let color = UIColor(patternImage: image)
