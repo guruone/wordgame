@@ -25,13 +25,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Cnd-mR-vCD">
-                                <rect key="frame" x="24" y="276" width="327" height="116"/>
+                                <rect key="frame" x="40" y="276" width="295" height="116"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Trq-5T-QeJ" userLabel="Singleplayer View">
-                                        <rect key="frame" x="0.0" y="0.0" width="327" height="52"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="295" height="52"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="cZM-gE-3v1">
-                                                <rect key="frame" x="6" y="6" width="315" height="40"/>
+                                                <rect key="frame" x="6" y="6" width="283" height="40"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PzS-3r-VbY">
                                                         <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
@@ -41,7 +41,7 @@
                                                         </constraints>
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lI2-C3-PVC">
-                                                        <rect key="frame" x="46" y="0.0" width="269" height="40"/>
+                                                        <rect key="frame" x="46" y="0.0" width="237" height="40"/>
                                                         <color key="backgroundColor" red="0.96862745098039216" green="0.72941176470588232" blue="0.4823529411764706" alpha="1" colorSpace="calibratedRGB"/>
                                                         <state key="normal">
                                                             <attributedString key="attributedTitle">
@@ -69,10 +69,10 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pYh-bF-yHw" userLabel="Multiplayer View">
-                                        <rect key="frame" x="0.0" y="64" width="327" height="52"/>
+                                        <rect key="frame" x="0.0" y="64" width="295" height="52"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="Uh7-HS-mUJ">
-                                                <rect key="frame" x="6" y="6" width="315" height="40"/>
+                                                <rect key="frame" x="6" y="6" width="283" height="40"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bwP-5i-kfF">
                                                         <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
@@ -82,7 +82,7 @@
                                                         </constraints>
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Evs-Hv-7Hf">
-                                                        <rect key="frame" x="46" y="0.0" width="269" height="40"/>
+                                                        <rect key="frame" x="46" y="0.0" width="237" height="40"/>
                                                         <color key="backgroundColor" red="0.96862745100000003" green="0.72941176470000002" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
                                                         <state key="normal">
                                                             <attributedString key="attributedTitle">
@@ -177,12 +177,12 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jYU-kG-RdV">
-                                <rect key="frame" x="24" y="534" width="327" height="53"/>
+                                <rect key="frame" x="24" y="539.5" width="327" height="43.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YOUR BONUS FOR NEXT GAME %@ %" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6qJ-2S-31n">
-                                        <rect key="frame" x="6" y="6" width="315" height="41"/>
+                                        <rect key="frame" x="6" y="6" width="315" height="31.5"/>
                                         <color key="backgroundColor" red="0.96862745100000003" green="0.72941176470000002" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -199,9 +199,9 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="Xuc-wd-L0X" secondAttribute="trailing" constant="8" id="Aft-FN-TW3"/>
-                            <constraint firstItem="Cnd-mR-vCD" firstAttribute="leading" secondItem="UeP-nm-i8R" secondAttribute="leadingMargin" constant="8" id="CCe-Om-uKP"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Cnd-mR-vCD" secondAttribute="trailing" constant="8" id="RAE-zI-eaz"/>
-                            <constraint firstItem="Xuc-wd-L0X" firstAttribute="top" secondItem="jYU-kG-RdV" secondAttribute="bottom" constant="8" id="RQ5-Zj-pB4"/>
+                            <constraint firstItem="Cnd-mR-vCD" firstAttribute="leading" secondItem="UeP-nm-i8R" secondAttribute="leadingMargin" constant="24" id="CCe-Om-uKP"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Cnd-mR-vCD" secondAttribute="trailing" constant="24" id="RAE-zI-eaz"/>
+                            <constraint firstItem="Xuc-wd-L0X" firstAttribute="top" secondItem="jYU-kG-RdV" secondAttribute="bottom" constant="12" id="RQ5-Zj-pB4"/>
                             <constraint firstItem="GGu-TS-DrI" firstAttribute="top" secondItem="aXn-m3-Fi2" secondAttribute="bottom" constant="24" id="UI0-f5-PrT"/>
                             <constraint firstAttribute="trailingMargin" secondItem="jYU-kG-RdV" secondAttribute="trailing" constant="8" id="YyZ-Pc-FKd"/>
                             <constraint firstItem="Ovp-I5-S92" firstAttribute="top" secondItem="Xuc-wd-L0X" secondAttribute="bottom" constant="20" id="kRG-Ko-X1L"/>
@@ -213,6 +213,8 @@
                     </view>
                     <connections>
                         <outlet property="bonusNextGameLabel" destination="6qJ-2S-31n" id="V6L-Ag-u4s"/>
+                        <outlet property="bonusNextGameView" destination="jYU-kG-RdV" id="tZM-Ce-Ypl"/>
+                        <outlet property="gameMenuStackView" destination="Cnd-mR-vCD" id="UEp-84-rqa"/>
                         <outlet property="leaderBoardButton" destination="xC6-z8-ccr" id="zky-9M-f8A"/>
                         <outlet property="leaderBoardView" destination="GGu-TS-DrI" id="fgh-5K-g00"/>
                         <outlet property="multiPlayerButton" destination="Evs-Hv-7Hf" id="jez-FK-1aS"/>

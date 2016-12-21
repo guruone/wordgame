@@ -60,6 +60,9 @@ class MenuViewController: UIViewController {
     @IBOutlet weak var bonusNextGameLabel: UILabel!
     fileprivate var bonusNextGameLabelTemplate = ""
     
+    
+    @IBOutlet weak var bonusNextGameView: UIView!
+    @IBOutlet weak var gameMenuStackView: UIStackView!
     @IBOutlet weak var watchVideoButtonView: UIView!
     @IBOutlet weak var leaderBoardView: UIView!
     
@@ -67,7 +70,6 @@ class MenuViewController: UIViewController {
         let leaderBoardVC = gkscore.createLeaderBoard(delegateView: self)
         present(leaderBoardVC, animated: true, completion: nil)
     }
-    
     
     @IBAction func onSinglePlayerClick() {
         let vc = storyboard?.instantiateViewController(withIdentifier: String(describing: SinglePlayerViewController.self))
@@ -130,8 +132,10 @@ extension MenuViewController {
         
         // GRAFIKA
         view.extAddCenterRound()
-        view.extAddVerticalLinesFromTop(to: watchVideoButtonView, offsetFromEdges: 50)
+        view.extAddVerticalLinesFromTop(to: gameMenuStackView, offsetFromEdges: 50)
         view.extAddVerticalLinesFromTop(to: leaderBoardView, offsetFromEdges: 33)
+        view.extAddVerticalLinesFromTop(to: bonusNextGameView, offsetFromEdges: 3)
+        bonusNextGameView.extAddVerticalLinesFromTop(to: watchVideoButtonView, offsetFromEdges: 50, renderToView: view)
         
         view.extRemoveWithAnimation(layer: viewMask)
         

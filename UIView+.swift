@@ -98,23 +98,30 @@ extension UIView {
         }
     }
     
-    func extAddVerticalLinesFromTop(to destinationView: UIView, offsetFromEdges offset: CGFloat) {
+    func extAddVerticalLinesFromTop(to destinationView: UIView, offsetFromEdges offset: CGFloat, renderToView toView: UIView? = nil) {
         let leftLine = CALayer()
         leftLine.zPosition = -1
         leftLine.frame = CGRect(x: destinationView.frame.origin.x + offset,
-                                y: 0,
+                                y: self.frame.origin.y,
                                 width: 2,
-                                height: destinationView.frame.origin.y + destinationView.frame.height)
+                                height: destinationView.frame.origin.y - self.frame.origin.y + destinationView.frame.height)
         leftLine.backgroundColor = UIColor(red: 252/255, green: 233/255, blue: 212/255, alpha: 1).cgColor
-        self.layer.addSublayer(leftLine)
         
         let rightLine = CALayer()
         rightLine.zPosition = -1
         rightLine.frame = CGRect(x: destinationView.frame.origin.x + destinationView.frame.width - offset - 2,
-                                 y: 0,
+                                 y: self.frame.origin.y,
                                  width: 2,
-                                 height: destinationView.frame.origin.y + destinationView.frame.height)
+                                 height: destinationView.frame.origin.y - self.frame.origin.y + destinationView.frame.height)
         rightLine.backgroundColor = UIColor(red: 252/255, green: 233/255, blue: 212/255, alpha: 1).cgColor
-        self.layer.addSublayer(rightLine)
+        
+        if toView == nil {
+            self.layer.addSublayer(leftLine)
+            self.layer.addSublayer(rightLine)
+            
+        } else {
+            toView?.layer.addSublayer(leftLine)
+            toView?.layer.addSublayer(rightLine)
+        }
     }
 }
