@@ -15,6 +15,16 @@ class GameSumaryViewController: UIViewController {
     /// from segue
     var earnedPoints: Int?
     
+    fileprivate lazy var viewMask: CALayer = {
+        let image = UIImage(named: "background")!
+        let color = UIColor(patternImage: image)
+        let mask = CALayer()
+        mask.frame = self.view.bounds
+        mask.backgroundColor = color.cgColor
+        mask.zPosition = CGFloat.greatestFiniteMagnitude
+        return mask
+    }()
+    
     @IBOutlet weak var earnedPointsView: UIView!
     
     @IBOutlet weak var earnedPointsLabel: UILabel!
@@ -31,6 +41,8 @@ class GameSumaryViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.layer.addSublayer(viewMask)
 
         guard earnedPoints != nil else {
             fatalError()
@@ -50,5 +62,7 @@ class GameSumaryViewController: UIViewController {
         super.viewDidAppear(animated)
         
         view.extAddVerticalLinesFromTop(to: earnedPointsView, offsetFromEdges: 30)
+        
+        view.extRemoveWithAnimation(layer: viewMask)
     }
 }
