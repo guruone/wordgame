@@ -107,11 +107,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		20C0075B1DFAC93100772B50 = {
+		20B9234C1E0BF6CE00C207C7 /* ChartBoost */ = {
 			isa = PBXGroup;
 			children = (
 				20B923441E0BB46600C207C7 /* ChartboostAdapter.framework */,
 				20B923421E0BB37400C207C7 /* Chartboost.framework */,
+			);
+			name = ChartBoost;
+			sourceTree = "<group>";
+		};
+		20C0075B1DFAC93100772B50 = {
+			isa = PBXGroup;
+			children = (
+				20B9234C1E0BF6CE00C207C7 /* ChartBoost */,
 				207644A41E0A9F8F00D3742F /* GoogleMobileAds.framework */,
 				207644981E0A9F7F00D3742F /* FirebaseAnalytics.framework */,
 				207644991E0A9F7F00D3742F /* FirebaseCore.framework */,
