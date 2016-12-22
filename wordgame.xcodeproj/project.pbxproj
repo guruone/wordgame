@@ -28,6 +28,8 @@
 		20B9233D1E0AE56C00C207C7 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 20B9233C1E0AE56C00C207C7 /* libz.tbd */; };
 		20B923431E0BB37400C207C7 /* Chartboost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20B923421E0BB37400C207C7 /* Chartboost.framework */; };
 		20B923451E0BB46600C207C7 /* ChartboostAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20B923441E0BB46600C207C7 /* ChartboostAdapter.framework */; };
+		20B9234E1E0BF7E200C207C7 /* AppLovinSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20B9234D1E0BF7E200C207C7 /* AppLovinSDK.framework */; };
+		20B923511E0BF8F200C207C7 /* GADMAdapterAppLovinRewardBasedVideoAd.m in Sources */ = {isa = PBXBuildFile; fileRef = 20B923501E0BF8F200C207C7 /* GADMAdapterAppLovinRewardBasedVideoAd.m */; };
 		20C007681DFAC93100772B50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C007671DFAC93100772B50 /* AppDelegate.swift */; };
 		20C0076D1DFAC93100772B50 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20C0076B1DFAC93100772B50 /* Main.storyboard */; };
 		20C007701DFAC93100772B50 /* wordgame.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 20C0076E1DFAC93100772B50 /* wordgame.xcdatamodeld */; };
@@ -67,6 +69,9 @@
 		20B923421E0BB37400C207C7 /* Chartboost.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Chartboost.framework; sourceTree = "<group>"; };
 		20B923441E0BB46600C207C7 /* ChartboostAdapter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ChartboostAdapter.framework; sourceTree = "<group>"; };
 		20B923481E0BCA4200C207C7 /* wordgame-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "wordgame-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		20B9234D1E0BF7E200C207C7 /* AppLovinSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppLovinSDK.framework; sourceTree = "<group>"; };
+		20B9234F1E0BF8F200C207C7 /* GADMAdapterAppLovinRewardBasedVideoAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADMAdapterAppLovinRewardBasedVideoAd.h; sourceTree = "<group>"; };
+		20B923501E0BF8F200C207C7 /* GADMAdapterAppLovinRewardBasedVideoAd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GADMAdapterAppLovinRewardBasedVideoAd.m; sourceTree = "<group>"; };
 		20C007641DFAC93100772B50 /* wordgame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wordgame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20C007671DFAC93100772B50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		20C0076C1DFAC93100772B50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -90,6 +95,7 @@
 			files = (
 				20B923451E0BB46600C207C7 /* ChartboostAdapter.framework in Frameworks */,
 				20B9233D1E0AE56C00C207C7 /* libz.tbd in Frameworks */,
+				20B9234E1E0BF7E200C207C7 /* AppLovinSDK.framework in Frameworks */,
 				20B9233B1E0AE56000C207C7 /* libsqlite3.tbd in Frameworks */,
 				20B923391E0AE55000C207C7 /* libc++.tbd in Frameworks */,
 				207644A31E0A9F7F00D3742F /* GoogleToolboxForMac.framework in Frameworks */,
@@ -116,9 +122,20 @@
 			name = ChartBoost;
 			sourceTree = "<group>";
 		};
+		20B923521E0BFAD400C207C7 /* AppLovin */ = {
+			isa = PBXGroup;
+			children = (
+				20B9234F1E0BF8F200C207C7 /* GADMAdapterAppLovinRewardBasedVideoAd.h */,
+				20B923501E0BF8F200C207C7 /* GADMAdapterAppLovinRewardBasedVideoAd.m */,
+				20B9234D1E0BF7E200C207C7 /* AppLovinSDK.framework */,
+			);
+			name = AppLovin;
+			sourceTree = "<group>";
+		};
 		20C0075B1DFAC93100772B50 = {
 			isa = PBXGroup;
 			children = (
+				20B923521E0BFAD400C207C7 /* AppLovin */,
 				20B9234C1E0BF6CE00C207C7 /* ChartBoost */,
 				207644A41E0A9F8F00D3742F /* GoogleMobileAds.framework */,
 				207644981E0A9F7F00D3742F /* FirebaseAnalytics.framework */,
@@ -268,6 +285,7 @@
 				2077D14E1E07F703000E8454 /* Ads.swift in Sources */,
 				2077D1501E0810DD000E8454 /* GameSumaryViewController.swift in Sources */,
 				20C007831DFDAB0A00772B50 /* PlayerAuthentificator.swift in Sources */,
+				20B923511E0BF8F200C207C7 /* GADMAdapterAppLovinRewardBasedVideoAd.m in Sources */,
 				20113F981DFE93BA003E045A /* CSVToCoreData.swift in Sources */,
 				20C007811DFDA4ED00772B50 /* MenuViewController.swift in Sources */,
 				20C007681DFAC93100772B50 /* AppDelegate.swift in Sources */,
