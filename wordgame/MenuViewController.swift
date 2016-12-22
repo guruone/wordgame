@@ -38,8 +38,6 @@ class MenuViewController: UIViewController {
     
     fileprivate let bonus = BonusPoints.shared
     
-//    fileprivate let videoAd = VideoInterstitialAd()
-    
     fileprivate var playerIsAuthetificated = false {
         didSet {
             if presentedViewController != nil { // alert pozri viewDidApear
@@ -83,7 +81,6 @@ class MenuViewController: UIViewController {
         present(vc, animated: true, completion: nil)
     }
     
-//    fileprivate var ad: GADInterstitial?
     fileprivate var ad: GADRewardBasedVideoAd?
     
     @IBOutlet weak var watchVideoToBonusButton: UIButton!
@@ -125,7 +122,6 @@ extension MenuViewController {
         
         bonusNextGameLabelTemplate = bonusNextGameLabel.text!
         watchVideoToBonusButton.isEnabled = false
-//        videoAd.delegate = self
         rewardVideo.delegate = self
     }
     
@@ -225,21 +221,6 @@ extension MenuViewController: MatchInviteDelegate {
         present(vc, animated: true, completion: nil)
     }
 }
-
-//// MARK: InterstitialAdDelegate
-//extension MenuViewController: InterstitialAdDelegate {
-//    
-//    func adIsReady(_ ad: GADInterstitial) {
-//        self.ad = ad
-//        watchVideoToBonusButton.isEnabled = true
-//    }
-//    
-//    func adDidDismissScreen() {
-//        watchVideoToBonusButton.isEnabled = false
-//        bonus.addBonus(0.1)
-//        bonusNextGameLabel.text = bonusNextGameLabelTemplate.replacingOccurrences(of: "%@", with: "\(bonus.currBonusInPerc)")
-//    }
-//}
 
 // MARK: RewardAdDelegate
 extension MenuViewController: RewardAdDelegate {
