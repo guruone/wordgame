@@ -2,6 +2,11 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>AppLovinSdkKey</key>
 	<string>XAQ9XzoK4w1StLrZefy6HH9XsuJ4ALWiVxt2veNzZOQQkF_MwxTBDdi3V17gMeNsaEvTtGRRfssN6rl0nDB-rv</string>
 	<key>CFBundleDevelopmentRegion</key>

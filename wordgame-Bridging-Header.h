@@ -3,3 +3,4 @@
 //
 
 #import <AppLovinSDK/AppLovinSDK.h>
+#import <VungleSDK/VungleSDK.h>
