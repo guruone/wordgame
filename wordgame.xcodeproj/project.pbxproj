@@ -38,6 +38,8 @@
 		20B923611E0BFDD500C207C7 /* vg_privacy.png in Resources */ = {isa = PBXBuildFile; fileRef = 20B9235A1E0BFDD500C207C7 /* vg_privacy.png */; };
 		20B923621E0BFDD500C207C7 /* VungleSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20B9235B1E0BFDD500C207C7 /* VungleSDK.framework */; };
 		20B923651E0C007D00C207C7 /* libVungleAdapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 20B923631E0C007D00C207C7 /* libVungleAdapter.a */; };
+		20B923681E0C2BB100C207C7 /* UnityAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20B923671E0C2BB100C207C7 /* UnityAds.framework */; };
+		20B9236A1E0C2C4300C207C7 /* libAdapterUnity.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 20B923691E0C2C4300C207C7 /* libAdapterUnity.a */; };
 		20C007681DFAC93100772B50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C007671DFAC93100772B50 /* AppDelegate.swift */; };
 		20C0076D1DFAC93100772B50 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20C0076B1DFAC93100772B50 /* Main.storyboard */; };
 		20C007701DFAC93100772B50 /* wordgame.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 20C0076E1DFAC93100772B50 /* wordgame.xcdatamodeld */; };
@@ -89,6 +91,8 @@
 		20B9235B1E0BFDD500C207C7 /* VungleSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VungleSDK.framework; sourceTree = "<group>"; };
 		20B923631E0C007D00C207C7 /* libVungleAdapter.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libVungleAdapter.a; sourceTree = "<group>"; };
 		20B923641E0C007D00C207C7 /* VungleAdNetworkExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VungleAdNetworkExtras.h; sourceTree = "<group>"; };
+		20B923671E0C2BB100C207C7 /* UnityAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UnityAds.framework; sourceTree = "<group>"; };
+		20B923691E0C2C4300C207C7 /* libAdapterUnity.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAdapterUnity.a; sourceTree = "<group>"; };
 		20C007641DFAC93100772B50 /* wordgame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wordgame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20C007671DFAC93100772B50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		20C0076C1DFAC93100772B50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -119,11 +123,13 @@
 				207644A21E0A9F7F00D3742F /* GoogleSymbolUtilities.framework in Frameworks */,
 				207644A51E0A9F8F00D3742F /* GoogleMobileAds.framework in Frameworks */,
 				20B923621E0BFDD500C207C7 /* VungleSDK.framework in Frameworks */,
+				20B9236A1E0C2C4300C207C7 /* libAdapterUnity.a in Frameworks */,
 				2076449E1E0A9F7F00D3742F /* FirebaseAnalytics.framework in Frameworks */,
 				20B923651E0C007D00C207C7 /* libVungleAdapter.a in Frameworks */,
 				20C007861DFDAF0500772B50 /* GameKit.framework in Frameworks */,
 				2076449F1E0A9F7F00D3742F /* FirebaseCore.framework in Frameworks */,
 				20B923431E0BB37400C207C7 /* Chartboost.framework in Frameworks */,
+				20B923681E0C2BB100C207C7 /* UnityAds.framework in Frameworks */,
 				207644A01E0A9F7F00D3742F /* FirebaseInstanceID.framework in Frameworks */,
 				207644A11E0A9F7F00D3742F /* GoogleInterchangeUtilities.framework in Frameworks */,
 			);
@@ -183,9 +189,19 @@
 			name = Vungle;
 			sourceTree = "<group>";
 		};
+		20B9236B1E0C2F4400C207C7 /* Unity */ = {
+			isa = PBXGroup;
+			children = (
+				20B923691E0C2C4300C207C7 /* libAdapterUnity.a */,
+				20B923671E0C2BB100C207C7 /* UnityAds.framework */,
+			);
+			name = Unity;
+			sourceTree = "<group>";
+		};
 		20C0075B1DFAC93100772B50 = {
 			isa = PBXGroup;
 			children = (
+				20B9236B1E0C2F4400C207C7 /* Unity */,
 				20B923661E0C012100C207C7 /* Vungle */,
 				20B923521E0BFAD400C207C7 /* AppLovin */,
 				20B9234C1E0BF6CE00C207C7 /* ChartBoost */,
