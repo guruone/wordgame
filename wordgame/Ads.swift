@@ -27,14 +27,14 @@ protocol InterstitialAdDelegate {
 
 class VideoInterstitialAd: NSObject, GADInterstitialDelegate {
     
-    private var ad: GADInterstitial!
+    private(set) var ad: GADInterstitial!
     
     var delegate: InterstitialAdDelegate?
     
     override init() {
         super.init()
         
-//        ad = createAndLoadAd()
+        ad = createAndLoadAd()
     }
     
     private func createAndLoadAd() -> GADInterstitial {
@@ -58,15 +58,15 @@ class VideoInterstitialAd: NSObject, GADInterstitialDelegate {
     }
 }
 
-protocol RewardAdDelegate {
+@objc protocol RewardAdDelegate {
     func rewardAd(didRewardUser reward: GADAdReward)
-    func rewardAd(isReady rewardAd: GADRewardBasedVideoAd)
-    func rewardAd(isLoading rewardAd: GADRewardBasedVideoAd)
+    @objc optional func rewardAd(isReady rewardAd: GADRewardBasedVideoAd)
+    @objc optional func rewardAd(isLoading rewardAd: GADRewardBasedVideoAd)
 }
 
 class RewardAd: NSObject, GADRewardBasedVideoAdDelegate {
     
-    private var ad: GADRewardBasedVideoAd
+    var ad: GADRewardBasedVideoAd
     
     var delegate: RewardAdDelegate? {
         didSet {
@@ -86,7 +86,7 @@ class RewardAd: NSObject, GADRewardBasedVideoAdDelegate {
         if !ad.isReady {
             print("RewardAd.load")
             ad.load(AdsRequest.create(), withAdUnitID: "ca-app-pub-3278005872817682/4839443470")
-            delegate?.rewardAd(isLoading: ad)
+            delegate?.rewardAd?(isLoading: ad)
         }
     }
     
@@ -102,14 +102,14 @@ class RewardAd: NSObject, GADRewardBasedVideoAdDelegate {
     /// Tells the delegate that the reward based video ad failed to load.
     func rewardBasedVideoAd(_ rewardBasedVideoAd: GADRewardBasedVideoAd, didFailToLoadWithError error: Error) {
         print("rewardBasedVideoAd:didFailToLoadWithError", error.localizedDescription)
-        load()
+//        load()
     }
     
     /// Tells the delegate that a reward based video ad was received.
     func rewardBasedVideoAdDidReceive(_ rewardBasedVideoAd: GADRewardBasedVideoAd) {
         print("rewardBasedVideoAdDidReceive")
         print("rewardBasedVideoAd is ready", rewardBasedVideoAd.isReady)
-        delegate?.rewardAd(isReady: rewardBasedVideoAd)
+        delegate?.rewardAd?(isReady: rewardBasedVideoAd)
     }
     
     /// Tells the delegate that the reward based video ad opened.
