@@ -52,6 +52,8 @@
 		20C007861DFDAF0500772B50 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20C007851DFDAF0500772B50 /* GameKit.framework */; };
 		20D57DDC1E01C35E00C51DD5 /* names.csv in Resources */ = {isa = PBXBuildFile; fileRef = 20D57DDA1E01C35E00C51DD5 /* names.csv */; };
 		20D57DDD1E01C35E00C51DD5 /* nouns.csv in Resources */ = {isa = PBXBuildFile; fileRef = 20D57DDB1E01C35E00C51DD5 /* nouns.csv */; };
+		20F8229D1E0D121800B98E64 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F8229C1E0D121800B98E64 /* WelcomeViewController.swift */; };
+		20F8229F1E0D126B00B98E64 /* HowToMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F8229E1E0D126B00B98E64 /* HowToMenuViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -107,6 +109,8 @@
 		20C007851DFDAF0500772B50 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		20D57DDA1E01C35E00C51DD5 /* names.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = names.csv; sourceTree = "<group>"; };
 		20D57DDB1E01C35E00C51DD5 /* nouns.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = nouns.csv; sourceTree = "<group>"; };
+		20F8229C1E0D121800B98E64 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		20F8229E1E0D126B00B98E64 /* HowToMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HowToMenuViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -243,6 +247,8 @@
 				20113F991DFE98E9003E045A /* Words.swift */,
 				2077D14D1E07F703000E8454 /* Ads.swift */,
 				2077D14F1E0810DD000E8454 /* GameSumaryViewController.swift */,
+				20F8229C1E0D121800B98E64 /* WelcomeViewController.swift */,
+				20F8229E1E0D126B00B98E64 /* HowToMenuViewController.swift */,
 				20B923481E0BCA4200C207C7 /* wordgame-Bridging-Header.h */,
 				20C007711DFAC93100772B50 /* Assets.xcassets */,
 				20C007731DFAC93100772B50 /* LaunchScreen.storyboard */,
@@ -357,6 +363,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2077D14E1E07F703000E8454 /* Ads.swift in Sources */,
+				20F8229D1E0D121800B98E64 /* WelcomeViewController.swift in Sources */,
 				2077D1501E0810DD000E8454 /* GameSumaryViewController.swift in Sources */,
 				20C007831DFDAB0A00772B50 /* PlayerAuthentificator.swift in Sources */,
 				20B923511E0BF8F200C207C7 /* GADMAdapterAppLovinRewardBasedVideoAd.m in Sources */,
@@ -371,6 +378,7 @@
 				207E316A1DFDB6A200453EF6 /* MultiPlayer.swift in Sources */,
 				20113F9A1DFE98E9003E045A /* Words.swift in Sources */,
 				20113FA21DFEB20D003E045A /* ChooseWordCategoryViewController.swift in Sources */,
+				20F8229F1E0D126B00B98E64 /* HowToMenuViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

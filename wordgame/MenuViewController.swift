@@ -26,8 +26,6 @@ class MenuViewController: UIViewController {
         return mask
     }()
     
-    fileprivate let playerAuth = PlayerAuthentificator()
-    
     fileprivate lazy var multiPlayerMatchMaker: MatchMaker = {
         let maker = MatchMaker()
         maker.delegate = self
@@ -39,21 +37,6 @@ class MenuViewController: UIViewController {
     }()
     
     fileprivate let bonus = BonusPoints.shared
-    
-    fileprivate var playerIsAuthetificated = false {
-        didSet {
-            if presentedViewController != nil { // alert pozri viewDidApear
-                presentedViewController?.dismiss(animated: true, completion: nil)
-            }
-            
-            if playerIsAuthetificated {
-                buttonsEnabled()
-                
-            } else {
-                buttonsDisabled()
-            }
-        }
-    }
     
     @IBOutlet weak var leaderBoardButton: UIButton!
     @IBOutlet weak var singlePlayerButton: UIButton!
@@ -88,18 +71,6 @@ class MenuViewController: UIViewController {
     @IBAction func onWatchVideoToBonus(_ sender: Any) {
         rewardAd.ad.present(fromRootViewController: self)
     }
-    
-    fileprivate func buttonsDisabled() {
-        leaderBoardButton.isEnabled = false
-        singlePlayerButton.isEnabled = false
-        multiPlayerButton.isEnabled = false
-    }
-    
-    private func buttonsEnabled() {
-        leaderBoardButton.isEnabled = true
-        singlePlayerButton.isEnabled = true
-        multiPlayerButton.isEnabled = true
-    }
 }
 
 // MARK: LIFECYCLE
@@ -111,15 +82,7 @@ extension MenuViewController {
         view.layer.addSublayer(viewMask)
         
         view.extSetLetterBlueBackground()
-        
-        buttonsDisabled()
-        
-        //        playerAuth.delegate = self
-        //        playerAuth.authentificate()
-        NotificationCenter.default.addObserver(self, selector: #selector(authentificationSuccess(notification:)), name: PlayerAuthentificator.authentificatedNotificationName, object: nil)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(presentAuthViewController(notification:)), name: PlayerAuthentificator.presentVCNotificationName, object: nil)
-        
+
         bonusNextGameLabelTemplate = bonusNextGameLabel.text!
         watchVideoToBonusButton.isEnabled = false
         rewardAd.delegate = self
@@ -141,11 +104,6 @@ extension MenuViewController {
         
         view.extRemoveWithAnimation(layer: viewMask)
         
-        if !playerIsAuthetificated {
-            let alert = UIAlertController(title: "Player Authentification", message: "please wait ...", preferredStyle: .actionSheet)
-            present(alert, animated: true, completion: nil)
-        }
-        
         if presentInterstitialAd {
             interstitialAd.ad.present(fromRootViewController: self)
         }
@@ -159,48 +117,6 @@ extension MenuViewController {
     }
 }
 
-// MARK: PlayerAuthentificatorDelagate
-extension MenuViewController: PlayerAuthentificatorDelagate {
-    
-    func authentificationSuccess(notification: Notification) {
-        if let playerAuth = notification.object as? PlayerAuthentificator {
-            authentification(success: playerAuth.authentificatedLocalPlayer!)
-        }
-    }
-    
-    func authentification(success player: GKLocalPlayer) {
-        playerIsAuthetificated = true
-        player.unregisterAllListeners()
-        let listener = MatchInviteListener()
-        listener.delegate = self
-        player.register(listener)
-    }
-    
-    internal func authentification(failed error: Error) {
-        //TODO: OSETRIT ERROR PRI AUTHENTIFIKACII
-        print(error.localizedDescription)
-        playerIsAuthetificated = false
-    }
-    
-    func presentAuthViewController(notification: Notification) {
-        if let authPlayer = notification.object as? PlayerAuthentificator {
-            present(authentification: authPlayer.authentificationViewController!)
-        }
-    }
-
-    func present(authentification viewController: UIViewController) {
-        func completion() {
-            present(viewController, animated: true, completion: nil)
-        }
-        
-        if presentedViewController != nil {
-            presentedViewController!.dismiss(animated: true, completion: completion)
-            
-        } else {
-            completion()
-        }
-    }
-}
 
 // MARK: MatchMakerDelegate
 extension MenuViewController: MatchMakerDelegate {
@@ -222,16 +138,6 @@ extension MenuViewController: GKGameCenterControllerDelegate {
     
     func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
         gameCenterViewController.dismiss(animated: true, completion: nil)
-    }
-}
-
-// MARK: MatchInviteDelegate
-extension MenuViewController: MatchInviteDelegate {
-    
-    func matchDidInvite(_ invite: GKInvite) {
-        print("matchDidInvite")
-        let vc = multiPlayerMatchMaker.createViewController(forInvite: invite)
-        present(vc, animated: true, completion: nil)
     }
 }
 
