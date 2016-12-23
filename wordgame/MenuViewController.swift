@@ -12,7 +12,9 @@ import GoogleMobileAds
 
 class MenuViewController: UIViewController {
     
-    fileprivate let rewardVideo = RewardAd()
+    fileprivate let rewardAd = RewardAd()
+    fileprivate let interstitialAd = VideoInterstitialAd()
+    fileprivate var presentInterstitialAd = false
     
     fileprivate lazy var viewMask: CALayer = {
         let image = UIImage(named: "background")!
@@ -81,12 +83,10 @@ class MenuViewController: UIViewController {
         present(vc, animated: true, completion: nil)
     }
     
-    fileprivate var ad: GADRewardBasedVideoAd?
-    
     @IBOutlet weak var watchVideoToBonusButton: UIButton!
     
     @IBAction func onWatchVideoToBonus(_ sender: Any) {
-        ad?.present(fromRootViewController: self)
+        rewardAd.ad.present(fromRootViewController: self)
     }
     
     fileprivate func buttonsDisabled() {
@@ -122,7 +122,9 @@ extension MenuViewController {
         
         bonusNextGameLabelTemplate = bonusNextGameLabel.text!
         watchVideoToBonusButton.isEnabled = false
-        rewardVideo.delegate = self
+        rewardAd.delegate = self
+        
+        interstitialAd.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -142,6 +144,17 @@ extension MenuViewController {
         if !playerIsAuthetificated {
             let alert = UIAlertController(title: "Player Authentification", message: "please wait ...", preferredStyle: .actionSheet)
             present(alert, animated: true, completion: nil)
+        }
+        
+        if presentInterstitialAd {
+            interstitialAd.ad.present(fromRootViewController: self)
+        }
+    }
+    
+    @IBAction func unwindToMenuVCWithAd(segue: UIStoryboardSegue) {
+        // TODO: miesto na video od google
+        if interstitialAd.ad.isReady {
+            presentInterstitialAd = true
         }
     }
 }
@@ -236,7 +249,19 @@ extension MenuViewController: RewardAdDelegate {
     }
     
     func rewardAd(isReady rewardAd: GADRewardBasedVideoAd) {
-        self.ad = rewardAd
         watchVideoToBonusButton.isEnabled = true
     }
+}
+
+// MARK: InterstitialAdDelegate
+extension MenuViewController: InterstitialAdDelegate {
+    
+    func adIsReady(_ ad: GADInterstitial) {
+        
+    }
+    
+    func adDidDismissScreen() {
+        
+    }
+    
 }

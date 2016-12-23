@@ -769,7 +769,7 @@
                                 <color key="backgroundColor" red="0.96862745100000003" green="0.72941176470000002" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="X"/>
                                 <connections>
-                                    <action selector="onDismissClick:" destination="gO0-Bp-tMI" eventType="touchUpInside" id="0TK-FK-8wU"/>
+                                    <segue destination="wwG-Fs-im0" kind="unwind" unwindAction="unwindToMenuVCWithAdWithSegue:" id="N4K-RW-wCE"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -795,6 +795,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0G9-Gj-5Rd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="wwG-Fs-im0" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2008.8" y="-349.47526236881561"/>
         </scene>
