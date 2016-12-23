@@ -23,6 +23,23 @@
 		2077D1501E0810DD000E8454 /* GameSumaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2077D14F1E0810DD000E8454 /* GameSumaryViewController.swift */; };
 		207E316A1DFDB6A200453EF6 /* MultiPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207E31691DFDB6A200453EF6 /* MultiPlayer.swift */; };
 		207E316E1DFDC63C00453EF6 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207E316D1DFDC63C00453EF6 /* UIView+.swift */; };
+		20B923391E0AE55000C207C7 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 20B923381E0AE55000C207C7 /* libc++.tbd */; };
+		20B9233B1E0AE56000C207C7 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 20B9233A1E0AE56000C207C7 /* libsqlite3.tbd */; };
+		20B9233D1E0AE56C00C207C7 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 20B9233C1E0AE56C00C207C7 /* libz.tbd */; };
+		20B923431E0BB37400C207C7 /* Chartboost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20B923421E0BB37400C207C7 /* Chartboost.framework */; };
+		20B923451E0BB46600C207C7 /* ChartboostAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20B923441E0BB46600C207C7 /* ChartboostAdapter.framework */; };
+		20B9234E1E0BF7E200C207C7 /* AppLovinSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20B9234D1E0BF7E200C207C7 /* AppLovinSDK.framework */; };
+		20B923511E0BF8F200C207C7 /* GADMAdapterAppLovinRewardBasedVideoAd.m in Sources */ = {isa = PBXBuildFile; fileRef = 20B923501E0BF8F200C207C7 /* GADMAdapterAppLovinRewardBasedVideoAd.m */; };
+		20B9235C1E0BFDD500C207C7 /* __vungle.db in Resources */ = {isa = PBXBuildFile; fileRef = 20B923551E0BFDD500C207C7 /* __vungle.db */; };
+		20B9235D1E0BFDD500C207C7 /* vg_close.png in Resources */ = {isa = PBXBuildFile; fileRef = 20B923561E0BFDD500C207C7 /* vg_close.png */; };
+		20B9235E1E0BFDD500C207C7 /* vg_cta.png in Resources */ = {isa = PBXBuildFile; fileRef = 20B923571E0BFDD500C207C7 /* vg_cta.png */; };
+		20B9235F1E0BFDD500C207C7 /* vg_mute_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 20B923581E0BFDD500C207C7 /* vg_mute_off.png */; };
+		20B923601E0BFDD500C207C7 /* vg_mute_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 20B923591E0BFDD500C207C7 /* vg_mute_on.png */; };
+		20B923611E0BFDD500C207C7 /* vg_privacy.png in Resources */ = {isa = PBXBuildFile; fileRef = 20B9235A1E0BFDD500C207C7 /* vg_privacy.png */; };
+		20B923621E0BFDD500C207C7 /* VungleSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20B9235B1E0BFDD500C207C7 /* VungleSDK.framework */; };
+		20B923651E0C007D00C207C7 /* libVungleAdapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 20B923631E0C007D00C207C7 /* libVungleAdapter.a */; };
+		20B923681E0C2BB100C207C7 /* UnityAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20B923671E0C2BB100C207C7 /* UnityAds.framework */; };
+		20B9236A1E0C2C4300C207C7 /* libAdapterUnity.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 20B923691E0C2C4300C207C7 /* libAdapterUnity.a */; };
 		20C007681DFAC93100772B50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C007671DFAC93100772B50 /* AppDelegate.swift */; };
 		20C0076D1DFAC93100772B50 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20C0076B1DFAC93100772B50 /* Main.storyboard */; };
 		20C007701DFAC93100772B50 /* wordgame.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 20C0076E1DFAC93100772B50 /* wordgame.xcdatamodeld */; };
@@ -54,6 +71,28 @@
 		2077D14F1E0810DD000E8454 /* GameSumaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSumaryViewController.swift; sourceTree = "<group>"; };
 		207E31691DFDB6A200453EF6 /* MultiPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiPlayer.swift; sourceTree = "<group>"; };
 		207E316D1DFDC63C00453EF6 /* UIView+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+.swift"; path = "../UIView+.swift"; sourceTree = "<group>"; };
+		20B923381E0AE55000C207C7 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		20B9233A1E0AE56000C207C7 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		20B9233C1E0AE56C00C207C7 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		20B9233E1E0AE59500C207C7 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		20B923401E0AE5B800C207C7 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		20B923421E0BB37400C207C7 /* Chartboost.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Chartboost.framework; sourceTree = "<group>"; };
+		20B923441E0BB46600C207C7 /* ChartboostAdapter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ChartboostAdapter.framework; sourceTree = "<group>"; };
+		20B923481E0BCA4200C207C7 /* wordgame-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "wordgame-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		20B9234D1E0BF7E200C207C7 /* AppLovinSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppLovinSDK.framework; sourceTree = "<group>"; };
+		20B9234F1E0BF8F200C207C7 /* GADMAdapterAppLovinRewardBasedVideoAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADMAdapterAppLovinRewardBasedVideoAd.h; sourceTree = "<group>"; };
+		20B923501E0BF8F200C207C7 /* GADMAdapterAppLovinRewardBasedVideoAd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GADMAdapterAppLovinRewardBasedVideoAd.m; sourceTree = "<group>"; };
+		20B923551E0BFDD500C207C7 /* __vungle.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = __vungle.db; sourceTree = "<group>"; };
+		20B923561E0BFDD500C207C7 /* vg_close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_close.png; sourceTree = "<group>"; };
+		20B923571E0BFDD500C207C7 /* vg_cta.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_cta.png; sourceTree = "<group>"; };
+		20B923581E0BFDD500C207C7 /* vg_mute_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_mute_off.png; sourceTree = "<group>"; };
+		20B923591E0BFDD500C207C7 /* vg_mute_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_mute_on.png; sourceTree = "<group>"; };
+		20B9235A1E0BFDD500C207C7 /* vg_privacy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_privacy.png; sourceTree = "<group>"; };
+		20B9235B1E0BFDD500C207C7 /* VungleSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VungleSDK.framework; sourceTree = "<group>"; };
+		20B923631E0C007D00C207C7 /* libVungleAdapter.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libVungleAdapter.a; sourceTree = "<group>"; };
+		20B923641E0C007D00C207C7 /* VungleAdNetworkExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VungleAdNetworkExtras.h; sourceTree = "<group>"; };
+		20B923671E0C2BB100C207C7 /* UnityAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UnityAds.framework; sourceTree = "<group>"; };
+		20B923691E0C2C4300C207C7 /* libAdapterUnity.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAdapterUnity.a; sourceTree = "<group>"; };
 		20C007641DFAC93100772B50 /* wordgame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wordgame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20C007671DFAC93100772B50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		20C0076C1DFAC93100772B50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -75,12 +114,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20B923451E0BB46600C207C7 /* ChartboostAdapter.framework in Frameworks */,
+				20B9233D1E0AE56C00C207C7 /* libz.tbd in Frameworks */,
+				20B9234E1E0BF7E200C207C7 /* AppLovinSDK.framework in Frameworks */,
+				20B9233B1E0AE56000C207C7 /* libsqlite3.tbd in Frameworks */,
+				20B923391E0AE55000C207C7 /* libc++.tbd in Frameworks */,
 				207644A31E0A9F7F00D3742F /* GoogleToolboxForMac.framework in Frameworks */,
 				207644A21E0A9F7F00D3742F /* GoogleSymbolUtilities.framework in Frameworks */,
 				207644A51E0A9F8F00D3742F /* GoogleMobileAds.framework in Frameworks */,
+				20B923621E0BFDD500C207C7 /* VungleSDK.framework in Frameworks */,
+				20B9236A1E0C2C4300C207C7 /* libAdapterUnity.a in Frameworks */,
 				2076449E1E0A9F7F00D3742F /* FirebaseAnalytics.framework in Frameworks */,
+				20B923651E0C007D00C207C7 /* libVungleAdapter.a in Frameworks */,
 				20C007861DFDAF0500772B50 /* GameKit.framework in Frameworks */,
 				2076449F1E0A9F7F00D3742F /* FirebaseCore.framework in Frameworks */,
+				20B923431E0BB37400C207C7 /* Chartboost.framework in Frameworks */,
+				20B923681E0C2BB100C207C7 /* UnityAds.framework in Frameworks */,
 				207644A01E0A9F7F00D3742F /* FirebaseInstanceID.framework in Frameworks */,
 				207644A11E0A9F7F00D3742F /* GoogleInterchangeUtilities.framework in Frameworks */,
 			);
@@ -89,9 +138,73 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		20B9234C1E0BF6CE00C207C7 /* ChartBoost */ = {
+			isa = PBXGroup;
+			children = (
+				20B923441E0BB46600C207C7 /* ChartboostAdapter.framework */,
+				20B923421E0BB37400C207C7 /* Chartboost.framework */,
+			);
+			name = ChartBoost;
+			sourceTree = "<group>";
+		};
+		20B923521E0BFAD400C207C7 /* AppLovin */ = {
+			isa = PBXGroup;
+			children = (
+				20B9234F1E0BF8F200C207C7 /* GADMAdapterAppLovinRewardBasedVideoAd.h */,
+				20B923501E0BF8F200C207C7 /* GADMAdapterAppLovinRewardBasedVideoAd.m */,
+				20B9234D1E0BF7E200C207C7 /* AppLovinSDK.framework */,
+			);
+			name = AppLovin;
+			sourceTree = "<group>";
+		};
+		20B923531E0BFDD500C207C7 /* VungleSDK.embeddedframework */ = {
+			isa = PBXGroup;
+			children = (
+				20B923541E0BFDD500C207C7 /* Resources */,
+				20B9235B1E0BFDD500C207C7 /* VungleSDK.framework */,
+			);
+			path = VungleSDK.embeddedframework;
+			sourceTree = "<group>";
+		};
+		20B923541E0BFDD500C207C7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				20B923551E0BFDD500C207C7 /* __vungle.db */,
+				20B923561E0BFDD500C207C7 /* vg_close.png */,
+				20B923571E0BFDD500C207C7 /* vg_cta.png */,
+				20B923581E0BFDD500C207C7 /* vg_mute_off.png */,
+				20B923591E0BFDD500C207C7 /* vg_mute_on.png */,
+				20B9235A1E0BFDD500C207C7 /* vg_privacy.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		20B923661E0C012100C207C7 /* Vungle */ = {
+			isa = PBXGroup;
+			children = (
+				20B923631E0C007D00C207C7 /* libVungleAdapter.a */,
+				20B923641E0C007D00C207C7 /* VungleAdNetworkExtras.h */,
+				20B923531E0BFDD500C207C7 /* VungleSDK.embeddedframework */,
+			);
+			name = Vungle;
+			sourceTree = "<group>";
+		};
+		20B9236B1E0C2F4400C207C7 /* Unity */ = {
+			isa = PBXGroup;
+			children = (
+				20B923691E0C2C4300C207C7 /* libAdapterUnity.a */,
+				20B923671E0C2BB100C207C7 /* UnityAds.framework */,
+			);
+			name = Unity;
+			sourceTree = "<group>";
+		};
 		20C0075B1DFAC93100772B50 = {
 			isa = PBXGroup;
 			children = (
+				20B9236B1E0C2F4400C207C7 /* Unity */,
+				20B923661E0C012100C207C7 /* Vungle */,
+				20B923521E0BFAD400C207C7 /* AppLovin */,
+				20B9234C1E0BF6CE00C207C7 /* ChartBoost */,
 				207644A41E0A9F8F00D3742F /* GoogleMobileAds.framework */,
 				207644981E0A9F7F00D3742F /* FirebaseAnalytics.framework */,
 				207644991E0A9F7F00D3742F /* FirebaseCore.framework */,
@@ -130,6 +243,7 @@
 				20113F991DFE98E9003E045A /* Words.swift */,
 				2077D14D1E07F703000E8454 /* Ads.swift */,
 				2077D14F1E0810DD000E8454 /* GameSumaryViewController.swift */,
+				20B923481E0BCA4200C207C7 /* wordgame-Bridging-Header.h */,
 				20C007711DFAC93100772B50 /* Assets.xcassets */,
 				20C007731DFAC93100772B50 /* LaunchScreen.storyboard */,
 				20C007761DFAC93100772B50 /* Info.plist */,
@@ -144,6 +258,11 @@
 		20C007841DFDAF0500772B50 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				20B923401E0AE5B800C207C7 /* AdSupport.framework */,
+				20B9233E1E0AE59500C207C7 /* SystemConfiguration.framework */,
+				20B9233C1E0AE56C00C207C7 /* libz.tbd */,
+				20B9233A1E0AE56000C207C7 /* libsqlite3.tbd */,
+				20B923381E0AE55000C207C7 /* libc++.tbd */,
 				20C007851DFDAF0500772B50 /* GameKit.framework */,
 			);
 			name = Frameworks;
@@ -182,6 +301,7 @@
 					20C007631DFAC93100772B50 = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = 4HFWK8AXKL;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.GameCenter = {
@@ -215,11 +335,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				20C007751DFAC93100772B50 /* LaunchScreen.storyboard in Resources */,
+				20B9235D1E0BFDD500C207C7 /* vg_close.png in Resources */,
+				20B9235C1E0BFDD500C207C7 /* __vungle.db in Resources */,
+				20B9235F1E0BFDD500C207C7 /* vg_mute_off.png in Resources */,
+				20B9235E1E0BFDD500C207C7 /* vg_cta.png in Resources */,
 				20C007721DFAC93100772B50 /* Assets.xcassets in Resources */,
 				20C0076D1DFAC93100772B50 /* Main.storyboard in Resources */,
 				20D57DDC1E01C35E00C51DD5 /* names.csv in Resources */,
 				20D57DDD1E01C35E00C51DD5 /* nouns.csv in Resources */,
+				20B923601E0BFDD500C207C7 /* vg_mute_on.png in Resources */,
 				2048C60D1E02D8D6009758A5 /* points.csv in Resources */,
+				20B923611E0BFDD500C207C7 /* vg_privacy.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,6 +359,7 @@
 				2077D14E1E07F703000E8454 /* Ads.swift in Sources */,
 				2077D1501E0810DD000E8454 /* GameSumaryViewController.swift in Sources */,
 				20C007831DFDAB0A00772B50 /* PlayerAuthentificator.swift in Sources */,
+				20B923511E0BF8F200C207C7 /* GADMAdapterAppLovinRewardBasedVideoAd.m in Sources */,
 				20113F981DFE93BA003E045A /* CSVToCoreData.swift in Sources */,
 				20C007811DFDA4ED00772B50 /* MenuViewController.swift in Sources */,
 				20C007681DFAC93100772B50 /* AppDelegate.swift in Sources */,
@@ -366,16 +493,27 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 4HFWK8AXKL;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/AdMob",
+					"$(PROJECT_DIR)/VungleSDK.embeddedframework",
 				);
 				INFOPLIST_FILE = wordgame/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LIBTOOLFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.marekmako.wordgame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "wordgame-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -384,16 +522,26 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 4HFWK8AXKL;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/AdMob",
+					"$(PROJECT_DIR)/VungleSDK.embeddedframework",
 				);
 				INFOPLIST_FILE = wordgame/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LIBTOOLFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.marekmako.wordgame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "wordgame-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

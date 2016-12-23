@@ -29,6 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // MARK: ADS
         GADMobileAds.configure(withApplicationID: "ca-app-pub-3278005872817682~8486070675")
         
+        // MARK: GAME CENTER AUTH
         PlayerAuthentificator().authentificate()
         
         return true

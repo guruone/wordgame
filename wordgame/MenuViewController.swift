@@ -12,6 +12,8 @@ import GoogleMobileAds
 
 class MenuViewController: UIViewController {
     
+    fileprivate let rewardVideo = RewardAd()
+    
     fileprivate lazy var viewMask: CALayer = {
         let image = UIImage(named: "background")!
         let color = UIColor(patternImage: image)
@@ -35,8 +37,6 @@ class MenuViewController: UIViewController {
     }()
     
     fileprivate let bonus = BonusPoints.shared
-    
-    fileprivate let videoAd = VideoInterstitialAd()
     
     fileprivate var playerIsAuthetificated = false {
         didSet {
@@ -81,7 +81,7 @@ class MenuViewController: UIViewController {
         present(vc, animated: true, completion: nil)
     }
     
-    fileprivate var ad: GADInterstitial?
+    fileprivate var ad: GADRewardBasedVideoAd?
     
     @IBOutlet weak var watchVideoToBonusButton: UIButton!
     
@@ -122,7 +122,7 @@ extension MenuViewController {
         
         bonusNextGameLabelTemplate = bonusNextGameLabel.text!
         watchVideoToBonusButton.isEnabled = false
-        videoAd.delegate = self
+        rewardVideo.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -212,21 +212,6 @@ extension MenuViewController: GKGameCenterControllerDelegate {
     }
 }
 
-// MARK: InterstitialAdDelegate
-extension MenuViewController: InterstitialAdDelegate {
-    
-    func adIsReady(_ ad: GADInterstitial) {
-        self.ad = ad
-        watchVideoToBonusButton.isEnabled = true
-    }
-    
-    func adDidDismissScreen() {
-        watchVideoToBonusButton.isEnabled = false
-        bonus.addBonus(0.1)
-        bonusNextGameLabel.text = bonusNextGameLabelTemplate.replacingOccurrences(of: "%@", with: "\(bonus.currBonusInPerc)")
-    }
-}
-
 // MARK: MatchInviteDelegate
 extension MenuViewController: MatchInviteDelegate {
     
@@ -234,5 +219,24 @@ extension MenuViewController: MatchInviteDelegate {
         print("matchDidInvite")
         let vc = multiPlayerMatchMaker.createViewController(forInvite: invite)
         present(vc, animated: true, completion: nil)
+    }
+}
+
+// MARK: RewardAdDelegate
+extension MenuViewController: RewardAdDelegate {
+    
+    func rewardAd(isLoading rewardAd: GADRewardBasedVideoAd) {
+        watchVideoToBonusButton.isEnabled = false
+    }
+    
+    func rewardAd(didRewardUser reward: GADAdReward) {
+        watchVideoToBonusButton.isEnabled = false
+        bonus.addBonus(0.1)
+        bonusNextGameLabel.text = bonusNextGameLabelTemplate.replacingOccurrences(of: "%@", with: "\(bonus.currBonusInPerc)")
+    }
+    
+    func rewardAd(isReady rewardAd: GADRewardBasedVideoAd) {
+        self.ad = rewardAd
+        watchVideoToBonusButton.isEnabled = true
     }
 }

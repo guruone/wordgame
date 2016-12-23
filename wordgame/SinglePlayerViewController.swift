@@ -24,6 +24,13 @@ class SinglePlayerViewController: UIViewController, GameViewController {
     
     fileprivate let videoAd = VideoInterstitialAd()
     
+    
+    fileprivate enum RewardType {
+        case hint, allowUseForbiddenWord(String)
+    }
+    fileprivate let rewardAd = RewardAd()
+    fileprivate var reward: RewardType?
+    
     fileprivate let gkscore = Score()
     
     fileprivate let wordRepo = WordRepository()
@@ -157,6 +164,8 @@ extension SinglePlayerViewController {
         
         view.layer.addSublayer(viewMask)
         
+        rewardAd.delegate = self
+        
         pauseButton.isEnabled = false
         videoAd.delegate = self
         
@@ -242,6 +251,24 @@ extension SinglePlayerViewController: InterstitialAdDelegate {
     }
 }
 
+// MARK: RewardAdDelegate
+extension SinglePlayerViewController: RewardAdDelegate {
+    
+    func rewardAd(didRewardUser reward: GADAdReward) {
+        switch self.reward! {
+        case .hint:
+            self.onHintClick()
+            break
+
+        case .allowUseForbiddenWord(let word):
+            let index = self.forbiddenWords.index(of: word)
+            self.forbiddenWords.remove(at: index!)
+            self.oponentWord = word
+            break
+        }
+    }
+}
+
 // MARK: ALERTS
 extension SinglePlayerViewController {
     
@@ -255,13 +282,11 @@ extension SinglePlayerViewController {
         alertVC.addAction(UIAlertAction(title: "Try another word", style: .cancel, handler: nil))
         if ad != nil && ad!.isReady {
             alertVC.addAction(UIAlertAction(title: "Watch short movie to accept word", style: .default, handler: { (action: UIAlertAction) in
-                self.ad?.present(fromRootViewController: self)
-                self.timeRemaining = self.MAX_TIME_FOR_WORD
+                self.view.endEditing(true)
+                self.reward = SinglePlayerViewController.RewardType.allowUseForbiddenWord(word)
                 self.timer?.invalidate()
-                let index = self.forbiddenWords.index(of: word)
-                self.forbiddenWords.remove(at: index!)
-                self.oponentWord = word
-                
+                self.timeRemaining = self.MAX_TIME_FOR_WORD
+                self.rewardAd.ad.present(fromRootViewController: self)
             }))
         }
         present(alertVC, animated: true, completion: nil)
@@ -276,12 +301,13 @@ extension SinglePlayerViewController {
     func presentWordDoesNotExists(_ word: String) {
         let alertVC = UIAlertController(title: "\(word) som nenasiel.", message: "Skus ine", preferredStyle: .actionSheet)
         alertVC.addAction(UIAlertAction(title: "Try another word", style: .cancel, handler: nil))
-        if ad != nil && ad!.isReady {
+        if rewardAd.ad.isReady {
             alertVC.addAction(UIAlertAction(title: "Watch short movie to hint", style: .default, handler: { (action: UIAlertAction) in
-                self.ad?.present(fromRootViewController: self)
-                self.timeRemaining = self.MAX_TIME_FOR_WORD
+                self.view.endEditing(true)
+                self.reward = SinglePlayerViewController.RewardType.hint
                 self.timer?.invalidate()
-                self.onHintClick()
+                self.timeRemaining = self.MAX_TIME_FOR_WORD
+                self.rewardAd.ad.present(fromRootViewController: self)
             }))
         }
         self.present(alertVC, animated: true, completion: nil)

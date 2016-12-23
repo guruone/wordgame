@@ -13,8 +13,7 @@ class AdsRequest {
     
     class func create() -> GADRequest {
         let request = GADRequest()
-        request.testDevices = [kGADSimulatorID,
-                               "890a9822760b480afac36531dc5b622e"]
+//        request.testDevices = [kGADSimulatorID, "890a9822760b480afac36531dc5b622e"]
         return request
     }
     
@@ -28,7 +27,7 @@ protocol InterstitialAdDelegate {
 
 class VideoInterstitialAd: NSObject, GADInterstitialDelegate {
     
-    private var ad: GADInterstitial!
+    private(set) var ad: GADInterstitial!
     
     var delegate: InterstitialAdDelegate?
     
@@ -57,5 +56,82 @@ class VideoInterstitialAd: NSObject, GADInterstitialDelegate {
         self.ad = createAndLoadAd()
         delegate?.adDidDismissScreen()
     }
+}
+
+@objc protocol RewardAdDelegate {
+    func rewardAd(didRewardUser reward: GADAdReward)
+    @objc optional func rewardAd(isReady rewardAd: GADRewardBasedVideoAd)
+    @objc optional func rewardAd(isLoading rewardAd: GADRewardBasedVideoAd)
+}
+
+class RewardAd: NSObject, GADRewardBasedVideoAdDelegate {
+    
+    var ad: GADRewardBasedVideoAd
+    
+    var delegate: RewardAdDelegate? {
+        didSet {
+            load()
+        }
+    }
+    
+    override init() {
+        ad = GADRewardBasedVideoAd.sharedInstance()
+        
+        super.init()
+        
+        ad.delegate = self
+    }
+    
+    private func load() {
+        if !ad.isReady {
+            print("RewardAd.load")
+            ad.load(AdsRequest.create(), withAdUnitID: "ca-app-pub-3278005872817682/4839443470")
+            delegate?.rewardAd?(isLoading: ad)
+        }
+    }
+    
+    // MARK: GADRewardBasedVideoAdDelegate
+    
+    /// Tells the delegate that the reward based video ad has rewarded the user.
+    func rewardBasedVideoAd(_ rewardBasedVideoAd: GADRewardBasedVideoAd, didRewardUserWith reward: GADAdReward) {
+        print("rewardBasedVideoAd:didRewardUserWith")
+        delegate?.rewardAd(didRewardUser: reward)
+        load()
+    }
+    
+    /// Tells the delegate that the reward based video ad failed to load.
+    func rewardBasedVideoAd(_ rewardBasedVideoAd: GADRewardBasedVideoAd, didFailToLoadWithError error: Error) {
+        print("rewardBasedVideoAd:didFailToLoadWithError", error.localizedDescription)
+//        load()
+    }
+    
+    /// Tells the delegate that a reward based video ad was received.
+    func rewardBasedVideoAdDidReceive(_ rewardBasedVideoAd: GADRewardBasedVideoAd) {
+        print("rewardBasedVideoAdDidReceive")
+        print("rewardBasedVideoAd is ready", rewardBasedVideoAd.isReady)
+        delegate?.rewardAd?(isReady: rewardBasedVideoAd)
+    }
+    
+    /// Tells the delegate that the reward based video ad opened.
+    func rewardBasedVideoAdDidOpen(_ rewardBasedVideoAd: GADRewardBasedVideoAd) {
+        print("rewardBasedVideoAdDidOpen")
+    }
+    
+    /// Tells the delegate that the reward based video ad started playing.
+    func rewardBasedVideoAdDidStartPlaying(_ rewardBasedVideoAd: GADRewardBasedVideoAd) {
+        print("rewardBasedVideoAdDidStartPlaying")
+    }
+    
+    /// Tells the delegate that the reward based video ad closed.
+    func rewardBasedVideoAdDidClose(_ rewardBasedVideoAd: GADRewardBasedVideoAd) {
+        print("rewardBasedVideoAdDidClose")
+        load()
+    }
+    
+    /// Tells the delegate that the reward based video ad will leave the application.
+    func rewardBasedVideoAdWillLeaveApplication(_ rewardBasedVideoAd: GADRewardBasedVideoAd) {
+        print("rewardBasedVideoAdWillLeaveApplication")
+    }
+
 }
 
