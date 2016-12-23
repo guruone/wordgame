@@ -22,7 +22,12 @@ class MatchInviteListener: NSObject, GKLocalPlayerListener {
     var delegate: MatchInviteDelegate?
     
     func player(_ player: GKPlayer, didAccept invite: GKInvite) {
+        print("player:didAccept:invite")
         delegate?.matchDidInvite(invite)
+    }
+
+    deinit {
+        print("deinit MatchInviteListener")
     }
 }
 

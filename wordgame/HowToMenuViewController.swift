@@ -21,6 +21,8 @@ class HowToMenuViewController: UIViewController {
         mask.zPosition = CGFloat.greatestFiniteMagnitude
         return mask
     }()
+    
+    @IBOutlet weak var stackView: UIStackView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +37,7 @@ class HowToMenuViewController: UIViewController {
         if !isViewDecorated {
             isViewDecorated = true
             view.extAddCenterRound()
+            view.extAddVerticalLinesFromTop(to: stackView, offsetFromEdges: 50)
             
             view.extRemoveWithAnimation(layer: viewMask)
         }

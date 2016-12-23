@@ -11,6 +11,8 @@ import GameKit
 
 class WelcomeViewController: UIViewController {
     
+    fileprivate let matchInviteListener = MatchInviteListener()
+    
     fileprivate var isViewDecorated = false
     
     fileprivate lazy var multiPlayerMatchMaker: MatchMaker = {
@@ -35,11 +37,16 @@ class WelcomeViewController: UIViewController {
     
     fileprivate var playerIsAuthetificated = false {
         didSet {
-            // TODO: HACK && !(presentedViewController! is HowToMenuViewController)
-            /* v single playeri po stlaceni pause, kliknuti na reklamu a navrate spat do hry mi dismissne hru, toto to fixlo */
-            if presentedViewController != nil && !(presentedViewController! is HowToMenuViewController) { // alert pozri viewDidApear
+
+            if presentedViewController != nil && presentedViewController is UIAlertController {
                 presentedViewController?.dismiss(animated: true, completion: nil)
             }
+            
+            // TODO: HACK && !(presentedViewController! is HowToMenuViewController)
+            /* v single playeri po stlaceni pause, kliknuti na reklamu a navrate spat do hry mi dismissne hru, toto to fixlo */
+//            if presentedViewController != nil && !(presentedViewController! is HowToMenuViewController) { // alert pozri viewDidApear
+//                presentedViewController?.dismiss(animated: true, completion: nil)
+//            }
             
             if playerIsAuthetificated {
                 startButton.isEnabled = true
@@ -96,9 +103,8 @@ extension WelcomeViewController: PlayerAuthentificatorDelagate {
     func authentification(success player: GKLocalPlayer) {
         playerIsAuthetificated = true
         player.unregisterAllListeners()
-        let listener = MatchInviteListener()
-        listener.delegate = self
-        player.register(listener)
+        matchInviteListener.delegate = self
+        player.register(matchInviteListener)
     }
     
     internal func authentification(failed error: Error) {
