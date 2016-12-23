@@ -23,6 +23,7 @@ class AdsRequest {
 protocol InterstitialAdDelegate {
     func adIsReady(_ ad: GADInterstitial)
     func adDidDismissScreen()
+    func addWillLeaveApplication()
 }
 
 class VideoInterstitialAd: NSObject, GADInterstitialDelegate {
@@ -55,6 +56,10 @@ class VideoInterstitialAd: NSObject, GADInterstitialDelegate {
         print("interstitialDidDismissScreen")
         self.ad = createAndLoadAd()
         delegate?.adDidDismissScreen()
+    }
+    
+    func interstitialWillLeaveApplication(_ ad: GADInterstitial) {
+        print("interstitialWillLeaveApplication")
     }
 }
 

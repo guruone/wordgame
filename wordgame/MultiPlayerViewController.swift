@@ -22,6 +22,8 @@ class MultiPlayerViewController: UIViewController, GameViewController, UITextFie
     
     let MAX_TIME_FOR_WORD = 20
     
+    fileprivate var isViewDecorated = false
+    
     fileprivate lazy var viewMask: CALayer = {
         let color = UIColor(red: 70/255, green: 127/255, blue: 215/255, alpha: 1)
         let mask = CALayer()
@@ -211,26 +213,29 @@ extension MultiPlayerViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        // GRAFIKA
-        view.extAddCenterRound()
-        view.extAddVerticalLinesFromTop(to: oponentScoreAndTimeView, offsetFromEdges: 10)
-        view.extAddVerticalLinesFromTop(to: wordView, offsetFromEdges: 20)
-        scoreLabel.extAddBorder([.bottom(width: 1)])
-        oponentWordLabel.extAddBorder([.bottom(width: 1)])
-        oponentNameLabel.extAddBorder([.bottom(width: 1)])
-        scoreAndTimeView.extAddBorder([.left(width: 5), .top(width: 5), .right(width: 5)])
-        oponentLabel.extAddBorder([.left(width: 5), .top(width: 5), .right(width: 5)])
-        oponentScoreAndTimeView.extAddBorder([.all(width: 5)])
-        wordView.extAddBorder([.all(width: 5)])
-        
-        categoryAndBonusView.extAddBorder([.all(width: 5)])
-        categoryLabel.extAddBorder([.bottom(width: 1)])
-        bonusLabel.extAddBorder([.right(width: 0.5)])
-        bonusInfoLabel.extAddBorder([.left(width: 0.5)])
-        
-        pointForCurrentWordLabel.extAddBorder([.top(width: 5), .right(width: 5)])
-        
-        view.extRemoveWithAnimation(layer: viewMask)
+        if !isViewDecorated {
+            isViewDecorated = true
+            // GRAFIKA
+            view.extAddCenterRound()
+            view.extAddVerticalLinesFromTop(to: oponentScoreAndTimeView, offsetFromEdges: 10)
+            view.extAddVerticalLinesFromTop(to: wordView, offsetFromEdges: 20)
+            scoreLabel.extAddBorder([.bottom(width: 1)])
+            oponentWordLabel.extAddBorder([.bottom(width: 1)])
+            oponentNameLabel.extAddBorder([.bottom(width: 1)])
+            scoreAndTimeView.extAddBorder([.left(width: 5), .top(width: 5), .right(width: 5)])
+            oponentLabel.extAddBorder([.left(width: 5), .top(width: 5), .right(width: 5)])
+            oponentScoreAndTimeView.extAddBorder([.all(width: 5)])
+            wordView.extAddBorder([.all(width: 5)])
+            
+            categoryAndBonusView.extAddBorder([.all(width: 5)])
+            categoryLabel.extAddBorder([.bottom(width: 1)])
+            bonusLabel.extAddBorder([.right(width: 0.5)])
+            bonusInfoLabel.extAddBorder([.left(width: 0.5)])
+            
+            pointForCurrentWordLabel.extAddBorder([.top(width: 5), .right(width: 5)])
+            
+            view.extRemoveWithAnimation(layer: viewMask)
+        }
         
         if gameState == .waitingToPlayerValue {
             sendPlayerValue()

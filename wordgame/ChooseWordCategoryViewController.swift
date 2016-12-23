@@ -10,6 +10,8 @@ import UIKit
 
 class ChooseWordCategoryViewController: UIViewController {
     
+    fileprivate var isViewDecorated = false
+    
     fileprivate lazy var viewMask: CALayer = {
         let image = UIImage(named: "background")!
         let color = UIColor(patternImage: image)
@@ -50,10 +52,14 @@ class ChooseWordCategoryViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        view.extAddCenterRound()
-        view.extAddVerticalLinesFromTop(to: categoryStackView, offsetFromEdges: 50)
-        
-        view.extRemoveWithAnimation(layer: viewMask)
+        if !isViewDecorated {
+            isViewDecorated = true
+            
+            view.extAddCenterRound()
+            view.extAddVerticalLinesFromTop(to: categoryStackView, offsetFromEdges: 50)
+            
+            view.extRemoveWithAnimation(layer: viewMask)
+        }
     }
     
 

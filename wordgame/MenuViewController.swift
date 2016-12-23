@@ -12,6 +12,8 @@ import GoogleMobileAds
 
 class MenuViewController: UIViewController {
     
+    fileprivate var isViewDecorated = false
+    
     fileprivate let rewardAd = RewardAd()
     fileprivate let interstitialAd = VideoInterstitialAd()
     fileprivate var presentInterstitialAd = false
@@ -95,14 +97,17 @@ extension MenuViewController {
         
         bonusNextGameLabel.text = bonusNextGameLabelTemplate.replacingOccurrences(of: "%@", with: "\(bonus.currBonusInPerc)")
         
-        // GRAFIKA
-        view.extAddCenterRound()
-        view.extAddVerticalLinesFromTop(to: gameMenuStackView, offsetFromEdges: 50)
-        view.extAddVerticalLinesFromTop(to: leaderBoardView, offsetFromEdges: 33)
-        view.extAddVerticalLinesFromTop(to: bonusNextGameView, offsetFromEdges: 3)
-        bonusNextGameView.extAddVerticalLinesFromTop(to: watchVideoButtonView, offsetFromEdges: 50, renderToView: view)
-        
-        view.extRemoveWithAnimation(layer: viewMask)
+        if !isViewDecorated {
+            isViewDecorated = true
+            // GRAFIKA
+            view.extAddCenterRound()
+            view.extAddVerticalLinesFromTop(to: gameMenuStackView, offsetFromEdges: 50)
+            view.extAddVerticalLinesFromTop(to: leaderBoardView, offsetFromEdges: 33)
+            view.extAddVerticalLinesFromTop(to: bonusNextGameView, offsetFromEdges: 3)
+            bonusNextGameView.extAddVerticalLinesFromTop(to: watchVideoButtonView, offsetFromEdges: 50, renderToView: view)
+            
+            view.extRemoveWithAnimation(layer: viewMask)
+        }
         
         if presentInterstitialAd {
             interstitialAd.ad.present(fromRootViewController: self)
@@ -167,6 +172,10 @@ extension MenuViewController: InterstitialAdDelegate {
     }
     
     func adDidDismissScreen() {
+        
+    }
+    
+    func addWillLeaveApplication() {
         
     }
     

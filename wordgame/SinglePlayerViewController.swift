@@ -13,6 +13,8 @@ class SinglePlayerViewController: UIViewController, GameViewController {
     
     let MAX_TIME_FOR_WORD = 20
     
+    fileprivate var isViewDecorated = false
+    
     fileprivate lazy var viewMask: CALayer = {
         let color = UIColor(red: 70/255, green: 127/255, blue: 215/255, alpha: 1)        
         let mask = CALayer()
@@ -179,24 +181,27 @@ extension SinglePlayerViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        // GRAFIKA
-        view.extAddCenterRound()
-        view.extAddVerticalLinesFromTop(to: wordView, offsetFromEdges: 20)
-        view.extAddVerticalLinesFromTop(to: categoryAndBonusView, offsetFromEdges: 20)
-        scoreLabel.extAddBorder([.bottom(width: 1)])
-        oponentWordLabel.extAddBorder([.bottom(width: 1)])
-        scoreAndTimeView.extAddBorder([.left(width: 5), .top(width: 5), .right(width: 5)])
-        wordView.extAddBorder([.all(width: 5)])
-        
-        categoryAndBonusView.extAddBorder([.all(width: 5)])
-        categoryLabel.extAddBorder([.bottom(width: 1)])
-        bonusLabel.extAddBorder([.right(width: 0.5)])
-        bonusInfoLabel.extAddBorder([.left(width: 0.5)])
-        
-        pointForCurrentWordLabel.extAddBorder([.top(width: 5), .right(width: 5)])
-        
-        view.extRemoveWithAnimation(layer: viewMask)
-        
+        if !isViewDecorated {
+            isViewDecorated = true
+            // GRAFIKA
+            view.extAddCenterRound()
+            view.extAddVerticalLinesFromTop(to: wordView, offsetFromEdges: 20)
+            view.extAddVerticalLinesFromTop(to: categoryAndBonusView, offsetFromEdges: 20)
+            scoreLabel.extAddBorder([.bottom(width: 1)])
+            oponentWordLabel.extAddBorder([.bottom(width: 1)])
+            scoreAndTimeView.extAddBorder([.left(width: 5), .top(width: 5), .right(width: 5)])
+            wordView.extAddBorder([.all(width: 5)])
+            
+            categoryAndBonusView.extAddBorder([.all(width: 5)])
+            categoryLabel.extAddBorder([.bottom(width: 1)])
+            bonusLabel.extAddBorder([.right(width: 0.5)])
+            bonusInfoLabel.extAddBorder([.left(width: 0.5)])
+            
+            pointForCurrentWordLabel.extAddBorder([.top(width: 5), .right(width: 5)])
+            
+            view.extRemoveWithAnimation(layer: viewMask)
+        }
+
         if gameState == .waitingToWordCategory {
             gameState = .waitingToOponentWord
             presentChooseCategory()
@@ -240,6 +245,10 @@ extension SinglePlayerViewController: UITextFieldDelegate {
 // MARK: InterstitialAdDelegate
 extension SinglePlayerViewController: InterstitialAdDelegate {
     
+    func addWillLeaveApplication() {
+        
+    }
+
     func adIsReady(_ ad: GADInterstitial) {
         self.ad = ad
         pauseButton.isEnabled = true
@@ -280,7 +289,7 @@ extension SinglePlayerViewController {
     func presentAlreadyUsed(word: String) {
         let alertVC = UIAlertController(title: "Slovo \(word) uz bolo pouzite", message: nil, preferredStyle: .actionSheet)
         alertVC.addAction(UIAlertAction(title: "Try another word", style: .cancel, handler: nil))
-        if ad != nil && ad!.isReady {
+        if rewardAd.ad.isReady {
             alertVC.addAction(UIAlertAction(title: "Watch short movie to accept word", style: .default, handler: { (action: UIAlertAction) in
                 self.view.endEditing(true)
                 self.reward = SinglePlayerViewController.RewardType.allowUseForbiddenWord(word)

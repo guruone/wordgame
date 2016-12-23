@@ -15,6 +15,8 @@ class GameSumaryViewController: UIViewController {
     /// from segue
     var earnedPoints: Int?
     
+    fileprivate var isViewDecorated = false
+    
     fileprivate lazy var viewMask: CALayer = {
         let image = UIImage(named: "background")!
         let color = UIColor(patternImage: image)
@@ -52,8 +54,11 @@ class GameSumaryViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        view.extAddVerticalLinesFromTop(to: earnedPointsView, offsetFromEdges: 30)
-        
-        view.extRemoveWithAnimation(layer: viewMask)
+        if !isViewDecorated {
+            isViewDecorated = true
+            view.extAddVerticalLinesFromTop(to: earnedPointsView, offsetFromEdges: 30)
+            
+            view.extRemoveWithAnimation(layer: viewMask)
+        }
     }
 }

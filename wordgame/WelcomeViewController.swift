@@ -11,6 +11,8 @@ import GameKit
 
 class WelcomeViewController: UIViewController {
     
+    fileprivate var isViewDecorated = false
+    
     fileprivate lazy var multiPlayerMatchMaker: MatchMaker = {
         let maker = MatchMaker()
         maker.delegate = self
@@ -33,7 +35,9 @@ class WelcomeViewController: UIViewController {
     
     fileprivate var playerIsAuthetificated = false {
         didSet {
-            if presentedViewController != nil { // alert pozri viewDidApear
+            // TODO: HACK && !(presentedViewController! is HowToMenuViewController)
+            /* v single playeri po stlaceni pause, kliknuti na reklamu a navrate spat do hry mi dismissne hru, toto to fixlo */
+            if presentedViewController != nil && !(presentedViewController! is HowToMenuViewController) { // alert pozri viewDidApear
                 presentedViewController?.dismiss(animated: true, completion: nil)
             }
             
@@ -67,12 +71,16 @@ class WelcomeViewController: UIViewController {
             present(alert, animated: true, completion: nil)
         }
         
-        view.extAddCenterRound()
-        viewBehingImageView.extAddBorder([.all(width: 5)])
-        startButton.extAddBorder([.all(width: 5)])
-        decorateWithVerticalLines()
-        
-        view.extRemoveWithAnimation(layer: viewMask)
+        if !isViewDecorated {
+            isViewDecorated = true
+            
+            view.extAddCenterRound()
+            viewBehingImageView.extAddBorder([.all(width: 5)])
+            startButton.extAddBorder([.all(width: 5)])
+            decorateWithVerticalLines()
+            
+            view.extRemoveWithAnimation(layer: viewMask)
+        }
     }
 }
 
