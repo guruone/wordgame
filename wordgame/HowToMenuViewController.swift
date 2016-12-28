@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HowToMenuViewController: UIViewController {
+class HowToMenuViewController: BaseViewController {
     
     fileprivate var isViewDecorated = false
     

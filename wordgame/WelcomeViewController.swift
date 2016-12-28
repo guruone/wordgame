@@ -9,7 +9,7 @@
 import UIKit
 import GameKit
 
-class WelcomeViewController: UIViewController {
+class WelcomeViewController: BaseViewController {
     
     fileprivate var isViewDecorated = false
     
@@ -23,42 +23,18 @@ class WelcomeViewController: UIViewController {
         return mask
     }()
     
-    fileprivate let matchInviteListener = MatchInviteListener()
-    
-    fileprivate lazy var multiPlayerMatchMaker: MatchMaker = {
-        let maker = MatchMaker()
-        maker.delegate = self
-        return maker
-    }()
-    
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var viewBehingImageView: UIView!
     @IBOutlet weak var startButton: UIButton!
-    
-    fileprivate var playerIsAuthetificated = false {
-        didSet {
-            if presentedViewController != nil && presentedViewController is UIAlertController {
-                presentedViewController?.dismiss(animated: true, completion: nil)
-            }
-            
-            if playerIsAuthetificated {
-                startButton.isEnabled = true
-                
-            } else {
-                startButton.isEnabled = false
-            }
-        }
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        startButton.isEnabled = false
-        NotificationCenter.default.addObserver(self, selector: #selector(authentificationSuccess(notification:)), name: PlayerAuthentificator.authentificatedNotificationName, object: nil)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(presentAuthViewController(notification:)), name: PlayerAuthentificator.presentVCNotificationName, object: nil)
-        
         view.layer.addSublayer(viewMask)
+        
+        startButton.isEnabled = false
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(playerIsAuthetificated), name: PlayerAuthentificator.authentificatedNotificationName, object: nil)
         
         view.extSetLetterBlueBackground()
     }
@@ -66,7 +42,7 @@ class WelcomeViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if !playerIsAuthetificated {
+        if !startButton.isEnabled {
             let alert = UIAlertController(title: "Player Authentification", message: "please wait ...", preferredStyle: .actionSheet)
             present(alert, animated: true, completion: nil)
         }
@@ -84,77 +60,22 @@ class WelcomeViewController: UIViewController {
     }
 }
 
-// MARK: PlayerAuthentificatorDelagate
-extension WelcomeViewController: PlayerAuthentificatorDelagate {
+
+private extension WelcomeViewController {
     
-    func authentificationSuccess(notification: Notification) {
-        if let playerAuth = notification.object as? PlayerAuthentificator {
-            authentification(success: playerAuth.authentificatedLocalPlayer!)
-        }
-    }
-    
-    func authentification(success player: GKLocalPlayer) {
-        playerIsAuthetificated = true
-        player.unregisterAllListeners()
-        matchInviteListener.delegate = self
-        player.register(matchInviteListener)
-    }
-    
-    internal func authentification(failed error: Error) {
-        //TODO: OSETRIT ERROR PRI AUTHENTIFIKACII
-        print(error.localizedDescription)
-        playerIsAuthetificated = false
-    }
-    
-    func presentAuthViewController(notification: Notification) {
-        if let authPlayer = notification.object as? PlayerAuthentificator {
-            present(authentification: authPlayer.authentificationViewController!)
-        }
-    }
-    
-    func present(authentification viewController: UIViewController) {
-        func completion() {
-            present(viewController, animated: true, completion: nil)
+    @objc func playerIsAuthetificated() {
+        if presentedViewController != nil && presentedViewController is UIAlertController {
+            presentedViewController?.dismiss(animated: true, completion: nil)
         }
         
-        if presentedViewController != nil {
-            presentedViewController!.dismiss(animated: true, completion: completion)
-            
-        } else {
-            completion()
-        }
-    }
-}
-
-// MARK: MatchInviteDelegate
-extension WelcomeViewController: MatchInviteDelegate {
-    
-    func matchDidInvite(_ invite: GKInvite) {
-        print("matchDidInvite")
-        let vc = multiPlayerMatchMaker.createViewController(forInvite: invite)
-        present(vc, animated: true, completion: nil)
-    }
-}
-
-// MARK: MatchMakerDelegate
-extension WelcomeViewController: MatchMakerDelegate {
-    
-    func started(match: GKMatch, with oponent: GKPlayer) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: String(describing: MultiPlayerViewController.self)) as! MultiPlayerViewController
-        vc.gkmatch = match
-        vc.gkoponent = oponent
-        present(vc, animated: true, completion: nil)
-    }
-    
-    func ended(with error: Error?) {
-        print(error!.localizedDescription)
+        startButton.isEnabled = true
     }
 }
 
 // MARK: GRAFIKA
-extension WelcomeViewController {
+fileprivate extension WelcomeViewController {
     
-    fileprivate func decorateWithVerticalLines() {
+    func decorateWithVerticalLines() {
         // FROM TOP to stackView
         addLinesFromTopToStackView()
         

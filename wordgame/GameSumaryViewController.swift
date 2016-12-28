@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GameSumaryViewController: UIViewController {
+class GameSumaryViewController: BaseViewController {
     
     /// from segue
     var category: WordCategory?
