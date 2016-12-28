@@ -26,7 +26,6 @@ class SinglePlayerViewController: UIViewController, GameViewController {
     
     fileprivate let videoAd = VideoInterstitialAd()
     
-    
     fileprivate enum RewardType {
         case hint, allowUseForbiddenWord(String)
     }
@@ -137,13 +136,11 @@ class SinglePlayerViewController: UIViewController, GameViewController {
         currentWordTextField.text = wordRepo.findRandomOne(for: selectedCategory!, startWith: lastChar).value(forKey: "name") as? String
     }
     
-    var ad: GADInterstitial?
-    
     @IBOutlet weak var pauseButton: UIButton!
     
     @IBAction func onPauseClick() {
         timer?.invalidate()
-        ad?.present(fromRootViewController: self)
+        videoAd.ad.present(fromRootViewController: self)
     }
     
     func setSelectedWordCategory(_ category: WordCategory) {
@@ -250,7 +247,6 @@ extension SinglePlayerViewController: InterstitialAdDelegate {
     }
 
     func adIsReady(_ ad: GADInterstitial) {
-        self.ad = ad
         pauseButton.isEnabled = true
     }
     
