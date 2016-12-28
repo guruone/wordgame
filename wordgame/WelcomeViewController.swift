@@ -11,19 +11,7 @@ import GameKit
 
 class WelcomeViewController: UIViewController {
     
-    fileprivate let matchInviteListener = MatchInviteListener()
-    
     fileprivate var isViewDecorated = false
-    
-    fileprivate lazy var multiPlayerMatchMaker: MatchMaker = {
-        let maker = MatchMaker()
-        maker.delegate = self
-        return maker
-    }()
-    
-    @IBOutlet weak var stackView: UIStackView!
-    @IBOutlet weak var viewBehingImageView: UIView!
-    @IBOutlet weak var startButton: UIButton!
     
     fileprivate lazy var viewMask: CALayer = {
         let image = UIImage(named: "background")!
@@ -35,18 +23,23 @@ class WelcomeViewController: UIViewController {
         return mask
     }()
     
+    fileprivate let matchInviteListener = MatchInviteListener()
+    
+    fileprivate lazy var multiPlayerMatchMaker: MatchMaker = {
+        let maker = MatchMaker()
+        maker.delegate = self
+        return maker
+    }()
+    
+    @IBOutlet weak var stackView: UIStackView!
+    @IBOutlet weak var viewBehingImageView: UIView!
+    @IBOutlet weak var startButton: UIButton!
+    
     fileprivate var playerIsAuthetificated = false {
         didSet {
-
             if presentedViewController != nil && presentedViewController is UIAlertController {
                 presentedViewController?.dismiss(animated: true, completion: nil)
             }
-            
-            // TODO: HACK && !(presentedViewController! is HowToMenuViewController)
-            /* v single playeri po stlaceni pause, kliknuti na reklamu a navrate spat do hry mi dismissne hru, toto to fixlo */
-//            if presentedViewController != nil && !(presentedViewController! is HowToMenuViewController) { // alert pozri viewDidApear
-//                presentedViewController?.dismiss(animated: true, completion: nil)
-//            }
             
             if playerIsAuthetificated {
                 startButton.isEnabled = true
