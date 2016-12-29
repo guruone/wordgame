@@ -10,7 +10,7 @@ import UIKit
 import GameKit
 import GoogleMobileAds
 
-class MenuViewController: UIViewController {
+class MenuViewController: BaseViewController {
     
     fileprivate var isViewDecorated = false
     
@@ -119,22 +119,6 @@ extension MenuViewController {
         if interstitialAd.ad.isReady {
             presentInterstitialAd = true
         }
-    }
-}
-
-
-// MARK: MatchMakerDelegate
-extension MenuViewController: MatchMakerDelegate {
-    
-    func started(match: GKMatch, with oponent: GKPlayer) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: String(describing: MultiPlayerViewController.self)) as! MultiPlayerViewController
-        vc.gkmatch = match
-        vc.gkoponent = oponent
-        present(vc, animated: true, completion: nil)
-    }
-    
-    func ended(with error: Error?) {
-        print(error!.localizedDescription)
     }
 }
 

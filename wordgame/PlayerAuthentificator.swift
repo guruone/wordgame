@@ -9,44 +9,42 @@
 import Foundation
 import GameKit
 
-protocol PlayerAuthentificatorDelagate {
-    func authentification(failed error: Error)
-    func authentification(success player: GKLocalPlayer)
-    func present(authentification viewController: UIViewController)
-}
-
 class PlayerAuthentificator {
     
-    static let presentVCNotificationName = Notification.Name("presentAuthetificationVCNotificationName")
+    static let shared = PlayerAuthentificator()
+    
+    static let errorNotificationName = Notification.Name("PlayerAuthentificator.errorNotificationName")
+    var error: Error?
+    
+    static let presentVCNotificationName = Notification.Name("PlayerAuthentificator.presentAuthetificationVCNotificationName")
     var authentificationViewController: UIViewController?
     
-    static let authentificatedNotificationName = Notification.Name("authentificatedLocalPlayerNotificationName")
+    static let authentificatedNotificationName = Notification.Name("PlayerAuthentificator.authentificatedLocalPlayerNotificationName")
     var authentificatedLocalPlayer: GKLocalPlayer?
     
-    var delegate: PlayerAuthentificatorDelagate?
+    private init() {}
     
     func authentificate() {
         let localPlayer = GKLocalPlayer.localPlayer()
         
         if localPlayer.isAuthenticated {
-            delegate?.authentification(success: localPlayer)
             NotificationCenter.default.post(name: PlayerAuthentificator.authentificatedNotificationName, object: self)
             
         } else {
             localPlayer.authenticateHandler = { (viewController: UIViewController?, error: Error?) in
                 guard error == nil else {
-                    self.delegate?.authentification(failed: error!)
+                    self.error = error
+                    print("PlayerAuthentificator.authentificate", error!.localizedDescription)
+                    NotificationCenter.default.post(name: PlayerAuthentificator.errorNotificationName, object: self)
                     return
                 }
                 
                 if viewController != nil {
-                    self.delegate?.present(authentification: viewController!)
                     self.authentificationViewController = viewController
                     NotificationCenter.default.post(name: PlayerAuthentificator.presentVCNotificationName, object: self)
                     
                     
                 } else if localPlayer.isAuthenticated {
-                    self.delegate?.authentification(success: localPlayer)
                     self.authentificatedLocalPlayer = localPlayer
                     NotificationCenter.default.post(name: PlayerAuthentificator.authentificatedNotificationName, object: self)
                     
