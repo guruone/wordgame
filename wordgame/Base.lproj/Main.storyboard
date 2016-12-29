@@ -216,19 +216,11 @@
                                                             <constraint firstAttribute="width" constant="40" id="lTk-kf-KAy"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lI2-C3-PVC">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lI2-C3-PVC">
                                                         <rect key="frame" x="46" y="0.0" width="237" height="40"/>
                                                         <color key="backgroundColor" red="0.96862745098039216" green="0.72941176470588232" blue="0.4823529411764706" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <state key="normal">
-                                                            <attributedString key="attributedTitle">
-                                                                <fragment content="SINGLE PLAYER">
-                                                                    <attributes>
-                                                                        <font key="NSFont" metaFont="system" size="15"/>
-                                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                                    </attributes>
-                                                                </fragment>
-                                                            </attributedString>
-                                                        </state>
+                                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                                        <state key="normal" title="SINGLE PLAYER"/>
                                                         <connections>
                                                             <action selector="onSinglePlayerClick" destination="9mS-2D-omL" eventType="touchUpInside" id="xqI-P9-5hM"/>
                                                         </connections>
@@ -257,19 +249,11 @@
                                                             <constraint firstAttribute="height" constant="40" id="Lhy-4i-8wL"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Evs-Hv-7Hf">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Evs-Hv-7Hf">
                                                         <rect key="frame" x="46" y="0.0" width="237" height="40"/>
                                                         <color key="backgroundColor" red="0.96862745100000003" green="0.72941176470000002" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <state key="normal">
-                                                            <attributedString key="attributedTitle">
-                                                                <fragment content="MULTI PLAYER">
-                                                                    <attributes>
-                                                                        <font key="NSFont" metaFont="system" size="15"/>
-                                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                                    </attributes>
-                                                                </fragment>
-                                                            </attributedString>
-                                                        </state>
+                                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                                        <state key="normal" title="MULTI PLAYER"/>
                                                         <connections>
                                                             <action selector="onMultiPlayerClick" destination="9mS-2D-omL" eventType="touchUpInside" id="TEG-zJ-OOS"/>
                                                         </connections>

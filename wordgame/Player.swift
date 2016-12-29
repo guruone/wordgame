@@ -20,6 +20,10 @@ class Score {
         let highScore = userDefaults.integer(forKey: kHighScore) + score
         userDefaults.set(highScore, forKey: kHighScore)
         
+        guard !PlayerAuthentificator.shared.isAuthenticated() else {
+            return
+        }
+        
         let gkscore = GKScore(leaderboardIdentifier: LEADER_BOARD_IDENTIFIER)
         gkscore.value = Int64(highScore)
         
