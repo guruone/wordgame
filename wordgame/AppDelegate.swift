@@ -31,8 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GADMobileAds.configure(withApplicationID: "ca-app-pub-3278005872817682~8486070675")
         
         // MARK: GAME CENTER AUTH
-        let playerAuth = PlayerAuthentificator()
-        playerAuth.authentificate()
+        PlayerAuthentificator.shared.authentificate()
         
         return true
     }

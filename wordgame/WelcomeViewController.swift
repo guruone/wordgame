@@ -70,6 +70,12 @@ private extension WelcomeViewController {
         
         startButton.isEnabled = true
     }
+    
+    @objc func playerAuthentificationError(notification: Notification) {
+        if let playerAuth = notification.object as? PlayerAuthentificator {
+            print("error")
+        }
+    }
 }
 
 // MARK: GRAFIKA
