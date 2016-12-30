@@ -12,7 +12,7 @@ import GameKit
 class BaseViewController: UIViewController {
     
     fileprivate var matchInviteListenerDidRegister = false
-    fileprivate let matchInviteListener = MatchInviteListener()
+    fileprivate let matchInviteListener = MatchInviteListener.shared
     
     fileprivate lazy var multiPlayerMatchMaker: MatchMaker = {
         let maker = MatchMaker()
@@ -23,15 +23,30 @@ class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         NotificationCenter.default.addObserver(self, selector: #selector(presentAuthViewController(notification:)), name: PlayerAuthentificator.presentVCNotificationName, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(authentificationSuccess(notification:)), name: PlayerAuthentificator.authentificatedNotificationName, object: nil)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
+    deinit {
+        print("deinit", self)
     }
 }
 
 fileprivate extension BaseViewController {
     
-    func isVCPresented() -> Bool {
-        return isViewLoaded && view.window != nil
+    func presentAnimated(viewController: UIViewController, completion: (() -> Void)?) {
+        var topVC = UIApplication.shared.keyWindow?.rootViewController
+        while let _presentedVC = topVC?.presentedViewController {
+            topVC = _presentedVC
+        }
+        
+        topVC?.present(viewController, animated: true, completion: completion)
+        
     }
 }
 
@@ -39,17 +54,13 @@ fileprivate extension BaseViewController {
 private extension BaseViewController {
     
     @objc func presentAuthViewController(notification: Notification) {
-        guard isVCPresented() else {
-            return
-        }
-        
         if let authPlayer = notification.object as? PlayerAuthentificator, let authVC = authPlayer.authentificationViewController {
             func completion() {
-                present(authVC, animated: true, completion: nil)
+                presentAnimated(viewController: authVC, completion: nil)
             }
             
             if presentedViewController != nil {
-                presentedViewController!.dismiss(animated: true, completion: completion)
+                dismiss(animated: true, completion: completion)
                 
             } else {
                 completion()
@@ -75,12 +86,8 @@ private extension BaseViewController {
 extension BaseViewController: MatchInviteDelegate {
     
     func matchDidInvite(_ invite: GKInvite) {
-        guard isVCPresented() else {
-            return
-        }
-        
         let vc = multiPlayerMatchMaker.createViewController(forInvite: invite)
-        present(vc, animated: true, completion: nil)
+        presentAnimated(viewController: vc, completion: nil)
     }
 }
 
@@ -88,14 +95,11 @@ extension BaseViewController: MatchInviteDelegate {
 extension BaseViewController: MatchMakerDelegate {
     
     func started(match: GKMatch, with oponent: GKPlayer) {
-        guard isVCPresented() else {
-            return
-        }
         
         let vc = storyboard?.instantiateViewController(withIdentifier: String(describing: MultiPlayerViewController.self)) as! MultiPlayerViewController
         vc.gkmatch = match
         vc.gkoponent = oponent
-        present(vc, animated: true, completion: nil)
+        presentAnimated(viewController: vc, completion: nil)
     }
     
     func ended(with error: Error?) {

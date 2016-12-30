@@ -19,11 +19,17 @@ protocol MatchInviteDelegate {
 
 class MatchInviteListener: NSObject, GKLocalPlayerListener {
     
+    static let shared = MatchInviteListener()
+    
     var delegate: MatchInviteDelegate?
     
     func player(_ player: GKPlayer, didAccept invite: GKInvite) {
         print("player:didAccept:invite")
         delegate?.matchDidInvite(invite)
+    }
+    
+    private override init() {
+        print("init MatchInviteListener")
     }
 
     deinit {

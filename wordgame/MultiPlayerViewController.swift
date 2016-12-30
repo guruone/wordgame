@@ -18,7 +18,7 @@ enum GameState {
     case waitingToOponentWord // in the game
 }
 
-class MultiPlayerViewController: UIViewController, GameViewController, UITextFieldDelegate {
+class MultiPlayerViewController: BaseViewController, GameViewController, UITextFieldDelegate {
     
     let MAX_TIME_FOR_WORD = 20
     
@@ -355,95 +355,87 @@ extension MultiPlayerViewController: MatchDelegate {
 extension MultiPlayerViewController {
     
     func presentGameInit(completion: @escaping () -> Void) {
-        let vc = UIAlertController(title: "Hra sa inicializuje", message: "please wait ...", preferredStyle: .actionSheet)
-        present(vc, animated: true, completion: completion)
+        tryDismissAlertAndPresent {
+            let vc = UIAlertController(title: "Hra sa inicializuje", message: "please wait ...", preferredStyle: .actionSheet)
+            self.present(vc, animated: true, completion: completion)
+        }
     }
     
     func presentWaitingForCategoryFromOponent() {
-        let vc = UIAlertController(title: "Oponent vybera kategoriu", message: "please wait ...", preferredStyle: .actionSheet)
-        present(vc, animated: true, completion: nil)
+        tryDismissAlertAndPresent {
+            let vc = UIAlertController(title: "Oponent vybera kategoriu", message: "please wait ...", preferredStyle: .actionSheet)
+            self.present(vc, animated: true, completion: nil)
+        }
     }
     
     func presentChooseCategory() {
-        let vc = storyboard?.instantiateViewController(withIdentifier: String(describing: ChooseWordCategoryViewController.self))
-        present(vc!, animated: true, completion: nil)
+        tryDismissAlertAndPresent {
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: String(describing: ChooseWordCategoryViewController.self))
+            self.present(vc!, animated: true, completion: nil)
+        }
     }
     
     func presentWaitingForOponentWord(completion: @escaping () -> Void) {
-        let vc = UIAlertController(title: "Oponent typing word", message: "please wait ...", preferredStyle: .actionSheet)
-        present(vc, animated: true, completion: completion)
+        tryDismissAlertAndPresent {
+            let vc = UIAlertController(title: "Oponent typing word", message: "please wait ...", preferredStyle: .actionSheet)
+            self.present(vc, animated: true, completion: completion)
+        }
     }
     
     func presentAlreadyUsed(word: String) {
-        let alertVC = UIAlertController(title: "Slovo \(word) uz bolo pouzite", message: nil, preferredStyle: .actionSheet)
-        alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        present(alertVC, animated: true, completion: nil)
+        tryDismissAlertAndPresent {
+            let alertVC = UIAlertController(title: "Slovo \(word) uz bolo pouzite", message: nil, preferredStyle: .actionSheet)
+            alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            self.present(alertVC, animated: true, completion: nil)
+        }
     }
     
     func presentCharacterAreNotEqual(leftchar: String, rightChar: String) {
-        let alertVC = UIAlertController(title: "Chyba", message: "\(leftchar) != \(rightChar)", preferredStyle: .actionSheet)
-        alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        present(alertVC, animated: true, completion: nil)
-        
+        tryDismissAlertAndPresent {
+            let alertVC = UIAlertController(title: "Chyba", message: "\(leftchar) != \(rightChar)", preferredStyle: .actionSheet)
+            alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            self.present(alertVC, animated: true, completion: nil)
+        }
     }
     
     func presentWordDoesNotExists(_ word: String) {
-        let alertVC = UIAlertController(title: "\(word) som nenasiel.", message: "Skus ine", preferredStyle: .actionSheet)
-        alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        self.present(alertVC, animated: true, completion: nil)
+        tryDismissAlertAndPresent {
+            let alertVC = UIAlertController(title: "\(word) som nenasiel.", message: "Skus ine", preferredStyle: .actionSheet)
+            alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            self.present(alertVC, animated: true, completion: nil)
+        }
     }
     
     func presentLoose() {
-        func completion() {
-            bonus.clearBonus()
+        tryDismissAlertAndPresent {
+            self.bonus.clearBonus()
             let alertVC = UIAlertController(title: "🐢 Prehral ši baran 🐢", message: nil, preferredStyle: .actionSheet)
             alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (_) in
                 self.dismiss(animated: true, completion: nil)
             }))
             self.present(alertVC, animated: true, completion: nil)
         }
-        
-        if presentedViewController != nil {
-            presentedViewController?.dismiss(animated: true, completion: completion)
-            
-        } else {
-            completion()
-        }
     }
     
     func presentWin(yourPoints: Int, oponentPoints: Int) {
-        func completion() {
-            bonus.clearBonus()
+        tryDismissAlertAndPresent {
+            self.bonus.clearBonus()
             let alertVC = UIAlertController(title: "Vyhral si \(yourPoints + oponentPoints) bodov", message: "na tvoje konto bolo pripocitanych \(yourPoints) + \(oponentPoints) oponentovych bodov", preferredStyle: .actionSheet)
             alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (_) in
                 self.dismiss(animated: true, completion: nil)
             }))
             self.present(alertVC, animated: true, completion: nil)
         }
-        
-        if presentedViewController != nil {
-            presentedViewController?.dismiss(animated: true, completion: completion)
-            
-        } else {
-            completion()
-        }
     }
     
     func presentGameOver(yourPoints: Int, oponentPoints: Int) {
-        func completion() {
-            bonus.clearBonus()
+        tryDismissAlertAndPresent {
+            self.bonus.clearBonus()
             let alertVC = UIAlertController(title: "Game Over \(yourPoints + oponentPoints) bodov", message: "na tvoje konto bolo pripocitanych \(yourPoints) + \(oponentPoints) oponentovych bodov", preferredStyle: .actionSheet)
             alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (_) in
                 self.dismiss(animated: true, completion: nil)
             }))
             self.present(alertVC, animated: true, completion: nil)
-        }
-        
-        if presentedViewController != nil {
-            presentedViewController?.dismiss(animated: true, completion: completion)
-            
-        } else {
-            completion()
         }
     }
 }
