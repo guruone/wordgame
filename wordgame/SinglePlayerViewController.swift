@@ -11,7 +11,7 @@ import GoogleMobileAds
 
 class SinglePlayerViewController: UIViewController, GameViewController {
     
-    let MAX_TIME_FOR_WORD = 20
+    let MAX_TIME_FOR_WORD = 10
     
     fileprivate var isViewDecorated = false
     
@@ -24,19 +24,19 @@ class SinglePlayerViewController: UIViewController, GameViewController {
         return mask
     }()
     
-    fileprivate let videoAd = VideoInterstitialAd()
+    fileprivate let videoAd = AdsContainer.shared.videoInterstitialAd
     
     fileprivate enum RewardType {
         case hint, allowUseForbiddenWord(String)
     }
-    fileprivate let rewardAd = RewardAd()
+    fileprivate let rewardAd = AdsContainer.shared.rewardAd
     fileprivate var reward: RewardType?
     
     fileprivate let gkscore = Score()
     
     fileprivate let wordRepo = WordRepository()
     
-    fileprivate let bonus = BonusPoints.shared
+    fileprivate let bonus = BonusPoints()
     
     /// uz pouzite slova su zakazane
     fileprivate var forbiddenWords = [String]()
@@ -153,6 +153,10 @@ class SinglePlayerViewController: UIViewController, GameViewController {
         gkscore.report(score: score!)
         presentGameOver(yourPoints: score!)
     }
+    
+    deinit {
+        print("deinit", self)
+    }
 }
 
 // MARK: LIFECYCLE
@@ -165,7 +169,11 @@ extension SinglePlayerViewController {
         
         rewardAd.delegate = self
         
-        pauseButton.isEnabled = false
+        if videoAd.ad.isReady {
+            pauseButton.isEnabled = true
+        } else {
+            pauseButton.isEnabled = false
+        }
         videoAd.delegate = self
         
         currentWordTextField.autocorrectionType = .no
@@ -328,7 +336,7 @@ extension SinglePlayerViewController {
         }
         
         if presentedViewController != nil {
-            presentedViewController?.dismiss(animated: true, completion: completion)
+            dismiss(animated: true, completion: completion)
             
         } else {
             completion()

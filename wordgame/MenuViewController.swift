@@ -14,8 +14,8 @@ class MenuViewController: BaseViewController {
     
     fileprivate var isViewDecorated = false
     
-    fileprivate let rewardAd = RewardAd()
-    fileprivate let interstitialAd = VideoInterstitialAd()
+    fileprivate let rewardAd = AdsContainer.shared.rewardAd
+    fileprivate let interstitialAd = AdsContainer.shared.videoInterstitialAd
     fileprivate var presentInterstitialAd = false
     
     fileprivate lazy var viewMask: CALayer = {
@@ -38,7 +38,7 @@ class MenuViewController: BaseViewController {
         return Score()
     }()
     
-    fileprivate let bonus = BonusPoints.shared
+    fileprivate let bonus = BonusPoints()
     
     @IBOutlet weak var leaderBoardButton: UIButton!
     @IBOutlet weak var singlePlayerButton: UIButton!
@@ -86,8 +86,15 @@ extension MenuViewController {
         view.extSetLetterBlueBackground()
 
         bonusNextGameLabelTemplate = bonusNextGameLabel.text!
-        watchVideoToBonusButton.isEnabled = false
+        
+        if rewardAd.ad.isReady {
+            rewardAd(isReady: rewardAd.ad)
+            
+        } else {
+            rewardAd(isLoading: rewardAd.ad)
+        }
         rewardAd.delegate = self
+        
         
         interstitialAd.delegate = self
         

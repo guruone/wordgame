@@ -19,13 +19,33 @@ class BaseViewController: UIViewController {
         maker.delegate = self
         return maker
     }()
+    
+    var presentPlayerAuthVCNotification: NSObjectProtocol?
+    var playerAuthSuccessNotification: NSObjectProtocol?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        presentPlayerAuthVCNotification = NotificationCenter.default.addObserver(forName: PlayerAuthentificator.presentVCNotificationName, object: nil, queue: OperationQueue.main) { [unowned self] (notification: Notification) in
+            print("presentPlayerAuthVCNotification")
+            if let authPlayer = notification.object as? PlayerAuthentificator, let authVC = authPlayer.authentificationViewController {
+                self.presentOnTopView(viewController: authVC)
+            }
+        }
         
-        NotificationCenter.default.addObserver(self, selector: #selector(presentAuthViewController(notification:)), name: PlayerAuthentificator.presentVCNotificationName, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(authentificationSuccess(notification:)), name: PlayerAuthentificator.authentificatedNotificationName, object: nil)
+        playerAuthSuccessNotification = NotificationCenter.default.addObserver(forName: PlayerAuthentificator.authentificatedNotificationName, object: nil, queue: .main, using: { [unowned self] (notification: Notification) in
+            print("playerAuthSuccessNotification")
+            if let playerAuth = notification.object as? PlayerAuthentificator, let player = playerAuth.authentificatedLocalPlayer {
+                guard !self.matchInviteListenerDidRegister else {
+                    return
+                }
+                
+                self.matchInviteListenerDidRegister = true
+                player.unregisterAllListeners()
+                self.matchInviteListener.delegate = self
+                player.register(self.matchInviteListener)
+            }
+        })
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -33,51 +53,28 @@ class BaseViewController: UIViewController {
     }
     
     deinit {
-        print("deinit", self)
+        print(#function, self)
+        if presentPlayerAuthVCNotification != nil {
+            NotificationCenter.default.removeObserver(presentPlayerAuthVCNotification!)
+        }
+        if playerAuthSuccessNotification != nil {
+            NotificationCenter.default.removeObserver(playerAuthSuccessNotification!)
+        }
     }
 }
 
 fileprivate extension BaseViewController {
     
-    func presentAnimated(viewController: UIViewController, completion: (() -> Void)?) {
-        var topVC = UIApplication.shared.keyWindow?.rootViewController
-        while let _presentedVC = topVC?.presentedViewController {
-            topVC = _presentedVC
-        }
+    func presentOnTopView(viewController: UIViewController) {
+        let topVC = UIApplication.shared.keyWindow?.rootViewController
         
-        topVC?.present(viewController, animated: true, completion: completion)
-        
-    }
-}
-
-// MARK: Present Player Auth
-private extension BaseViewController {
-    
-    @objc func presentAuthViewController(notification: Notification) {
-        if let authPlayer = notification.object as? PlayerAuthentificator, let authVC = authPlayer.authentificationViewController {
-            func completion() {
-                presentAnimated(viewController: authVC, completion: nil)
-            }
+        if topVC?.presentedViewController != nil {
+            topVC?.dismiss(animated: false, completion: {
+                topVC?.present(viewController, animated: true)
+            })
             
-            if presentedViewController != nil {
-                dismiss(animated: true, completion: completion)
-                
-            } else {
-                completion()
-            }
-        }
-    }
-    
-    @objc func authentificationSuccess(notification: Notification) {
-        if let playerAuth = notification.object as? PlayerAuthentificator, let player = playerAuth.authentificatedLocalPlayer {
-            guard !matchInviteListenerDidRegister else {
-                return
-            }
-            
-            matchInviteListenerDidRegister = true
-            player.unregisterAllListeners()
-            matchInviteListener.delegate = self
-            player.register(matchInviteListener)
+        } else {
+            topVC?.present(viewController, animated: true)
         }
     }
 }
@@ -87,7 +84,7 @@ extension BaseViewController: MatchInviteDelegate {
     
     func matchDidInvite(_ invite: GKInvite) {
         let vc = multiPlayerMatchMaker.createViewController(forInvite: invite)
-        presentAnimated(viewController: vc, completion: nil)
+        presentOnTopView(viewController: vc)
     }
 }
 
@@ -95,14 +92,15 @@ extension BaseViewController: MatchInviteDelegate {
 extension BaseViewController: MatchMakerDelegate {
     
     func started(match: GKMatch, with oponent: GKPlayer) {
-        
         let vc = storyboard?.instantiateViewController(withIdentifier: String(describing: MultiPlayerViewController.self)) as! MultiPlayerViewController
         vc.gkmatch = match
         vc.gkoponent = oponent
-        presentAnimated(viewController: vc, completion: nil)
+        presentOnTopView(viewController: vc)
     }
     
     func ended(with error: Error?) {
+        print("ended", self)
+        dismiss(animated: true, completion: nil)
         print(error!.localizedDescription)
     }
 }

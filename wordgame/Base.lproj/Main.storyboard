@@ -50,7 +50,7 @@
                                         <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                         <state key="normal" title="START"/>
                                         <connections>
-                                            <segue destination="jSz-tu-HIB" kind="show" id="I2f-I2-fgn"/>
+                                            <segue destination="jSz-tu-HIB" kind="presentation" id="I2f-I2-fgn"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -156,7 +156,7 @@
                                                             </attributedString>
                                                         </state>
                                                         <connections>
-                                                            <segue destination="9mS-2D-omL" kind="show" id="663-Xd-0Gk"/>
+                                                            <segue destination="9mS-2D-omL" kind="presentation" id="663-Xd-0Gk"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>

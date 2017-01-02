@@ -9,6 +9,24 @@
 import Foundation
 import GoogleMobileAds
 
+class AdsContainer {
+    
+    static let shared = AdsContainer()
+    
+    let videoInterstitialAd: VideoInterstitialAd
+    let rewardAd: RewardAd
+    
+    class func loadAds() {
+        let _ = AdsContainer.shared
+    }
+    
+    private init() {
+        GADMobileAds.configure(withApplicationID: "ca-app-pub-3278005872817682~8486070675")
+        videoInterstitialAd = VideoInterstitialAd()
+        rewardAd = RewardAd()
+    }
+}
+
 class AdsRequest {
     
     class func create() -> GADRequest {
@@ -20,7 +38,7 @@ class AdsRequest {
     private init() {}
 }
 
-protocol InterstitialAdDelegate {
+protocol InterstitialAdDelegate: class {
     func adIsReady(_ ad: GADInterstitial)
     func adDidDismissScreen()
     func addWillLeaveApplication()
@@ -30,7 +48,7 @@ class VideoInterstitialAd: NSObject, GADInterstitialDelegate {
     
     private(set) var ad: GADInterstitial!
     
-    var delegate: InterstitialAdDelegate?
+    weak var delegate: InterstitialAdDelegate?
     
     override init() {
         super.init()
@@ -61,19 +79,23 @@ class VideoInterstitialAd: NSObject, GADInterstitialDelegate {
     func interstitialWillLeaveApplication(_ ad: GADInterstitial) {
         print("interstitialWillLeaveApplication")
     }
+    
+    deinit {
+        print(#function, self)
+    }
 }
 
-@objc protocol RewardAdDelegate {
+@objc protocol RewardAdDelegate: class {
     func rewardAd(didRewardUser reward: GADAdReward)
     @objc optional func rewardAd(isReady rewardAd: GADRewardBasedVideoAd)
     @objc optional func rewardAd(isLoading rewardAd: GADRewardBasedVideoAd)
 }
 
 class RewardAd: NSObject, GADRewardBasedVideoAdDelegate {
-    
+
     var ad: GADRewardBasedVideoAd
     
-    var delegate: RewardAdDelegate? {
+    weak var delegate: RewardAdDelegate? {
         didSet {
             load()
         }
@@ -136,6 +158,10 @@ class RewardAd: NSObject, GADRewardBasedVideoAdDelegate {
     /// Tells the delegate that the reward based video ad will leave the application.
     func rewardBasedVideoAdWillLeaveApplication(_ rewardBasedVideoAd: GADRewardBasedVideoAd) {
         print("rewardBasedVideoAdWillLeaveApplication")
+    }
+    
+    deinit {
+        print(#function, self)
     }
 
 }

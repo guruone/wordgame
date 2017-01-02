@@ -20,7 +20,7 @@ enum GameState {
 
 class MultiPlayerViewController: BaseViewController, GameViewController, UITextFieldDelegate {
     
-    let MAX_TIME_FOR_WORD = 20
+    let MAX_TIME_FOR_WORD = 10
     
     fileprivate var isViewDecorated = false
     
@@ -35,11 +35,13 @@ class MultiPlayerViewController: BaseViewController, GameViewController, UITextF
     
     fileprivate let myValue = arc4random()
     
+    fileprivate var recievedPlayerValueTimer: Timer?
+    
     fileprivate let gkScore = Score()
     
     fileprivate let wordRepo = WordRepository()
     
-    fileprivate let bonus = BonusPoints.shared
+    fileprivate let bonus = BonusPoints()
     
     /// uz pouzite slova su zakazane
     fileprivate var forbiddenWords = [String]()
@@ -240,6 +242,8 @@ extension MultiPlayerViewController {
         if gameState == .waitingToPlayerValue {
             sendPlayerValue()
         }
+        
+        recievedPlayerValueTimer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(sendResendPlayerValue), userInfo: nil, repeats: true)
     }
 }
 
@@ -263,22 +267,18 @@ extension MultiPlayerViewController: MatchDelegate {
     }
     
     func received(playerValue value: UInt32) {
-        func completion() {
-            if value > myValue {
-                presentChooseCategory()
-                gameState = .waitingToOponentWord
+        recievedPlayerValueTimer?.invalidate()
+        recievedPlayerValueTimer = nil
+        
+        tryDismissAlertAndPresent {
+            if value > self.myValue {
+                self.presentChooseCategory()
+                self.gameState = .waitingToOponentWord
                 
             } else {
-                gameState = .waitingToWordCategory
-                presentWaitingForCategoryFromOponent()
+                self.gameState = .waitingToWordCategory
+                self.presentWaitingForCategoryFromOponent()
             }
-        }
-        
-        if presentedViewController != nil {
-            presentedViewController?.dismiss(animated: true, completion: completion)
-            
-        } else {
-            completion()
         }
         
     }
@@ -290,6 +290,9 @@ extension MultiPlayerViewController: MatchDelegate {
     }
     
     func received(selectedCategory value: WordCategory) {
+        recievedPlayerValueTimer?.invalidate()
+        recievedPlayerValueTimer = nil
+        
         func completion() {
             gameState = .waitingToOponentWord
             // MARK: PRIJAL SOM KATEGORIU OD OPONENTA, NASTAVUJEM RANDOM SLOVO PRE KATEGORIU
@@ -348,6 +351,20 @@ extension MultiPlayerViewController: MatchDelegate {
         
         match.cancelFromUser()
         presentWin(yourPoints: score!, oponentPoints: points)
+    }
+    
+    func sendResendPlayerValue() {
+        if gameState == .waitingToPlayerValue {
+            match.sendResendPlayerValue()
+        } else {
+            recievedPlayerValueTimer?.invalidate()
+            recievedPlayerValueTimer = nil
+        }
+        
+    }
+    
+    func recievedResendPlayerValue() {
+        match.sendPlayerValue(self.myValue)
     }
 }
 
@@ -411,7 +428,8 @@ extension MultiPlayerViewController {
             self.bonus.clearBonus()
             let alertVC = UIAlertController(title: "🐢 Prehral ši baran 🐢", message: nil, preferredStyle: .actionSheet)
             alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (_) in
-                self.dismiss(animated: true, completion: nil)
+                self.presentingViewController?.dismiss(animated: true, completion: nil)
+//                self.dismiss(animated: true, completion: nil)
             }))
             self.present(alertVC, animated: true, completion: nil)
         }
@@ -422,7 +440,8 @@ extension MultiPlayerViewController {
             self.bonus.clearBonus()
             let alertVC = UIAlertController(title: "Vyhral si \(yourPoints + oponentPoints) bodov", message: "na tvoje konto bolo pripocitanych \(yourPoints) + \(oponentPoints) oponentovych bodov", preferredStyle: .actionSheet)
             alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (_) in
-                self.dismiss(animated: true, completion: nil)
+                self.presentingViewController?.dismiss(animated: true, completion: nil)
+//                self.dismiss(animated: true, completion: nil)
             }))
             self.present(alertVC, animated: true, completion: nil)
         }
@@ -433,7 +452,8 @@ extension MultiPlayerViewController {
             self.bonus.clearBonus()
             let alertVC = UIAlertController(title: "Game Over \(yourPoints + oponentPoints) bodov", message: "na tvoje konto bolo pripocitanych \(yourPoints) + \(oponentPoints) oponentovych bodov", preferredStyle: .actionSheet)
             alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (_) in
-                self.dismiss(animated: true, completion: nil)
+                self.presentingViewController?.dismiss(animated: true, completion: nil)
+//                self.dismiss(animated: true, completion: nil)
             }))
             self.present(alertVC, animated: true, completion: nil)
         }

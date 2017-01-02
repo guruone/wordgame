@@ -12,7 +12,7 @@ import CoreData
 
 // MARK: MATCHMAKER
 
-protocol MatchInviteDelegate {
+protocol MatchInviteDelegate: class {
     /// pri notifikacii volam MatchMaker:createViewController:forInvite
     func matchDidInvite(_ invite: GKInvite)
 }
@@ -21,7 +21,7 @@ class MatchInviteListener: NSObject, GKLocalPlayerListener {
     
     static let shared = MatchInviteListener()
     
-    var delegate: MatchInviteDelegate?
+    weak var delegate: MatchInviteDelegate?
     
     func player(_ player: GKPlayer, didAccept invite: GKInvite) {
         print("player:didAccept:invite")
@@ -37,69 +37,70 @@ class MatchInviteListener: NSObject, GKLocalPlayerListener {
     }
 }
 
-protocol MatchMakerDelegate {
+protocol MatchMakerDelegate: class {
     func started(match: GKMatch, with oponent: GKPlayer)
     func ended(with error: Error?)
 }
 
 class MatchMaker: NSObject {
     
-    var delegate: MatchMakerDelegate?
+    private var matchmakerVC: GKMatchmakerViewController?
+    
+    weak var delegate: MatchMakerDelegate?
     
     func createViewController() -> GKMatchmakerViewController {
         let request = GKMatchRequest()
         request.minPlayers = 2
         request.maxPlayers = 2
         
-        let matchmakerVC = GKMatchmakerViewController(matchRequest: request)
+        matchmakerVC = GKMatchmakerViewController(matchRequest: request)
         matchmakerVC?.matchmakerDelegate = self
         return matchmakerVC!
     }
     
     func createViewController(forInvite invite: GKInvite) -> GKMatchmakerViewController {
-        let matchmakerVC = GKMatchmakerViewController(invite: invite)
+        matchmakerVC = GKMatchmakerViewController(invite: invite)
         matchmakerVC?.matchmakerDelegate = self
         return matchmakerVC!
+    }
+    
+    deinit {
+        print(#function, self)
     }
 }
 
 extension MatchMaker: GKMatchmakerViewControllerDelegate {
     
     func matchmakerViewControllerWasCancelled(_ viewController: GKMatchmakerViewController) {
-        viewController.dismiss(animated: true, completion: nil)
+        viewController.presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
     func matchmakerViewController(_ viewController: GKMatchmakerViewController, didFailWithError error: Error) {
-        viewController.dismiss(animated: true, completion: {
+        viewController.presentingViewController?.dismiss(animated: true, completion: { [unowned self] in
             self.delegate?.ended(with: error)
         })
     }
     
     func matchmakerViewController(_ viewController: GKMatchmakerViewController, didFind match: GKMatch) {
-        viewController.dismiss(animated: true, completion: {
-            
-            // MARK: LOOKUP FOR PLAYERS
-            let playersId = match.players.map({ $0.playerID }) as! [String]
-            
-            GKPlayer.loadPlayers(forIdentifiers: playersId, withCompletionHandler: { (players: [GKPlayer]?, error: Error?) in
-                guard error == nil else {
-                    viewController.dismiss(animated: true, completion: {
-                        self.delegate?.ended(with: error)
-                    })
-                    return
-                }
-                
-                // MARK: MATCH STARTED
-                GKMatchmaker.shared().finishMatchmaking(for: match)
-                self.delegate?.started(match: match, with: players!.first!)
-            })
+        // MARK: LOOKUP FOR PLAYERS
+        let playersId = match.players.map({ $0.playerID }) as! [String]
+
+        GKPlayer.loadPlayers(forIdentifiers: playersId, withCompletionHandler: { (players: [GKPlayer]?, error: Error?) in
+            guard error == nil else {
+                self.delegate?.ended(with: error)
+                return
+            }
+
+            // MARK: MATCH STARTED
+            GKMatchmaker.shared().finishMatchmaking(for: match)
+            self.delegate?.started(match: match, with: players!.first!)
         })
     }
 }
 
 // MARK: MATCH
 
-protocol MatchDelegate {
+protocol MatchDelegate: class {
     func ended()
     
     func received(playerValue value: UInt32)
@@ -107,6 +108,7 @@ protocol MatchDelegate {
     func received(gameOverWithOponentPoints points: Int)
     func received(oponentWord word: String)
     func recieved(oponentPoints points: Int)
+    func recievedResendPlayerValue()
 }
 
 class Match: NSObject {
@@ -115,7 +117,7 @@ class Match: NSObject {
     fileprivate let gkMatch: GKMatch
     fileprivate let gkOponent: GKPlayer
     
-    var delegate: MatchDelegate?
+    weak var delegate: MatchDelegate?
     
     init(from gkMatch: GKMatch, with gkOponent: GKPlayer) {
         self.gkMatch = gkMatch
@@ -137,6 +139,10 @@ class Match: NSObject {
             gkMatch.disconnect()
             delegate?.ended()
         }
+    }
+    
+    deinit {
+        print(#function, self)
     }
 }
 
@@ -162,7 +168,7 @@ extension Match: GKMatchDelegate {
 class MatchMessage: NSObject, NSCoding {
     
     enum MessageType: Int {
-        case playerValue, selectedCategory, gameOver, word, totalPoints
+        case playerValue, selectedCategory, gameOver, word, totalPoints, resendPlayerValue
     }
     
     var type: MessageType?
@@ -220,6 +226,11 @@ extension Match {
         send(message)
     }
     
+    func sendResendPlayerValue() {
+        let message = MatchMessage(type: .resendPlayerValue)
+        send(message)
+    }
+    
     fileprivate func send(_ message: MatchMessage) {
         try! self.gkMatch.send(message.asData(), to: [gkOponent], dataMode: .reliable)
     }
@@ -244,6 +255,11 @@ extension Match {
         case .totalPoints:
             let oponentPoints = Int(message.message!)!
             delegate?.recieved(oponentPoints: oponentPoints)
+            break
+            
+        case .resendPlayerValue:
+            delegate?.recievedResendPlayerValue()
+            break
         }
     }
 }
