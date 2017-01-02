@@ -549,7 +549,6 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.27450980392156865" green="0.49803921568627452" blue="0.84313725490196079" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="wUS-Xa-3Fi" firstAttribute="width" secondItem="ZAp-y2-Ikk" secondAttribute="width" multiplier="0.7" id="19o-iD-2Cm"/>
                             <constraint firstItem="ZAp-y2-Ikk" firstAttribute="height" secondItem="6av-FT-om5" secondAttribute="height" multiplier="0.08" id="4Wg-g6-YK4"/>
@@ -732,7 +731,6 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.27450980390000002" green="0.49803921569999998" blue="0.84313725490000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="pTn-IW-Vih" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.2" id="5S9-vW-ycQ"/>
                             <constraint firstItem="pTn-IW-Vih" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="8" id="80c-w8-eBJ"/>

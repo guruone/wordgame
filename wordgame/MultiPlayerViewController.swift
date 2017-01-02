@@ -25,7 +25,8 @@ class MultiPlayerViewController: BaseViewController, GameViewController, UITextF
     fileprivate var isViewDecorated = false
     
     fileprivate lazy var viewMask: CALayer = {
-        let color = UIColor(red: 70/255, green: 127/255, blue: 215/255, alpha: 1)
+        let image = UIImage(named: "background")!
+        let color = UIColor(patternImage: image)
         let mask = CALayer()
         mask.frame = self.view.bounds
         mask.backgroundColor = color.cgColor
@@ -196,6 +197,8 @@ extension MultiPlayerViewController {
         super.viewDidLoad()
         
         view.layer.addSublayer(viewMask)
+        
+        view.extSetLetterBlueBackground()
         
         guard gkoponent != nil, gkmatch != nil else {
             fatalError()
