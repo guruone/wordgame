@@ -948,6 +948,13 @@
                                     <segue destination="wwG-Fs-im0" kind="unwind" unwindAction="unwindToMenuVCWithAdWithSegue:" id="N4K-RW-wCE"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q0T-KZ-5CD">
+                                <rect key="frame" x="164" y="318" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="onShareClick" destination="gO0-Bp-tMI" eventType="touchUpInside" id="z64-Er-zs5"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -959,8 +966,10 @@
                             <constraint firstItem="A5V-ha-sbP" firstAttribute="top" secondItem="5LZ-hf-u4i" secondAttribute="bottom" constant="16" id="WFC-YE-LBg"/>
                             <constraint firstItem="P3q-M4-rP4" firstAttribute="leading" secondItem="Ah7-HZ-N9N" secondAttribute="leading" id="a4H-VL-Tds"/>
                             <constraint firstItem="0xb-v1-E0u" firstAttribute="top" secondItem="A5V-ha-sbP" secondAttribute="bottom" constant="8" id="bKT-24-5WU"/>
+                            <constraint firstItem="Q0T-KZ-5CD" firstAttribute="centerX" secondItem="Ah7-HZ-N9N" secondAttribute="centerX" id="byZ-Dl-iAd"/>
                             <constraint firstItem="7jO-od-pC5" firstAttribute="leading" secondItem="Ah7-HZ-N9N" secondAttribute="leading" constant="8" id="f48-N1-tIr"/>
                             <constraint firstAttribute="trailing" secondItem="P3q-M4-rP4" secondAttribute="trailing" id="iBH-CS-R7O"/>
+                            <constraint firstItem="Q0T-KZ-5CD" firstAttribute="centerY" secondItem="Ah7-HZ-N9N" secondAttribute="centerY" id="p7P-t0-DRZ"/>
                         </constraints>
                     </view>
                     <connections>

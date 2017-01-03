@@ -16,11 +16,40 @@ class Score {
     private let userDefaults = UserDefaults.standard
     private let kHighScore = "high_score"
     
+    var highScore: Int {
+        return userDefaults.integer(forKey: kHighScore)
+    }
+    
+    init() {
+        checkLeaderBoardScore()
+    }
+    
+    private func checkLeaderBoardScore() {
+        let leaderBoardRequest = GKLeaderboard(players: [GKLocalPlayer.localPlayer()])
+        leaderBoardRequest.identifier = LEADER_BOARD_IDENTIFIER
+        leaderBoardRequest.loadScores { (_, error: Error?) in
+            guard error == nil else {
+                #if DEBUG
+                    print(#function, error!.localizedDescription)
+                #endif
+                return
+            }
+                
+            if let leaderBoardLocalPlayerScore = leaderBoardRequest.localPlayerScore {
+                let leaderBoardScore = Int(leaderBoardLocalPlayerScore.value)
+                
+                if self.highScore != leaderBoardScore {
+                    self.report(score: self.highScore + leaderBoardScore)
+                }
+            }
+        }
+    }
+    
     func report(score: Int) {
-        let highScore = userDefaults.integer(forKey: kHighScore) + score
+        let highScore = self.highScore + score
         userDefaults.set(highScore, forKey: kHighScore)
         
-        guard !PlayerAuthentificator.shared.isAuthenticated() else {
+        guard PlayerAuthentificator.shared.isAuthenticated() else {
             return
         }
         

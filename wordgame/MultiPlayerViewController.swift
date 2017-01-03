@@ -376,14 +376,14 @@ extension MultiPlayerViewController {
     
     func presentGameInit(completion: @escaping () -> Void) {
         tryDismissAlertAndPresent {
-            let vc = UIAlertController(title: "Hra sa inicializuje", message: "please wait ...", preferredStyle: .actionSheet)
+            let vc = UIAlertController(title: "The game is initializing", message: "please wait ...", preferredStyle: .actionSheet)
             self.present(vc, animated: true, completion: completion)
         }
     }
     
     func presentWaitingForCategoryFromOponent() {
         tryDismissAlertAndPresent {
-            let vc = UIAlertController(title: "Oponent vybera kategoriu", message: "please wait ...", preferredStyle: .actionSheet)
+            let vc = UIAlertController(title: "Opponent is choosing category", message: "please wait ...", preferredStyle: .actionSheet)
             self.present(vc, animated: true, completion: nil)
         }
     }
@@ -397,14 +397,14 @@ extension MultiPlayerViewController {
     
     func presentWaitingForOponentWord(completion: @escaping () -> Void) {
         tryDismissAlertAndPresent {
-            let vc = UIAlertController(title: "Oponent typing word", message: "please wait ...", preferredStyle: .actionSheet)
+            let vc = UIAlertController(title: "Opponent is typing word", message: "please wait ...", preferredStyle: .actionSheet)
             self.present(vc, animated: true, completion: completion)
         }
     }
     
     func presentAlreadyUsed(word: String) {
         tryDismissAlertAndPresent {
-            let alertVC = UIAlertController(title: "Slovo \(word) uz bolo pouzite", message: nil, preferredStyle: .actionSheet)
+            let alertVC = UIAlertController(title: "The word \"\(word)\" has been used", message: nil, preferredStyle: .actionSheet)
             alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
             self.present(alertVC, animated: true, completion: nil)
         }
@@ -412,7 +412,7 @@ extension MultiPlayerViewController {
     
     func presentCharacterAreNotEqual(leftchar: String, rightChar: String) {
         tryDismissAlertAndPresent {
-            let alertVC = UIAlertController(title: "Chyba", message: "\(leftchar) != \(rightChar)", preferredStyle: .actionSheet)
+            let alertVC = UIAlertController(title: "Oooops, this word have to start with\n\n\(leftchar)", message: nil, preferredStyle: .actionSheet)
             alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
             self.present(alertVC, animated: true, completion: nil)
         }
@@ -420,7 +420,7 @@ extension MultiPlayerViewController {
     
     func presentWordDoesNotExists(_ word: String) {
         tryDismissAlertAndPresent {
-            let alertVC = UIAlertController(title: "\(word) som nenasiel.", message: "Skus ine", preferredStyle: .actionSheet)
+            let alertVC = UIAlertController(title: "\"\(word)\" is not in my dictionary", message: "Try another", preferredStyle: .actionSheet)
             alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
             self.present(alertVC, animated: true, completion: nil)
         }
@@ -429,10 +429,9 @@ extension MultiPlayerViewController {
     func presentLoose() {
         tryDismissAlertAndPresent {
             self.bonus.clearBonus()
-            let alertVC = UIAlertController(title: "🐢 Prehral ši baran 🐢", message: nil, preferredStyle: .actionSheet)
+            let alertVC = UIAlertController(title: "🐢 Ooops, you lose this game 🐢", message: nil, preferredStyle: .actionSheet)
             alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (_) in
                 self.presentingViewController?.dismiss(animated: true, completion: nil)
-//                self.dismiss(animated: true, completion: nil)
             }))
             self.present(alertVC, animated: true, completion: nil)
         }
@@ -441,10 +440,12 @@ extension MultiPlayerViewController {
     func presentWin(yourPoints: Int, oponentPoints: Int) {
         tryDismissAlertAndPresent {
             self.bonus.clearBonus()
+            //TODO: presmerovat na GameSumaryVC
+            
             let alertVC = UIAlertController(title: "Vyhral si \(yourPoints + oponentPoints) bodov", message: "na tvoje konto bolo pripocitanych \(yourPoints) + \(oponentPoints) oponentovych bodov", preferredStyle: .actionSheet)
             alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (_) in
                 self.presentingViewController?.dismiss(animated: true, completion: nil)
-//                self.dismiss(animated: true, completion: nil)
+                
             }))
             self.present(alertVC, animated: true, completion: nil)
         }
@@ -453,10 +454,10 @@ extension MultiPlayerViewController {
     func presentGameOver(yourPoints: Int, oponentPoints: Int) {
         tryDismissAlertAndPresent {
             self.bonus.clearBonus()
-            let alertVC = UIAlertController(title: "Game Over \(yourPoints + oponentPoints) bodov", message: "na tvoje konto bolo pripocitanych \(yourPoints) + \(oponentPoints) oponentovych bodov", preferredStyle: .actionSheet)
+            let alertVC = UIAlertController(title: "Opponent left the game", message: "congratulation, you win all points", preferredStyle: .actionSheet)
             alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (_) in
                 self.presentingViewController?.dismiss(animated: true, completion: nil)
-//                self.dismiss(animated: true, completion: nil)
+                //TODO: presmerovat na GameSumaryVC
             }))
             self.present(alertVC, animated: true, completion: nil)
         }

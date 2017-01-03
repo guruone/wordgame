@@ -297,10 +297,10 @@ extension SinglePlayerViewController {
     }
     
     func presentAlreadyUsed(word: String) {
-        let alertVC = UIAlertController(title: "Slovo \(word) uz bolo pouzite", message: nil, preferredStyle: .actionSheet)
+        let alertVC = UIAlertController(title: "The word \"\(word)\" has been used", message: nil, preferredStyle: .actionSheet)
         alertVC.addAction(UIAlertAction(title: "Try another word", style: .cancel, handler: nil))
         if rewardAd.ad.isReady {
-            alertVC.addAction(UIAlertAction(title: "Watch short movie to accept word", style: .default, handler: { (action: UIAlertAction) in
+            alertVC.addAction(UIAlertAction(title: "Want use again? Watch me!", style: .default, handler: { (action: UIAlertAction) in
                 self.view.endEditing(true)
                 self.reward = SinglePlayerViewController.RewardType.allowUseForbiddenWord(word)
                 self.timer?.invalidate()
@@ -311,16 +311,16 @@ extension SinglePlayerViewController {
     }
     
     func presentCharacterAreNotEqual(leftchar: String, rightChar: String) {
-        let alertVC = UIAlertController(title: "Chyba", message: "\(leftchar) != \(rightChar)", preferredStyle: .actionSheet)
+        let alertVC = UIAlertController(title: "Oooops, this word have to start with\n\n\(leftchar)", message: nil, preferredStyle: .actionSheet)
         alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         present(alertVC, animated: true, completion: nil)
     }
     
     func presentWordDoesNotExists(_ word: String) {
-        let alertVC = UIAlertController(title: "\(word) som nenasiel.", message: "Skus ine", preferredStyle: .actionSheet)
+        let alertVC = UIAlertController(title: "\"\(word)\" is not in my dictionary", message: nil, preferredStyle: .actionSheet)
         alertVC.addAction(UIAlertAction(title: "Try another word", style: .cancel, handler: nil))
         if rewardAd.ad.isReady {
-            alertVC.addAction(UIAlertAction(title: "Watch short movie to hint", style: .default, handler: { (action: UIAlertAction) in
+            alertVC.addAction(UIAlertAction(title: "Need hint? Watch me!", style: .default, handler: { (action: UIAlertAction) in
                 self.view.endEditing(true)
                 self.reward = SinglePlayerViewController.RewardType.hint
                 self.timer?.invalidate()

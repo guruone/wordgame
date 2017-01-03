@@ -32,7 +32,7 @@ class AdsRequest {
     class func create() -> GADRequest {
         let request = GADRequest()
         #if DEBUG
-            request.testDevices = [kGADSimulatorID, "890a9822760b480afac36531dc5b622e", "b10394fda1adcb1b6c9f4042ff79f21d"]
+//            request.testDevices = [kGADSimulatorID, "890a9822760b480afac36531dc5b622e", "b10394fda1adcb1b6c9f4042ff79f21d"]
         #endif
         return request
     }

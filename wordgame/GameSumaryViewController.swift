@@ -24,6 +24,17 @@ class GameSumaryViewController: BaseViewController {
             }
         }
         
+        func shareMessage() -> String {
+            switch self {
+            case .poor:
+                return "SOME MESSAGE TO SHARE WITH MY POINTS"
+            case .good:
+                return "SOME MESSAGE TO SHARE WITH MY POINTS"
+            case .excellent:
+                return "SOME MESSAGE TO SHARE WITH MY POINTS"
+            }
+        }
+        
         func image() -> UIImage {
             switch self {
             case .poor:
@@ -60,6 +71,19 @@ class GameSumaryViewController: BaseViewController {
     @IBOutlet weak var earnedPointsLabel: UILabel!
 
     @IBOutlet weak var categoryImageView: UIImageView!
+    
+    @IBAction func onShareClick() {
+        
+        let gameSumary = resolveGameSumary()
+        
+        let text = "Wow, I already ended game with \(earnedPoints!) points. My total score is \(Score().highScore) points.\nWill you better than me?\n"
+        let image = gameSumary.image()
+        let url = URL(string: "https://itunes.apple.com/us/app/myapp/id1185310030?ls=1&mt=8")!
+        
+        let activityVC = UIActivityViewController(activityItems: [text, image, url], applicationActivities: nil)
+        
+        present(activityVC, animated: true, completion: nil)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
