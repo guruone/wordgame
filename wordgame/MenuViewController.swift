@@ -87,6 +87,12 @@ extension MenuViewController {
 
         bonusNextGameLabelTemplate = bonusNextGameLabel.text!
         
+        NotificationCenter.default.addObserver(self, selector: #selector(playerAuthentificated), name: PlayerAuthentificator.authentificatedNotificationName, object: nil)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
         if rewardAd.ad.isReady {
             rewardAd(isReady: rewardAd.ad)
             
@@ -95,15 +101,8 @@ extension MenuViewController {
         }
         rewardAd.delegate = self
         
-        
         interstitialAd.delegate = self
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(playerAuthentificated), name: PlayerAuthentificator.authentificatedNotificationName, object: nil)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
+
         bonusNextGameLabel.text = bonusNextGameLabelTemplate.replacingOccurrences(of: "%@", with: "\(bonus.currBonusInPerc)")
         
         if !isViewDecorated {
@@ -126,7 +125,12 @@ extension MenuViewController {
         }
         
         if presentInterstitialAd {
-            interstitialAd.ad.present(fromRootViewController: self)
+            presentInterstitialAd = false
+            #if DEBUG
+                print(#function, self, "presentInterstitialAd", presentInterstitialAd)
+            #else
+                interstitialAd.ad.present(fromRootViewController: self)
+            #endif
         }
     }
     

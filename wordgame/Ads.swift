@@ -31,7 +31,9 @@ class AdsRequest {
     
     class func create() -> GADRequest {
         let request = GADRequest()
-        request.testDevices = [kGADSimulatorID, "890a9822760b480afac36531dc5b622e", "b10394fda1adcb1b6c9f4042ff79f21d"]
+        #if DEBUG
+            request.testDevices = [kGADSimulatorID, "890a9822760b480afac36531dc5b622e", "b10394fda1adcb1b6c9f4042ff79f21d"]
+        #endif
         return request
     }
     
@@ -67,22 +69,30 @@ class VideoInterstitialAd: NSObject, GADInterstitialDelegate {
     
     func interstitialDidReceiveAd(_ ad: GADInterstitial) {
         delegate?.adIsReady(ad)
-        print("interstitialDidReceiveAd")
+        #if DEBUG
+            print("interstitialDidReceiveAd")
+        #endif
     }
     
     func interstitialDidDismissScreen(_ ad: GADInterstitial) {
-        print("interstitialDidDismissScreen")
+        #if DEBUG
+            print("interstitialDidDismissScreen")
+        #endif
         self.ad = createAndLoadAd()
         delegate?.adDidDismissScreen()
     }
     
     func interstitialWillLeaveApplication(_ ad: GADInterstitial) {
-        print("interstitialWillLeaveApplication")
+        #if DEBUG
+            print("interstitialWillLeaveApplication")
+        #endif
     }
     
+    #if DEBUG
     deinit {
         print(#function, self)
     }
+    #endif
 }
 
 @objc protocol RewardAdDelegate: class {
@@ -111,7 +121,9 @@ class RewardAd: NSObject, GADRewardBasedVideoAdDelegate {
     
     private func load() {
         if !ad.isReady {
-            print("RewardAd.load")
+            #if DEBUG
+                print("RewardAd.load")
+            #endif
             ad.load(AdsRequest.create(), withAdUnitID: "ca-app-pub-3278005872817682/4839443470")
             delegate?.rewardAd?(isLoading: ad)
         }
@@ -121,48 +133,62 @@ class RewardAd: NSObject, GADRewardBasedVideoAdDelegate {
     
     /// Tells the delegate that the reward based video ad has rewarded the user.
     func rewardBasedVideoAd(_ rewardBasedVideoAd: GADRewardBasedVideoAd, didRewardUserWith reward: GADAdReward) {
-        print("rewardBasedVideoAd:didRewardUserWith")
+        #if DEBUG
+            print("rewardBasedVideoAd:didRewardUserWith")
+        #endif
         delegate?.rewardAd(didRewardUser: reward)
         load()
     }
     
     /// Tells the delegate that the reward based video ad failed to load.
     func rewardBasedVideoAd(_ rewardBasedVideoAd: GADRewardBasedVideoAd, didFailToLoadWithError error: Error) {
-        print("rewardBasedVideoAd:didFailToLoadWithError", error.localizedDescription)
-//        load()
+        #if DEBUG
+            print("rewardBasedVideoAd:didFailToLoadWithError", error.localizedDescription)
+        #endif
     }
     
     /// Tells the delegate that a reward based video ad was received.
     func rewardBasedVideoAdDidReceive(_ rewardBasedVideoAd: GADRewardBasedVideoAd) {
-        print("rewardBasedVideoAdDidReceive")
-        print("rewardBasedVideoAd is ready", rewardBasedVideoAd.isReady)
+        #if DEBUG
+            print("rewardBasedVideoAdDidReceive")
+            print("rewardBasedVideoAd is ready", rewardBasedVideoAd.isReady)
+        #endif
         delegate?.rewardAd?(isReady: rewardBasedVideoAd)
     }
     
     /// Tells the delegate that the reward based video ad opened.
     func rewardBasedVideoAdDidOpen(_ rewardBasedVideoAd: GADRewardBasedVideoAd) {
-        print("rewardBasedVideoAdDidOpen")
+        #if DEBUG
+            print("rewardBasedVideoAdDidOpen")
+        #endif
     }
     
     /// Tells the delegate that the reward based video ad started playing.
     func rewardBasedVideoAdDidStartPlaying(_ rewardBasedVideoAd: GADRewardBasedVideoAd) {
-        print("rewardBasedVideoAdDidStartPlaying")
+        #if DEBUG
+            print("rewardBasedVideoAdDidStartPlaying")
+        #endif
     }
     
     /// Tells the delegate that the reward based video ad closed.
     func rewardBasedVideoAdDidClose(_ rewardBasedVideoAd: GADRewardBasedVideoAd) {
-        print("rewardBasedVideoAdDidClose")
+        #if DEBUG
+            print("rewardBasedVideoAdDidClose")
+        #endif
         load()
     }
     
     /// Tells the delegate that the reward based video ad will leave the application.
     func rewardBasedVideoAdWillLeaveApplication(_ rewardBasedVideoAd: GADRewardBasedVideoAd) {
-        print("rewardBasedVideoAdWillLeaveApplication")
+        #if DEBUG
+            print("rewardBasedVideoAdWillLeaveApplication")
+        #endif
     }
     
+    #if DEBUG
     deinit {
         print(#function, self)
     }
-
+    #endif
 }
 

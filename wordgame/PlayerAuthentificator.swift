@@ -38,7 +38,9 @@ class PlayerAuthentificator {
             localPlayer.authenticateHandler = { (viewController: UIViewController?, error: Error?) in
                 guard error == nil else {
                     self.error = error
-                    print("PlayerAuthentificator.authentificate", error!.localizedDescription)
+                    #if DEBUG
+                        print("PlayerAuthentificator.authentificate", error!.localizedDescription)
+                    #endif
                     NotificationCenter.default.post(name: PlayerAuthentificator.errorNotificationName, object: self)
                     return
                 }
@@ -53,7 +55,9 @@ class PlayerAuthentificator {
                     NotificationCenter.default.post(name: PlayerAuthentificator.authentificatedNotificationName, object: self)
                     
                 } else {
-                    fatalError()
+                    #if DEBUG
+                        fatalError()
+                    #endif
                 }
             }
         }

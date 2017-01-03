@@ -24,17 +24,24 @@ class MatchInviteListener: NSObject, GKLocalPlayerListener {
     weak var delegate: MatchInviteDelegate?
     
     func player(_ player: GKPlayer, didAccept invite: GKInvite) {
-        print("player:didAccept:invite")
+        #if DEBUG
+            print("player:didAccept:invite")
+        #endif
         delegate?.matchDidInvite(invite)
     }
     
+    #if DEBUG
     private override init() {
-        print("init MatchInviteListener")
+        super.init()
+        print(#function, self)
     }
-
+    #endif
+    
+    #if DEBUG
     deinit {
-        print("deinit MatchInviteListener")
+        print(#function, self)
     }
+    #endif
 }
 
 protocol MatchMakerDelegate: class {
@@ -64,9 +71,11 @@ class MatchMaker: NSObject {
         return matchmakerVC!
     }
     
+    #if DEBUG
     deinit {
         print(#function, self)
     }
+    #endif
 }
 
 extension MatchMaker: GKMatchmakerViewControllerDelegate {
@@ -141,9 +150,11 @@ class Match: NSObject {
         }
     }
     
+    #if DEBUG
     deinit {
         print(#function, self)
     }
+    #endif
 }
 
 // MARK: GKMatchDelegate

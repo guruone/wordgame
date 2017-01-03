@@ -10,6 +10,32 @@ import UIKit
 
 class GameSumaryViewController: BaseViewController {
     
+    private enum GameSumary {
+        case poor, good, excellent
+        
+        func message() -> String {
+            switch self {
+            case .poor:
+                return "OHH YOUR'RE POOR"
+            case .good:
+                return "GOOD JOB!"
+            case .excellent:
+                return "WOOW EXCELLENT!"
+            }
+        }
+        
+        func image() -> UIImage {
+            switch self {
+            case .poor:
+                return #imageLiteral(resourceName: "poor-game-sumary")
+            case .good:
+                return #imageLiteral(resourceName: "good-game-sumary")
+            case .excellent:
+                return #imageLiteral(resourceName: "excellent-game-sumary")
+            }
+        }
+    }
+    
     /// from segue
     var category: WordCategory?
     /// from segue
@@ -26,6 +52,8 @@ class GameSumaryViewController: BaseViewController {
         mask.zPosition = CGFloat.greatestFiniteMagnitude
         return mask
     }()
+    
+    @IBOutlet weak var messageLabel: UILabel!
     
     @IBOutlet weak var earnedPointsView: UIView!
     
@@ -45,8 +73,11 @@ class GameSumaryViewController: BaseViewController {
             fatalError()
         }
         
+        let gameSumary = resolveGameSumary()
+        
         earnedPointsLabel.text = earnedPointsLabel.text?.replacingOccurrences(of: "%@", with: "\(earnedPoints!)")
-        categoryImageView.image = category?.gameSumaryImage()
+        messageLabel.text = gameSumary.message()
+        categoryImageView.image = gameSumary.image()
         
         view.extSetLetterBlueBackground()
     }
@@ -59,6 +90,17 @@ class GameSumaryViewController: BaseViewController {
             view.extAddVerticalLinesFromTop(to: earnedPointsView, offsetFromEdges: 30)
             
             view.extRemoveWithAnimation(layer: viewMask)
+        }
+    }
+    
+    private func resolveGameSumary() -> GameSumary {
+        switch self.earnedPoints! {
+        case 0..<1000:
+            return GameSumary.poor
+        case 1000..<5000:
+            return GameSumary.good
+        default:
+            return GameSumary.excellent
         }
     }
 }

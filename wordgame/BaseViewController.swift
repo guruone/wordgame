@@ -27,14 +27,18 @@ class BaseViewController: UIViewController {
         super.viewDidLoad()
         
         presentPlayerAuthVCNotification = NotificationCenter.default.addObserver(forName: PlayerAuthentificator.presentVCNotificationName, object: nil, queue: OperationQueue.main) { [unowned self] (notification: Notification) in
-            print("presentPlayerAuthVCNotification")
+            #if DEBUG
+                print("presentPlayerAuthVCNotification", self)
+            #endif
             if let authPlayer = notification.object as? PlayerAuthentificator, let authVC = authPlayer.authentificationViewController {
                 self.presentOnTopView(viewController: authVC)
             }
         }
         
         playerAuthSuccessNotification = NotificationCenter.default.addObserver(forName: PlayerAuthentificator.authentificatedNotificationName, object: nil, queue: .main, using: { [unowned self] (notification: Notification) in
-            print("playerAuthSuccessNotification")
+            #if DEBUG
+                print("playerAuthSuccessNotification")
+            #endif
             if let playerAuth = notification.object as? PlayerAuthentificator, let player = playerAuth.authentificatedLocalPlayer {
                 guard !self.matchInviteListenerDidRegister else {
                     return
@@ -53,7 +57,9 @@ class BaseViewController: UIViewController {
     }
     
     deinit {
-        print(#function, self)
+        #if DEBUG
+            print(#function, self)
+        #endif
         if presentPlayerAuthVCNotification != nil {
             NotificationCenter.default.removeObserver(presentPlayerAuthVCNotification!)
         }
@@ -99,7 +105,9 @@ extension BaseViewController: MatchMakerDelegate {
     }
     
     func ended(with error: Error?) {
-        print("ended", self)
+        #if DEBUG
+            print("MatchMakerDelegate.ended", self)
+        #endif
         dismiss(animated: true, completion: nil)
         print(error!.localizedDescription)
     }

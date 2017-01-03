@@ -155,9 +155,11 @@ class SinglePlayerViewController: UIViewController, GameViewController {
         presentGameOver(yourPoints: score!)
     }
     
+    #if DEBUG
     deinit {
-        print("deinit", self)
+        print(#function, self)
     }
+    #endif
 }
 
 // MARK: LIFECYCLE
@@ -271,6 +273,8 @@ extension SinglePlayerViewController: InterstitialAdDelegate {
 extension SinglePlayerViewController: RewardAdDelegate {
     
     func rewardAd(didRewardUser reward: GADAdReward) {
+        self.timeRemaining = self.MAX_TIME_FOR_WORD
+        
         switch self.reward! {
         case .hint:
             self.onHintClick()
@@ -279,7 +283,6 @@ extension SinglePlayerViewController: RewardAdDelegate {
         case .allowUseForbiddenWord(let word):
             let index = self.forbiddenWords.index(of: word)
             self.forbiddenWords.remove(at: index!)
-            self.oponentWord = word
             break
         }
     }
@@ -301,7 +304,6 @@ extension SinglePlayerViewController {
                 self.view.endEditing(true)
                 self.reward = SinglePlayerViewController.RewardType.allowUseForbiddenWord(word)
                 self.timer?.invalidate()
-                self.timeRemaining = self.MAX_TIME_FOR_WORD
                 self.rewardAd.ad.present(fromRootViewController: self)
             }))
         }
@@ -322,7 +324,6 @@ extension SinglePlayerViewController {
                 self.view.endEditing(true)
                 self.reward = SinglePlayerViewController.RewardType.hint
                 self.timer?.invalidate()
-                self.timeRemaining = self.MAX_TIME_FOR_WORD
                 self.rewardAd.ad.present(fromRootViewController: self)
             }))
         }

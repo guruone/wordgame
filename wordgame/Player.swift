@@ -28,12 +28,14 @@ class Score {
         gkscore.value = Int64(highScore)
         
         GKScore.report([gkscore], withCompletionHandler: { (error: Error?) in
+            #if DEBUG
             if nil != error {
                 print(error!.localizedDescription)
                 
             } else {
                 print("score reported: \(gkscore.value)" )
             }
+            #endif
         })
     }
     
@@ -46,9 +48,12 @@ class Score {
         return gkVC
     }
     
+    #if DEBUG
     deinit {
         print(#function, self)
     }
+    #endif
+
 }
 
 class BonusPoints {
@@ -78,9 +83,11 @@ class BonusPoints {
         }
     }
     
+    #if DEBUG
     init() {
         print(#function, self)
     }
+    #endif
     
     var currBonusInPerc: Int {
         return Int(round((self.currBonus - 1 ) * 100.0))
@@ -107,7 +114,9 @@ class BonusPoints {
         currBonus = 1
     }
     
+    #if DEBUG
     deinit {
         print(#function, self)
     }
+    #endif
 }

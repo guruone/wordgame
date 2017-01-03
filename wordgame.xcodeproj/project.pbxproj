@@ -113,6 +113,7 @@
 		20C007851DFDAF0500772B50 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		20D57DDA1E01C35E00C51DD5 /* names.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = names.csv; sourceTree = "<group>"; };
 		20D57DDB1E01C35E00C51DD5 /* nouns.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = nouns.csv; sourceTree = "<group>"; };
+		20DA79C41E1BAB5C00161A7E /* wordgame.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = wordgame.entitlements; sourceTree = "<group>"; };
 		20F8229C1E0D121800B98E64 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		20F8229E1E0D126B00B98E64 /* HowToMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HowToMenuViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -237,6 +238,7 @@
 		20C007661DFAC93100772B50 /* wordgame */ = {
 			isa = PBXGroup;
 			children = (
+				20DA79C41E1BAB5C00161A7E /* wordgame.entitlements */,
 				20C0076B1DFAC93100772B50 /* Main.storyboard */,
 				20113FA31DFFD9EF003E045A /* Player.swift */,
 				207E31691DFDB6A200453EF6 /* MultiPlayer.swift */,
@@ -317,6 +319,9 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.GameCenter = {
+								enabled = 1;
+							};
+							com.apple.Push = {
 								enabled = 1;
 							};
 						};
@@ -511,6 +516,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = wordgame/wordgame.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 4HFWK8AXKL;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -541,6 +548,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = wordgame/wordgame.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 4HFWK8AXKL;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

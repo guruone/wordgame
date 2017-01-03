@@ -46,12 +46,16 @@ class CSVToCoreData {
                 try managedObjectContext.save()
                 
             } catch {
-                print(error.localizedDescription)
+                #if DEBUG
+                    print(error.localizedDescription)
+                #endif
             }
         }
         
         let checkFetchResult = try! managedObjectContext.fetch(fetchRequest)
-        print("naimportovanych \(category.entityName()): ", checkFetchResult.count)
+        #if DEBUG
+            print("naimportovanych \(category.entityName()): ", checkFetchResult.count)
+        #endif
     }
     
     func importPoints() {
@@ -81,15 +85,21 @@ class CSVToCoreData {
                 try managedObjectContext.save()
                 
             } catch {
-                print(error.localizedDescription)
+                #if DEBUG
+                    print(error.localizedDescription)
+                #endif
             }
         }
         
         let checkFetchResult = try! managedObjectContext.fetch(fetchRequest)
-        print("naimportovanych Points: ", checkFetchResult.count)
+        #if DEBUG
+            print("naimportovanych Points: ", checkFetchResult.count)
+        #endif
     }
     
+    #if DEBUG
     deinit {
         print(#function, self)
     }
+    #endif
 }
