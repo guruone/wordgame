@@ -135,10 +135,15 @@ extension MenuViewController {
     }
     
     @IBAction func unwindToMenuVCWithAd(segue: UIStoryboardSegue) {
-        // TODO: miesto na video od google
-        if interstitialAd.ad.isReady {
+        // MARK: VIDEO OD GOOGLE + CNT
+        let kPlayInterstitialAd = "MenuVC.PlayInterstitialAd"
+        var adCnt = UserDefaults.standard.integer(forKey: kPlayInterstitialAd)
+        adCnt += 1
+        if adCnt > 1 && interstitialAd.ad.isReady {
+            adCnt = 0
             presentInterstitialAd = true
         }
+        UserDefaults.standard.set(adCnt, forKey: kPlayInterstitialAd)
     }
 }
 
