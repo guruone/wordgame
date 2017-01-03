@@ -31,21 +31,11 @@ class WelcomeViewController: BaseViewController {
         super.viewDidLoad()
         
         view.layer.addSublayer(viewMask)
-        
-        startButton.isEnabled = false
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(playerIsAuthetificated), name: PlayerAuthentificator.authentificatedNotificationName, object: nil)
-        
         view.extSetLetterBlueBackground()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        if !startButton.isEnabled {
-            let alert = UIAlertController(title: "Player Authentification", message: "please wait ...", preferredStyle: .actionSheet)
-            present(alert, animated: true, completion: nil)
-        }
         
         if !isViewDecorated {
             isViewDecorated = true
@@ -56,24 +46,6 @@ class WelcomeViewController: BaseViewController {
             decorateWithVerticalLines()
             
             view.extRemoveWithAnimation(layer: viewMask)
-        }
-    }
-}
-
-
-private extension WelcomeViewController {
-    
-    @objc func playerIsAuthetificated() {
-        if presentedViewController != nil && presentedViewController is UIAlertController {
-            presentedViewController?.dismiss(animated: true, completion: nil)
-        }
-        
-        startButton.isEnabled = true
-    }
-    
-    @objc func playerAuthentificationError(notification: Notification) {
-        if let playerAuth = notification.object as? PlayerAuthentificator {
-            print("error")
         }
     }
 }

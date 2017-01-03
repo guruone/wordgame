@@ -35,8 +35,6 @@ enum WordCategory: String {
 
 class WordRepository {
     
-    static let shared = WordRepository()
-    
     private let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     func findRandomOne(for category: WordCategory) -> NSManagedObject {
@@ -74,5 +72,9 @@ class WordRepository {
         let result = try! managedObjectContext.fetch(request)
         
         return result.count > 0
+    }
+    
+    deinit {
+        print(#function, self)
     }
 }

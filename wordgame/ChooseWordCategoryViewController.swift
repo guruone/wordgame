@@ -62,5 +62,7 @@ class ChooseWordCategoryViewController: UIViewController {
         }
     }
     
-
+    deinit {
+        print("deinit", self)
+    }
 }

@@ -24,6 +24,10 @@ class PlayerAuthentificator {
     
     private init() {}
     
+    func isAuthenticated() -> Bool {
+        return GKLocalPlayer.localPlayer().isAuthenticated
+    }
+    
     func authentificate() {
         let localPlayer = GKLocalPlayer.localPlayer()
         

@@ -50,7 +50,7 @@
                                         <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                         <state key="normal" title="START"/>
                                         <connections>
-                                            <segue destination="jSz-tu-HIB" kind="show" id="I2f-I2-fgn"/>
+                                            <segue destination="jSz-tu-HIB" kind="presentation" id="I2f-I2-fgn"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -156,7 +156,7 @@
                                                             </attributedString>
                                                         </state>
                                                         <connections>
-                                                            <segue destination="9mS-2D-omL" kind="show" id="663-Xd-0Gk"/>
+                                                            <segue destination="9mS-2D-omL" kind="presentation" id="663-Xd-0Gk"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -216,19 +216,11 @@
                                                             <constraint firstAttribute="width" constant="40" id="lTk-kf-KAy"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lI2-C3-PVC">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lI2-C3-PVC">
                                                         <rect key="frame" x="46" y="0.0" width="237" height="40"/>
                                                         <color key="backgroundColor" red="0.96862745098039216" green="0.72941176470588232" blue="0.4823529411764706" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <state key="normal">
-                                                            <attributedString key="attributedTitle">
-                                                                <fragment content="SINGLE PLAYER">
-                                                                    <attributes>
-                                                                        <font key="NSFont" metaFont="system" size="15"/>
-                                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                                    </attributes>
-                                                                </fragment>
-                                                            </attributedString>
-                                                        </state>
+                                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                                        <state key="normal" title="SINGLE PLAYER"/>
                                                         <connections>
                                                             <action selector="onSinglePlayerClick" destination="9mS-2D-omL" eventType="touchUpInside" id="xqI-P9-5hM"/>
                                                         </connections>
@@ -257,19 +249,11 @@
                                                             <constraint firstAttribute="height" constant="40" id="Lhy-4i-8wL"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Evs-Hv-7Hf">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Evs-Hv-7Hf">
                                                         <rect key="frame" x="46" y="0.0" width="237" height="40"/>
                                                         <color key="backgroundColor" red="0.96862745100000003" green="0.72941176470000002" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <state key="normal">
-                                                            <attributedString key="attributedTitle">
-                                                                <fragment content="MULTI PLAYER">
-                                                                    <attributes>
-                                                                        <font key="NSFont" metaFont="system" size="15"/>
-                                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                                    </attributes>
-                                                                </fragment>
-                                                            </attributedString>
-                                                        </state>
+                                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                                        <state key="normal" title="MULTI PLAYER"/>
                                                         <connections>
                                                             <action selector="onMultiPlayerClick" destination="9mS-2D-omL" eventType="touchUpInside" id="TEG-zJ-OOS"/>
                                                         </connections>
@@ -565,7 +549,6 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.27450980392156865" green="0.49803921568627452" blue="0.84313725490196079" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="wUS-Xa-3Fi" firstAttribute="width" secondItem="ZAp-y2-Ikk" secondAttribute="width" multiplier="0.7" id="19o-iD-2Cm"/>
                             <constraint firstItem="ZAp-y2-Ikk" firstAttribute="height" secondItem="6av-FT-om5" secondAttribute="height" multiplier="0.08" id="4Wg-g6-YK4"/>
@@ -748,7 +731,6 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.27450980390000002" green="0.49803921569999998" blue="0.84313725490000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="pTn-IW-Vih" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.2" id="5S9-vW-ycQ"/>
                             <constraint firstItem="pTn-IW-Vih" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="8" id="80c-w8-eBJ"/>
