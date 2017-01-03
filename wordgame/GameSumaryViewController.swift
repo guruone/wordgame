@@ -120,7 +120,7 @@ class GameSumaryViewController: BaseViewController {
     private func resolveGameSumary() -> GameSumary {
         switch self.earnedPoints! {
         case 0..<1000:
-            return GameSumary.poor
+            return GameSumary.good
         case 1000..<5000:
             return GameSumary.good
         default:

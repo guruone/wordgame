@@ -21,9 +21,10 @@ class Score {
     }
     
     init() {
-        checkLeaderBoardScore()
+//        checkLeaderBoardScore()
     }
     
+    // TODO: ma povodne dorovnavat score podla leader bordu ale nefunguje, pochopitelne
     private func checkLeaderBoardScore() {
         let leaderBoardRequest = GKLeaderboard(players: [GKLocalPlayer.localPlayer()])
         leaderBoardRequest.identifier = LEADER_BOARD_IDENTIFIER
