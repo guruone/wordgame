@@ -88,4 +88,8 @@ class CSVToCoreData {
         let checkFetchResult = try! managedObjectContext.fetch(fetchRequest)
         print("naimportovanych Points: ", checkFetchResult.count)
     }
+    
+    deinit {
+        print(#function, self)
+    }
 }

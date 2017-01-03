@@ -10,12 +10,12 @@ import UIKit
 import GameKit
 import GoogleMobileAds
 
-class MenuViewController: UIViewController {
+class MenuViewController: BaseViewController {
     
     fileprivate var isViewDecorated = false
     
-    fileprivate let rewardAd = RewardAd()
-    fileprivate let interstitialAd = VideoInterstitialAd()
+    fileprivate let rewardAd = AdsContainer.shared.rewardAd
+    fileprivate let interstitialAd = AdsContainer.shared.videoInterstitialAd
     fileprivate var presentInterstitialAd = false
     
     fileprivate lazy var viewMask: CALayer = {
@@ -38,7 +38,7 @@ class MenuViewController: UIViewController {
         return Score()
     }()
     
-    fileprivate let bonus = BonusPoints.shared
+    fileprivate let bonus = BonusPoints()
     
     @IBOutlet weak var leaderBoardButton: UIButton!
     @IBOutlet weak var singlePlayerButton: UIButton!
@@ -86,10 +86,19 @@ extension MenuViewController {
         view.extSetLetterBlueBackground()
 
         bonusNextGameLabelTemplate = bonusNextGameLabel.text!
-        watchVideoToBonusButton.isEnabled = false
+        
+        if rewardAd.ad.isReady {
+            rewardAd(isReady: rewardAd.ad)
+            
+        } else {
+            rewardAd(isLoading: rewardAd.ad)
+        }
         rewardAd.delegate = self
         
+        
         interstitialAd.delegate = self
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(playerAuthentificated), name: PlayerAuthentificator.authentificatedNotificationName, object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -109,6 +118,13 @@ extension MenuViewController {
             view.extRemoveWithAnimation(layer: viewMask)
         }
         
+        if PlayerAuthentificator.shared.isAuthenticated() {
+            playerAuthentificated()
+            
+        } else {
+            playerUnauthetificated()
+        }
+        
         if presentInterstitialAd {
             interstitialAd.ad.present(fromRootViewController: self)
         }
@@ -122,19 +138,16 @@ extension MenuViewController {
     }
 }
 
-
-// MARK: MatchMakerDelegate
-extension MenuViewController: MatchMakerDelegate {
+fileprivate extension MenuViewController {
     
-    func started(match: GKMatch, with oponent: GKPlayer) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: String(describing: MultiPlayerViewController.self)) as! MultiPlayerViewController
-        vc.gkmatch = match
-        vc.gkoponent = oponent
-        present(vc, animated: true, completion: nil)
+    @objc func playerAuthentificated() {
+        leaderBoardButton.isEnabled = true
+        multiPlayerButton.isEnabled = true
     }
     
-    func ended(with error: Error?) {
-        print(error!.localizedDescription)
+    func playerUnauthetificated() {
+        leaderBoardButton.isEnabled = false
+        multiPlayerButton.isEnabled = false
     }
 }
 

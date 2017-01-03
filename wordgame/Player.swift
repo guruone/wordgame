@@ -20,6 +20,10 @@ class Score {
         let highScore = userDefaults.integer(forKey: kHighScore) + score
         userDefaults.set(highScore, forKey: kHighScore)
         
+        guard !PlayerAuthentificator.shared.isAuthenticated() else {
+            return
+        }
+        
         let gkscore = GKScore(leaderboardIdentifier: LEADER_BOARD_IDENTIFIER)
         gkscore.value = Int64(highScore)
         
@@ -41,11 +45,13 @@ class Score {
         
         return gkVC
     }
+    
+    deinit {
+        print(#function, self)
+    }
 }
 
 class BonusPoints {
-    
-    static let shared = BonusPoints()
     
     private let userDefaults = UserDefaults.standard
     private let kBonus = "BONUS"
@@ -72,7 +78,9 @@ class BonusPoints {
         }
     }
     
-    private init() {}
+    init() {
+        print(#function, self)
+    }
     
     var currBonusInPerc: Int {
         return Int(round((self.currBonus - 1 ) * 100.0))
@@ -97,5 +105,9 @@ class BonusPoints {
     
     func clearBonus() {
         currBonus = 1
+    }
+    
+    deinit {
+        print(#function, self)
     }
 }

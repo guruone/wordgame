@@ -12,6 +12,8 @@
 		20113FA21DFEB20D003E045A /* ChooseWordCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20113FA11DFEB20D003E045A /* ChooseWordCategoryViewController.swift */; };
 		20113FA41DFFD9EF003E045A /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20113FA31DFFD9EF003E045A /* Player.swift */; };
 		2048C60D1E02D8D6009758A5 /* points.csv in Resources */ = {isa = PBXBuildFile; fileRef = 2048C60C1E02D8D6009758A5 /* points.csv */; };
+		204A51AB1E13CEF900FBCA31 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204A51AA1E13CEF900FBCA31 /* BaseViewController.swift */; };
+		207404B71E166C8600BCD938 /* ViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207404B61E166C8600BCD938 /* ViewController+.swift */; };
 		2076449E1E0A9F7F00D3742F /* FirebaseAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 207644981E0A9F7F00D3742F /* FirebaseAnalytics.framework */; };
 		2076449F1E0A9F7F00D3742F /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 207644991E0A9F7F00D3742F /* FirebaseCore.framework */; };
 		207644A01E0A9F7F00D3742F /* FirebaseInstanceID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2076449A1E0A9F7F00D3742F /* FirebaseInstanceID.framework */; };
@@ -62,6 +64,8 @@
 		20113FA11DFEB20D003E045A /* ChooseWordCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseWordCategoryViewController.swift; sourceTree = "<group>"; };
 		20113FA31DFFD9EF003E045A /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		2048C60C1E02D8D6009758A5 /* points.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = points.csv; sourceTree = "<group>"; };
+		204A51AA1E13CEF900FBCA31 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		207404B61E166C8600BCD938 /* ViewController+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ViewController+.swift"; sourceTree = "<group>"; };
 		207644981E0A9F7F00D3742F /* FirebaseAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseAnalytics.framework; sourceTree = "<group>"; };
 		207644991E0A9F7F00D3742F /* FirebaseCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseCore.framework; sourceTree = "<group>"; };
 		2076449A1E0A9F7F00D3742F /* FirebaseInstanceID.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseInstanceID.framework; sourceTree = "<group>"; };
@@ -242,13 +246,15 @@
 				20C007821DFDAB0A00772B50 /* PlayerAuthentificator.swift */,
 				20C007671DFAC93100772B50 /* AppDelegate.swift */,
 				20113FA11DFEB20D003E045A /* ChooseWordCategoryViewController.swift */,
-				207E316D1DFDC63C00453EF6 /* UIView+.swift */,
 				20113F991DFE98E9003E045A /* Words.swift */,
 				2077D14D1E07F703000E8454 /* Ads.swift */,
 				2077D14F1E0810DD000E8454 /* GameSumaryViewController.swift */,
 				20F8229C1E0D121800B98E64 /* WelcomeViewController.swift */,
+				204A51AA1E13CEF900FBCA31 /* BaseViewController.swift */,
 				20F8229E1E0D126B00B98E64 /* HowToMenuViewController.swift */,
 				20113F971DFE93BA003E045A /* CSVToCoreData.swift */,
+				207404B61E166C8600BCD938 /* ViewController+.swift */,
+				207E316D1DFDC63C00453EF6 /* UIView+.swift */,
 				20B923481E0BCA4200C207C7 /* wordgame-Bridging-Header.h */,
 				20C007711DFAC93100772B50 /* Assets.xcassets */,
 				20C007731DFAC93100772B50 /* LaunchScreen.storyboard */,
@@ -364,9 +370,11 @@
 			files = (
 				2077D14E1E07F703000E8454 /* Ads.swift in Sources */,
 				20F8229D1E0D121800B98E64 /* WelcomeViewController.swift in Sources */,
+				207404B71E166C8600BCD938 /* ViewController+.swift in Sources */,
 				2077D1501E0810DD000E8454 /* GameSumaryViewController.swift in Sources */,
 				20C007831DFDAB0A00772B50 /* PlayerAuthentificator.swift in Sources */,
 				20B923511E0BF8F200C207C7 /* GADMAdapterAppLovinRewardBasedVideoAd.m in Sources */,
+				204A51AB1E13CEF900FBCA31 /* BaseViewController.swift in Sources */,
 				20113F981DFE93BA003E045A /* CSVToCoreData.swift in Sources */,
 				20C007811DFDA4ED00772B50 /* MenuViewController.swift in Sources */,
 				20C007681DFAC93100772B50 /* AppDelegate.swift in Sources */,
