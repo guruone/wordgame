@@ -22,11 +22,12 @@ class BaseViewController: UIViewController {
     
     private var presentPlayerAuthVCNotification: NSObjectProtocol?
     private var playerAuthSuccessNotification: NSObjectProtocol?
+    private var playerDidInviteNotification: NSObjectProtocol?
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        presentPlayerAuthVCNotification = NotificationCenter.default.addObserver(forName: PlayerAuthentificator.presentVCNotificationName, object: nil, queue: OperationQueue.main) { [unowned self] (notification: Notification) in
+        presentPlayerAuthVCNotification = NotificationCenter.default.addObserver(forName: PlayerAuthentificator.presentVCNotificationName, object: nil, queue: .main) { [unowned self] (notification: Notification) in
             #if DEBUG
                 print("presentPlayerAuthVCNotification", self)
             #endif
@@ -46,9 +47,17 @@ class BaseViewController: UIViewController {
                 
                 self.matchInviteListenerDidRegister = true
                 player.unregisterAllListeners()
-                self.matchInviteListener.delegate = self
                 player.register(self.matchInviteListener)
             }
+        })
+        
+        playerDidInviteNotification = NotificationCenter.default.addObserver(forName: MatchInviteListener.playerDidAcceptInviteNotificationName, object: nil, queue: .main, using: { [unowned self] (notification: Notification) in
+            #if DEBUG
+                print("playerDidInviteNotification")
+            #endif
+            let invite = notification.userInfo!["invite"] as! GKInvite
+            let vc = self.multiPlayerMatchMaker.createViewController(forInvite: invite)
+            self.present(vc, animated: true, completion: nil)
         })
     }
     
@@ -61,6 +70,9 @@ class BaseViewController: UIViewController {
         if playerAuthSuccessNotification != nil {
             NotificationCenter.default.removeObserver(playerAuthSuccessNotification!)
         }
+        if playerDidInviteNotification != nil {
+            NotificationCenter.default.removeObserver(playerDidInviteNotification!)
+        }
     }
     
     deinit {
@@ -70,24 +82,16 @@ class BaseViewController: UIViewController {
     }
 }
 
-// MARK: MatchInviteDelegate
-extension BaseViewController: MatchInviteDelegate {
-    
-    func matchDidInvite(_ invite: GKInvite) {
-        let vc = multiPlayerMatchMaker.createViewController(forInvite: invite)
-        present(vc, animated: true, completion: nil)
-    }
-}
-
 // MARK: MatchMakerDelegate
 extension BaseViewController: MatchMakerDelegate {
     
     func started(match: GKMatch, with oponent: GKPlayer) {
-        dismiss(animated: true, completion: nil) // dismiss matchmakerVC
-        let vc = storyboard?.instantiateViewController(withIdentifier: String(describing: MultiPlayerViewController.self)) as! MultiPlayerViewController
-        vc.gkmatch = match
-        vc.gkoponent = oponent
-        present(vc, animated: true, completion: nil)
+        dismiss(animated: true, completion: {
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: String(describing: MultiPlayerViewController.self)) as! MultiPlayerViewController
+            vc.gkmatch = match
+            vc.gkoponent = oponent
+            self.present(vc, animated: true, completion: nil)
+        })
     }
     
     func ended(with error: Error?) {

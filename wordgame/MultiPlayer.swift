@@ -12,30 +12,19 @@ import CoreData
 
 // MARK: MATCHMAKER
 
-protocol MatchInviteDelegate: class {
-    /// pri notifikacii volam MatchMaker:createViewController:forInvite
-    func matchDidInvite(_ invite: GKInvite)
-}
 
 class MatchInviteListener: NSObject, GKLocalPlayerListener {
     
-    static let shared = MatchInviteListener()
+    static let playerDidAcceptInviteNotificationName = Notification.Name("playerDidAcceptInviteNotificationName")
     
-    weak var delegate: MatchInviteDelegate?
+    static let shared = MatchInviteListener()
     
     func player(_ player: GKPlayer, didAccept invite: GKInvite) {
         #if DEBUG
             print("player:didAccept:invite")
         #endif
-        delegate?.matchDidInvite(invite)
+        NotificationCenter.default.post(name: MatchInviteListener.playerDidAcceptInviteNotificationName, object: nil, userInfo: ["invite" : invite])
     }
-    
-    #if DEBUG
-    private override init() {
-        super.init()
-        print(#function, self)
-    }
-    #endif
     
     #if DEBUG
     deinit {
