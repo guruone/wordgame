@@ -21,8 +21,6 @@ enum GameState {
 
 class MultiPlayerViewController: UIViewController, GameViewController, UITextFieldDelegate {
     
-    weak var presentedDelegate: PresentedDelegate?
-    
     let MAX_TIME_FOR_WORD = 1
     
     fileprivate var isViewDecorated = false
@@ -150,7 +148,7 @@ class MultiPlayerViewController: UIViewController, GameViewController, UITextFie
         bonus.clearBonus()
         timer?.invalidate()
         self.gkmatch?.disconnect()
-        presentedDelegate?.dismissMe(self)
+        self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
     // MARK: GameViewController
@@ -437,7 +435,7 @@ extension MultiPlayerViewController {
             self.bonus.clearBonus()
             let alertVC = UIAlertController(title: "🐢 Ooops, you lose this game 🐢", message: nil, preferredStyle: .actionSheet)
             alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (_) in
-                self.presentedDelegate?.dismissMe(self)
+                self.presentingViewController?.dismiss(animated: true, completion: nil)
             }))
             self.present(alertVC, animated: true, completion: nil)
         }
@@ -449,7 +447,6 @@ extension MultiPlayerViewController {
             self.bonus.clearBonus()
             
             let vc = self.storyboard?.instantiateViewController(withIdentifier: String(describing: GameSumaryViewController.self)) as! GameSumaryViewController
-            vc.presentedDelegate = self
             vc.earnedPoints = yourPoints
             self.present(vc, animated: true, completion: nil)
         }
@@ -462,7 +459,6 @@ extension MultiPlayerViewController {
             let alertVC = UIAlertController(title: "Opponent left the game", message: "congratulation, you win all points", preferredStyle: .actionSheet)
             alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (_) in
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: String(describing: GameSumaryViewController.self)) as! GameSumaryViewController
-                vc.presentedDelegate = self
                 vc.earnedPoints = yourPoints
                 self.present(vc, animated: true, completion: nil)
             }))
@@ -475,16 +471,5 @@ extension MultiPlayerViewController {
     
     fileprivate func setRandomWordFromSelectedCategory() {
         oponentWord = wordRepo.findRandomOne(for: selectedCategory!).value(forKey: "name") as? String
-    }
-}
-
-extension MultiPlayerViewController: PresentedDelegate {
-    func dismissMe(_ viewController: UIViewController) {
-        guard presentedViewController != nil && presentedViewController!.presentingViewController == self else {
-            fatalError()
-        }
-        dismiss(animated: true, completion: {
-            self.presentedDelegate?.dismissMe(self)
-        })
     }
 }

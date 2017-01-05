@@ -85,7 +85,6 @@ extension BaseViewController: MatchMakerDelegate {
     func started(match: GKMatch, with oponent: GKPlayer) {
         dismiss(animated: true, completion: nil) // dismiss matchmakerVC
         let vc = storyboard?.instantiateViewController(withIdentifier: String(describing: MultiPlayerViewController.self)) as! MultiPlayerViewController
-        vc.presentedDelegate = self
         vc.gkmatch = match
         vc.gkoponent = oponent
         present(vc, animated: true, completion: nil)
@@ -96,17 +95,6 @@ extension BaseViewController: MatchMakerDelegate {
             print("MatchMakerDelegate.ended", self)
             print(error!.localizedDescription)
         #endif
-        dismiss(animated: true, completion: nil)
-    }
-}
-
-// MARK: PresentedDelegate
-extension BaseViewController: PresentedDelegate {
-    
-    func dismissMe(_ viewController: UIViewController) {
-        guard presentedViewController != nil && presentedViewController!.presentingViewController == self else {
-            fatalError()
-        }
         dismiss(animated: true, completion: nil)
     }
 }

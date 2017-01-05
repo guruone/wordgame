@@ -10,8 +10,6 @@ import UIKit
 
 class GameSumaryViewController: BaseViewController {
     
-    weak var presentedDelegate: PresentedDelegate?
-    
     private enum GameSumary {
         case poor, good, excellent
         
@@ -63,10 +61,6 @@ class GameSumaryViewController: BaseViewController {
         mask.zPosition = CGFloat.greatestFiniteMagnitude
         return mask
     }()
-    
-    @IBAction func onDismissClick() {
-        presentedDelegate?.dismissMe(self)
-    }
     
     @IBOutlet weak var messageLabel: UILabel!
     
