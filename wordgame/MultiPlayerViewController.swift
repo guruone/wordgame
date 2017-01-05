@@ -16,11 +16,14 @@ protocol GameViewController {
 enum GameState {
     case waitingToPlayerValue, waitingToWordCategory // game settings
     case waitingToOponentWord // in the game
+    case gameOver
 }
 
-class MultiPlayerViewController: BaseViewController, GameViewController, UITextFieldDelegate {
+class MultiPlayerViewController: UIViewController, GameViewController, UITextFieldDelegate {
     
-    let MAX_TIME_FOR_WORD = 10
+    weak var presentedDelegate: PresentedDelegate?
+    
+    let MAX_TIME_FOR_WORD = 1
     
     fileprivate var isViewDecorated = false
     
@@ -146,10 +149,8 @@ class MultiPlayerViewController: BaseViewController, GameViewController, UITextF
     @IBAction func onDismissClick() {
         bonus.clearBonus()
         timer?.invalidate()
-        dismiss(animated: true, completion: {
-            // TODO: MATCH DISAPEAR/DISCONNECT
-            self.gkmatch?.disconnect()
-        })
+        self.gkmatch?.disconnect()
+        presentedDelegate?.dismissMe(self)
     }
     
     // MARK: GameViewController
@@ -217,6 +218,10 @@ extension MultiPlayerViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        guard gameState != .gameOver else {
+            return
+        }
         
         if !isViewDecorated {
             isViewDecorated = true
@@ -427,37 +432,39 @@ extension MultiPlayerViewController {
     }
     
     func presentLoose() {
+        gameState = .gameOver
         tryDismissAlertAndPresent {
             self.bonus.clearBonus()
             let alertVC = UIAlertController(title: "🐢 Ooops, you lose this game 🐢", message: nil, preferredStyle: .actionSheet)
             alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (_) in
-                self.presentingViewController?.dismiss(animated: true, completion: nil)
+                self.presentedDelegate?.dismissMe(self)
             }))
             self.present(alertVC, animated: true, completion: nil)
         }
     }
     
     func presentWin(yourPoints: Int, oponentPoints: Int) {
+        gameState = .gameOver
         tryDismissAlertAndPresent {
             self.bonus.clearBonus()
-            //TODO: presmerovat na GameSumaryVC
             
-            let alertVC = UIAlertController(title: "Vyhral si \(yourPoints + oponentPoints) bodov", message: "na tvoje konto bolo pripocitanych \(yourPoints) + \(oponentPoints) oponentovych bodov", preferredStyle: .actionSheet)
-            alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (_) in
-                self.presentingViewController?.dismiss(animated: true, completion: nil)
-                
-            }))
-            self.present(alertVC, animated: true, completion: nil)
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: String(describing: GameSumaryViewController.self)) as! GameSumaryViewController
+            vc.presentedDelegate = self
+            vc.earnedPoints = yourPoints
+            self.present(vc, animated: true, completion: nil)
         }
     }
     
     func presentGameOver(yourPoints: Int, oponentPoints: Int) {
+        gameState = .gameOver
         tryDismissAlertAndPresent {
             self.bonus.clearBonus()
             let alertVC = UIAlertController(title: "Opponent left the game", message: "congratulation, you win all points", preferredStyle: .actionSheet)
             alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (_) in
-                self.presentingViewController?.dismiss(animated: true, completion: nil)
-                //TODO: presmerovat na GameSumaryVC
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: String(describing: GameSumaryViewController.self)) as! GameSumaryViewController
+                vc.presentedDelegate = self
+                vc.earnedPoints = yourPoints
+                self.present(vc, animated: true, completion: nil)
             }))
             self.present(alertVC, animated: true, completion: nil)
         }
@@ -468,5 +475,16 @@ extension MultiPlayerViewController {
     
     fileprivate func setRandomWordFromSelectedCategory() {
         oponentWord = wordRepo.findRandomOne(for: selectedCategory!).value(forKey: "name") as? String
+    }
+}
+
+extension MultiPlayerViewController: PresentedDelegate {
+    func dismissMe(_ viewController: UIViewController) {
+        guard presentedViewController != nil && presentedViewController!.presentingViewController == self else {
+            fatalError()
+        }
+        dismiss(animated: true, completion: {
+            self.presentedDelegate?.dismissMe(self)
+        })
     }
 }

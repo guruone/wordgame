@@ -104,19 +104,11 @@
                                                             <constraint firstAttribute="width" constant="40" id="ooC-6V-elB"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mkn-6d-naV">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mkn-6d-naV">
                                                         <rect key="frame" x="46" y="0.0" width="237" height="40"/>
                                                         <color key="backgroundColor" red="0.96862745100000003" green="0.72941176470000002" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <state key="normal">
-                                                            <attributedString key="attributedTitle">
-                                                                <fragment content="GAME INSTRUCTIONS">
-                                                                    <attributes>
-                                                                        <font key="NSFont" metaFont="system" size="15"/>
-                                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                                    </attributes>
-                                                                </fragment>
-                                                            </attributedString>
-                                                        </state>
+                                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                                        <state key="normal" title="GAME INSTRUCTIONS"/>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -142,19 +134,11 @@
                                                             <constraint firstAttribute="height" constant="40" id="uA5-9K-xW7"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oOM-1o-Sm8">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oOM-1o-Sm8">
                                                         <rect key="frame" x="46" y="0.0" width="237" height="40"/>
                                                         <color key="backgroundColor" red="0.96862745100000003" green="0.72941176470000002" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <state key="normal">
-                                                            <attributedString key="attributedTitle">
-                                                                <fragment content="SKIP AND CONTINUE">
-                                                                    <attributes>
-                                                                        <font key="NSFont" metaFont="system" size="15"/>
-                                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                                    </attributes>
-                                                                </fragment>
-                                                            </attributedString>
-                                                        </state>
+                                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                                        <state key="normal" title="SKIP AND CONTINUE"/>
                                                         <connections>
                                                             <segue destination="9mS-2D-omL" kind="presentation" id="663-Xd-0Gk"/>
                                                         </connections>
@@ -945,7 +929,7 @@
                                 </constraints>
                                 <state key="normal" backgroundImage="close"/>
                                 <connections>
-                                    <segue destination="wwG-Fs-im0" kind="unwind" unwindAction="unwindToMenuVCWithAdWithSegue:" id="N4K-RW-wCE"/>
+                                    <action selector="onDismissClick" destination="gO0-Bp-tMI" eventType="touchUpInside" id="6pq-JP-frj"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q0T-KZ-5CD">
@@ -980,7 +964,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0G9-Gj-5Rd" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="wwG-Fs-im0" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2008.8" y="-349.47526236881561"/>
         </scene>

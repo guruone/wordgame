@@ -10,6 +10,8 @@ import UIKit
 
 class GameSumaryViewController: BaseViewController {
     
+    weak var presentedDelegate: PresentedDelegate?
+    
     private enum GameSumary {
         case poor, good, excellent
         
@@ -46,9 +48,7 @@ class GameSumaryViewController: BaseViewController {
             }
         }
     }
-    
-    /// from segue
-    var category: WordCategory?
+
     /// from segue
     var earnedPoints: Int?
     
@@ -63,6 +63,10 @@ class GameSumaryViewController: BaseViewController {
         mask.zPosition = CGFloat.greatestFiniteMagnitude
         return mask
     }()
+    
+    @IBAction func onDismissClick() {
+        presentedDelegate?.dismissMe(self)
+    }
     
     @IBOutlet weak var messageLabel: UILabel!
     
@@ -93,9 +97,6 @@ class GameSumaryViewController: BaseViewController {
         guard earnedPoints != nil else {
             fatalError()
         }
-        guard category != nil else {
-            fatalError()
-        }
         
         let gameSumary = resolveGameSumary()
         
@@ -120,7 +121,7 @@ class GameSumaryViewController: BaseViewController {
     private func resolveGameSumary() -> GameSumary {
         switch self.earnedPoints! {
         case 0..<1000:
-            return GameSumary.good
+            return GameSumary.poor
         case 1000..<5000:
             return GameSumary.good
         default:

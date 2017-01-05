@@ -20,18 +20,18 @@ class BaseViewController: UIViewController {
         return maker
     }()
     
-    var presentPlayerAuthVCNotification: NSObjectProtocol?
-    var playerAuthSuccessNotification: NSObjectProtocol?
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    private var presentPlayerAuthVCNotification: NSObjectProtocol?
+    private var playerAuthSuccessNotification: NSObjectProtocol?
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         presentPlayerAuthVCNotification = NotificationCenter.default.addObserver(forName: PlayerAuthentificator.presentVCNotificationName, object: nil, queue: OperationQueue.main) { [unowned self] (notification: Notification) in
             #if DEBUG
                 print("presentPlayerAuthVCNotification", self)
             #endif
             if let authPlayer = notification.object as? PlayerAuthentificator, let authVC = authPlayer.authentificationViewController {
-                self.presentOnTopView(viewController: authVC)
+                self.present(authVC, animated: true, completion: nil)
             }
         }
         
@@ -52,14 +52,9 @@ class BaseViewController: UIViewController {
         })
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    
-    deinit {
-        #if DEBUG
-            print(#function, self)
-        #endif
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
         if presentPlayerAuthVCNotification != nil {
             NotificationCenter.default.removeObserver(presentPlayerAuthVCNotification!)
         }
@@ -67,21 +62,11 @@ class BaseViewController: UIViewController {
             NotificationCenter.default.removeObserver(playerAuthSuccessNotification!)
         }
     }
-}
-
-fileprivate extension BaseViewController {
     
-    func presentOnTopView(viewController: UIViewController) {
-        let topVC = UIApplication.shared.keyWindow?.rootViewController
-        
-        if topVC?.presentedViewController != nil {
-            topVC?.dismiss(animated: false, completion: {
-                topVC?.present(viewController, animated: true)
-            })
-            
-        } else {
-            topVC?.present(viewController, animated: true)
-        }
+    deinit {
+        #if DEBUG
+            print(#function, self)
+        #endif
     }
 }
 
@@ -90,7 +75,7 @@ extension BaseViewController: MatchInviteDelegate {
     
     func matchDidInvite(_ invite: GKInvite) {
         let vc = multiPlayerMatchMaker.createViewController(forInvite: invite)
-        presentOnTopView(viewController: vc)
+        present(vc, animated: true, completion: nil)
     }
 }
 
@@ -98,18 +83,31 @@ extension BaseViewController: MatchInviteDelegate {
 extension BaseViewController: MatchMakerDelegate {
     
     func started(match: GKMatch, with oponent: GKPlayer) {
+        dismiss(animated: true, completion: nil) // dismiss matchmakerVC
         let vc = storyboard?.instantiateViewController(withIdentifier: String(describing: MultiPlayerViewController.self)) as! MultiPlayerViewController
+        vc.presentedDelegate = self
         vc.gkmatch = match
         vc.gkoponent = oponent
-        presentOnTopView(viewController: vc)
+        present(vc, animated: true, completion: nil)
     }
     
     func ended(with error: Error?) {
         #if DEBUG
             print("MatchMakerDelegate.ended", self)
+            print(error!.localizedDescription)
         #endif
         dismiss(animated: true, completion: nil)
-        print(error!.localizedDescription)
+    }
+}
+
+// MARK: PresentedDelegate
+extension BaseViewController: PresentedDelegate {
+    
+    func dismissMe(_ viewController: UIViewController) {
+        guard presentedViewController != nil && presentedViewController!.presentingViewController == self else {
+            fatalError()
+        }
+        dismiss(animated: true, completion: nil)
     }
 }
 

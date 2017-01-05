@@ -10,6 +10,10 @@ import UIKit
 import GameKit
 import GoogleMobileAds
 
+protocol PresentedDelegate: class {
+    func dismissMe(_ viewController: UIViewController)
+}
+
 class MenuViewController: BaseViewController {
     
     fileprivate var isViewDecorated = false
@@ -59,8 +63,10 @@ class MenuViewController: BaseViewController {
     }
     
     @IBAction func onSinglePlayerClick() {
-        let vc = storyboard?.instantiateViewController(withIdentifier: String(describing: SinglePlayerViewController.self))
-        present(vc!, animated: true, completion: nil)
+        let vc = storyboard?.instantiateViewController(withIdentifier: String(describing: SinglePlayerViewController.self)) as! SinglePlayerViewController
+        
+        vc.presentedDelegate = self
+        present(vc, animated: true, completion: nil)
     }
     
     @IBAction func onMultiPlayerClick() {
@@ -200,5 +206,6 @@ extension MenuViewController: InterstitialAdDelegate {
     func addWillLeaveApplication() {
         
     }
-    
 }
+
+
