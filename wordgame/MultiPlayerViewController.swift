@@ -60,7 +60,8 @@ class MultiPlayerViewController: UIViewController, GameViewController, UITextFie
     
     fileprivate var selectedCategory: WordCategory? {
         didSet {
-            categoryLabel.text = "CATEGORY: \(selectedCategory!.rawValue)"
+            let category = selectedCategory!.rawValue.uppercased()
+            categoryLabel.text = "category: \(category)"
         }
     }
     

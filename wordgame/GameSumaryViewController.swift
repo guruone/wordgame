@@ -72,6 +72,8 @@ class GameSumaryViewController: BaseViewController {
 
     @IBOutlet weak var categoryImageView: UIImageView!
     
+    @IBOutlet weak var praiseView: UIView!
+    
     @IBAction func onDismissClick() {
         presentingVC?.dismissPresentedVC()
     }
@@ -112,7 +114,9 @@ class GameSumaryViewController: BaseViewController {
         
         if !isViewDecorated {
             isViewDecorated = true
+            categoryImageView.layer.zPosition = -1
             view.extAddVerticalLinesFromTop(to: earnedPointsView, offsetFromEdges: 30)
+            view.extAddVerticalLinesFromTop(to: praiseView, offsetFromEdges: 3)
             
             view.extRemoveWithAnimation(layer: viewMask)
         }
