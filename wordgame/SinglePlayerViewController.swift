@@ -155,7 +155,8 @@ class SinglePlayerViewController: UIViewController, GameViewController {
     
     fileprivate func gameOver() {
         bonus.clearBonus()
-        gkscore.report(score: score!)
+        gkscore.report(score: score!, to: Score.Leaderboard.singleplayer)
+        gkscore.report(score: score!, to: Score.Leaderboard.overall)
         presentGameOver(yourPoints: score!)
     }
     

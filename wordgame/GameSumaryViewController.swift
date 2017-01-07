@@ -82,7 +82,7 @@ class GameSumaryViewController: BaseViewController {
         
         let gameSumary = resolveGameSumary()
         
-        let text = "Wow, I already ended game with \(earnedPoints!) points. My total score is \(Score().highScore) points.\nWill you better than me?\n"
+        let text = "Wow, I already ended game with \(earnedPoints!) points. My total score is \(Score().highScore(for: Score.Leaderboard.overall)) points.\nWill you better than me?\n"
         let image = gameSumary.image()
         let url = URL(string: "https://itunes.apple.com/us/app/myapp/id1185310030?ls=1&mt=8")!
         

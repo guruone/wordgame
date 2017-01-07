@@ -9,52 +9,68 @@
 import UIKit
 import GameKit
 
-fileprivate let LEADER_BOARD_IDENTIFIER = "test"
+fileprivate let LEADER_BOARD_OVERAL_IDENTIFIER = "wordgame_overal"
+fileprivate let LEADER_BOARD_SINGLEPLAYER_IDENTIFIER = "wordgame_single_player"
+fileprivate let LEADER_BOARD_MULTIPLAYER_IDENTIFIER = "wordgame_multi_player"
 
 class Score {
     
     private let userDefaults = UserDefaults.standard
-    private let kHighScore = "high_score"
     
-    var highScore: Int {
-        return userDefaults.integer(forKey: kHighScore)
+    func highScore(for leaderboard: Leaderboard) -> Int {
+        return userDefaults.integer(forKey: leaderboard.describe())
     }
     
-    init() {
-//        checkLeaderBoardScore()
-    }
+//    init() {
+////        checkLeaderBoardScore()
+//    }
+//    
+//    // TODO: ma povodne dorovnavat score podla leader bordu ale nefunguje, pochopitelne
+//    private func checkLeaderBoardScore() {
+//        let leaderBoardRequest = GKLeaderboard(players: [GKLocalPlayer.localPlayer()])
+//        leaderBoardRequest.identifier = LEADER_BOARD_IDENTIFIER
+//        leaderBoardRequest.loadScores { (_, error: Error?) in
+//            guard error == nil else {
+//                #if DEBUG
+//                    print(#function, error!.localizedDescription)
+//                #endif
+//                return
+//            }
+//                
+//            if let leaderBoardLocalPlayerScore = leaderBoardRequest.localPlayerScore {
+//                let leaderBoardScore = Int(leaderBoardLocalPlayerScore.value)
+//                
+//                if self.highScore != leaderBoardScore {
+//                    self.report(score: self.highScore + leaderBoardScore)
+//                }
+//            }
+//        }
+//    }
     
-    // TODO: ma povodne dorovnavat score podla leader bordu ale nefunguje, pochopitelne
-    private func checkLeaderBoardScore() {
-        let leaderBoardRequest = GKLeaderboard(players: [GKLocalPlayer.localPlayer()])
-        leaderBoardRequest.identifier = LEADER_BOARD_IDENTIFIER
-        leaderBoardRequest.loadScores { (_, error: Error?) in
-            guard error == nil else {
-                #if DEBUG
-                    print(#function, error!.localizedDescription)
-                #endif
-                return
-            }
-                
-            if let leaderBoardLocalPlayerScore = leaderBoardRequest.localPlayerScore {
-                let leaderBoardScore = Int(leaderBoardLocalPlayerScore.value)
-                
-                if self.highScore != leaderBoardScore {
-                    self.report(score: self.highScore + leaderBoardScore)
-                }
+    enum Leaderboard {
+        case overall, singleplayer, multiplayer
+        
+        func describe() -> String {
+            switch self {
+            case .overall:
+                return LEADER_BOARD_OVERAL_IDENTIFIER
+            case .singleplayer:
+                return LEADER_BOARD_SINGLEPLAYER_IDENTIFIER
+            case .multiplayer:
+                return LEADER_BOARD_MULTIPLAYER_IDENTIFIER
             }
         }
     }
     
-    func report(score: Int) {
-        let highScore = self.highScore + score
-        userDefaults.set(highScore, forKey: kHighScore)
+    func report(score: Int, to leaderboard: Leaderboard) {
+        let highScore = self.highScore(for: leaderboard) + score
+        userDefaults.set(highScore, forKey: leaderboard.describe())
         
         guard PlayerAuthentificator.shared.isAuthenticated() else {
             return
         }
         
-        let gkscore = GKScore(leaderboardIdentifier: LEADER_BOARD_IDENTIFIER)
+        let gkscore = GKScore(leaderboardIdentifier: leaderboard.describe())
         gkscore.value = Int64(highScore)
         
         GKScore.report([gkscore], withCompletionHandler: { (error: Error?) in
@@ -63,7 +79,7 @@ class Score {
                 print(error!.localizedDescription)
                 
             } else {
-                print("score reported: \(gkscore.value)" )
+                print("score reported: \(gkscore.value) for \(leaderboard.describe())" )
             }
             #endif
         })
@@ -73,7 +89,7 @@ class Score {
         let gkVC = GKGameCenterViewController()
         gkVC.gameCenterDelegate = delegate
         gkVC.viewState = .leaderboards
-        gkVC.leaderboardIdentifier = LEADER_BOARD_IDENTIFIER
+        gkVC.leaderboardIdentifier = Leaderboard.overall.describe()
         
         return gkVC
     }

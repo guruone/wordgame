@@ -265,7 +265,8 @@ extension MultiPlayerViewController: MatchDelegate {
         timer?.invalidate()
         DispatchQueue.main.async {
             let totalScore = self.oponentScore! + self.score!
-            self.gkScore.report(score: totalScore)
+            self.gkScore.report(score: totalScore, to: Score.Leaderboard.multiplayer)
+            self.gkScore.report(score: totalScore, to: Score.Leaderboard.overall)
             
             self.presentGameOver(yourPoints: self.score!, oponentPoints: self.oponentScore!)
         }
@@ -358,7 +359,8 @@ extension MultiPlayerViewController: MatchDelegate {
     
     func received(gameOverWithOponentPoints points: Int) {
         let totalScore = points + score!
-        gkScore.report(score: totalScore)
+        gkScore.report(score: totalScore, to: Score.Leaderboard.multiplayer)
+        gkScore.report(score: totalScore, to: Score.Leaderboard.overall)
         
         match.cancelFromUser()
         presentWin(yourPoints: score!, oponentPoints: points)
