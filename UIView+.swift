@@ -68,7 +68,7 @@ extension UIView {
                     break
                     
                 case .right(let width):
-                    border.frame = CGRect(x: frame.width,
+                    border.frame = CGRect(x: frame.width - width,
                                           y: 0,
                                           width: width,
                                           height: frame.height)
@@ -83,7 +83,7 @@ extension UIView {
                     
                 case .bottom(let width):
                     border.frame = CGRect(x: 0,
-                                          y: frame.height,
+                                          y: frame.height - width,
                                           width: frame.width,
                                           height: width)
                     

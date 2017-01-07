@@ -99,7 +99,7 @@ class SinglePlayerViewController: UIViewController, GameViewController {
             pointForCurrentWordLabel.text = "\(pointsForCurrentWord!)"
             
             let bonusInPerc = bonus.currBonusInPerc
-            bonusLabel.text = "BONUS \(bonusInPerc)%"
+            bonusLabel.text = "+\(bonusInPerc)%"
             
             let wordsToNextBonus = bonus.nextBonusStepRemaining
             let nextBonusInPerc = bonus.nextBonusInPerc
@@ -206,13 +206,14 @@ extension SinglePlayerViewController {
             view.extAddVerticalLinesFromTop(to: categoryAndBonusView, offsetFromEdges: 20)
             scoreLabel.extAddBorder([.bottom(width: 1)])
             oponentWordLabel.extAddBorder([.bottom(width: 1)])
-            scoreAndTimeView.extAddBorder([.left(width: 5), .top(width: 5), .right(width: 5)])
-            wordView.extAddBorder([.all(width: 5)])
+            scoreAndTimeView.extAddBorder([.all(width: 5)])
+            view.extAddVerticalLinesFromTop(to: scoreAndTimeView, offsetFromEdges: 10)
+            wordView.extAddBorder([.left(width: 5), .right(width: 5), .bottom(width: 5), .top(width: 2.5)])
             
-            categoryAndBonusView.extAddBorder([.all(width: 5)])
-            categoryLabel.extAddBorder([.bottom(width: 1)])
-            bonusLabel.extAddBorder([.right(width: 0.5)])
-            bonusInfoLabel.extAddBorder([.left(width: 0.5)])
+            categoryAndBonusView.extAddBorder([.left(width: 5), .top(width: 5), .right(width: 5), .bottom(width: 2.5)])
+            
+            categoryLabel.extAddBorder([.right(width: 5)])
+            bonusLabel.extAddBorder([.right(width: 5)])
             
             pointForCurrentWordLabel.extAddBorder([.top(width: 5), .right(width: 5)])
             
