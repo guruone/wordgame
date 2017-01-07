@@ -90,6 +90,7 @@ extension BaseViewController: MatchMakerDelegate {
             let vc = self.storyboard?.instantiateViewController(withIdentifier: String(describing: MultiPlayerViewController.self)) as! MultiPlayerViewController
             vc.gkmatch = match
             vc.gkoponent = oponent
+            vc.presentingVC = self
             self.present(vc, animated: true, completion: nil)
         })
     }
@@ -99,6 +100,13 @@ extension BaseViewController: MatchMakerDelegate {
             print("MatchMakerDelegate.ended", self)
             print(error!.localizedDescription)
         #endif
+        dismiss(animated: true, completion: nil)
+    }
+}
+
+extension BaseViewController: PresentingViewController {
+    
+    func dismissPresentedVC() {
         dismiss(animated: true, completion: nil)
     }
 }

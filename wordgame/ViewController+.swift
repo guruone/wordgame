@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol PresentingViewController: class {
+    func dismissPresentedVC()
+}
+
 extension UIViewController {
 
     func tryDismissAlertAndPresent(completion: @escaping () -> Void) {

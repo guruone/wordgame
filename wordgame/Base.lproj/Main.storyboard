@@ -929,7 +929,7 @@
                                 </constraints>
                                 <state key="normal" backgroundImage="close"/>
                                 <connections>
-                                    <segue destination="adW-Mk-pJu" kind="unwind" unwindAction="unwindToMenuVCWithAdWithSegue:" id="MTg-FT-bOc"/>
+                                    <action selector="onDismissClick" destination="gO0-Bp-tMI" eventType="touchUpInside" id="ql5-cZ-LzH"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q0T-KZ-5CD">
@@ -964,7 +964,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0G9-Gj-5Rd" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="adW-Mk-pJu" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2008.8" y="-349.47526236881561"/>
         </scene>

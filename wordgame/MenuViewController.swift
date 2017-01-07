@@ -64,6 +64,7 @@ class MenuViewController: BaseViewController {
     
     @IBAction func onSinglePlayerClick() {
         let vc = storyboard?.instantiateViewController(withIdentifier: String(describing: SinglePlayerViewController.self)) as! SinglePlayerViewController
+        vc.presnetingVC = self
         present(vc, animated: true, completion: nil)
     }
     
@@ -205,5 +206,4 @@ extension MenuViewController: InterstitialAdDelegate {
         
     }
 }
-
 

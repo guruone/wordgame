@@ -21,7 +21,9 @@ enum GameState {
 
 class MultiPlayerViewController: UIViewController, GameViewController, UITextFieldDelegate {
     
-    let MAX_TIME_FOR_WORD = 1
+    let MAX_TIME_FOR_WORD = 10
+    
+    weak var presentingVC: PresentingViewController?
     
     fileprivate var isViewDecorated = false
     
@@ -448,6 +450,7 @@ extension MultiPlayerViewController {
             
             let vc = self.storyboard?.instantiateViewController(withIdentifier: String(describing: GameSumaryViewController.self)) as! GameSumaryViewController
             vc.earnedPoints = yourPoints
+            vc.presentingVC = self
             self.present(vc, animated: true, completion: nil)
         }
     }
@@ -460,6 +463,7 @@ extension MultiPlayerViewController {
             alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (_) in
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: String(describing: GameSumaryViewController.self)) as! GameSumaryViewController
                 vc.earnedPoints = yourPoints
+                vc.presentingVC = self
                 self.present(vc, animated: true, completion: nil)
             }))
             self.present(alertVC, animated: true, completion: nil)
@@ -471,5 +475,14 @@ extension MultiPlayerViewController {
     
     fileprivate func setRandomWordFromSelectedCategory() {
         oponentWord = wordRepo.findRandomOne(for: selectedCategory!).value(forKey: "name") as? String
+    }
+}
+
+extension MultiPlayerViewController: PresentingViewController {
+    
+    func dismissPresentedVC() {
+        dismiss(animated: false, completion: {
+            self.presentingVC?.dismissPresentedVC()
+        })
     }
 }

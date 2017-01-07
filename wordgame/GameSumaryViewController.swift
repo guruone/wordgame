@@ -9,6 +9,8 @@
 import UIKit
 
 class GameSumaryViewController: BaseViewController {
+
+    weak var presentingVC: PresentingViewController?
     
     private enum GameSumary {
         case poor, good, excellent
@@ -69,6 +71,10 @@ class GameSumaryViewController: BaseViewController {
     @IBOutlet weak var earnedPointsLabel: UILabel!
 
     @IBOutlet weak var categoryImageView: UIImageView!
+    
+    @IBAction func onDismissClick() {
+        presentingVC?.dismissPresentedVC()
+    }
     
     @IBAction func onShareClick() {
         

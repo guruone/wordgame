@@ -11,7 +11,9 @@ import GoogleMobileAds
 
 class SinglePlayerViewController: UIViewController, GameViewController {
     
-    let MAX_TIME_FOR_WORD = 1
+    let MAX_TIME_FOR_WORD = 10
+    
+    weak var presnetingVC: PresentingViewController?
     
     fileprivate var isViewDecorated = false
     
@@ -341,6 +343,7 @@ extension SinglePlayerViewController {
         func completion() {
             let vc = storyboard?.instantiateViewController(withIdentifier: String(describing: GameSumaryViewController.self)) as! GameSumaryViewController
             vc.earnedPoints = yourPoints
+            vc.presentingVC = self
             present(vc, animated: true, completion: nil)
         }
         
@@ -350,5 +353,14 @@ extension SinglePlayerViewController {
         } else {
             completion()
         }
+    }
+}
+
+extension SinglePlayerViewController: PresentingViewController {
+    
+    func dismissPresentedVC() {
+        dismiss(animated: false, completion: {
+            self.presnetingVC?.dismissPresentedVC()
+        })
     }
 }
