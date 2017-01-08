@@ -22,9 +22,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="Fbm-9x-avj">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="Fbm-9x-avj">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RKE-S8-wRi">
                                 <rect key="frame" x="24" y="314.5" width="327" height="38.5"/>
@@ -49,8 +48,12 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="RKE-S8-wRi" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="5Si-c0-v4V"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="Fbm-9x-avj" secondAttribute="bottom" id="9r1-Ps-dgA"/>
+                            <constraint firstAttribute="trailing" secondItem="Fbm-9x-avj" secondAttribute="trailing" id="BwT-Jj-6X7"/>
                             <constraint firstItem="RKE-S8-wRi" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="8" id="Cld-GY-uIm"/>
+                            <constraint firstItem="Fbm-9x-avj" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="Tgd-FF-8xa"/>
                             <constraint firstAttribute="trailingMargin" secondItem="RKE-S8-wRi" secondAttribute="trailing" constant="8" id="YSg-TN-EB0"/>
+                            <constraint firstItem="Fbm-9x-avj" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="ws3-iL-pd4"/>
                         </constraints>
                     </view>
                 </viewController>
