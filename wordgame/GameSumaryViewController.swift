@@ -88,6 +88,11 @@ class GameSumaryViewController: BaseViewController {
         
         let activityVC = UIActivityViewController(activityItems: [text, image, url], applicationActivities: nil)
         
+        
+        if let popoverVC = activityVC.popoverPresentationController {
+            popoverVC.sourceView = view
+        }
+        
         present(activityVC, animated: true, completion: nil)
     }
 

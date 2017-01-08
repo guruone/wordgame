@@ -387,6 +387,11 @@ extension MultiPlayerViewController {
     func presentGameInit(completion: @escaping () -> Void) {
         tryDismissAlertAndPresent {
             let vc = UIAlertController(title: "The game is initializing", message: "please wait ...", preferredStyle: .actionSheet)
+            
+            if let popoverVC = vc.popoverPresentationController {
+                popoverVC.sourceView = self.view
+            }
+            
             self.present(vc, animated: true, completion: completion)
         }
     }
@@ -394,6 +399,11 @@ extension MultiPlayerViewController {
     func presentWaitingForCategoryFromOponent() {
         tryDismissAlertAndPresent {
             let vc = UIAlertController(title: "Opponent is choosing category", message: "please wait ...", preferredStyle: .actionSheet)
+            
+            if let popoverVC = vc.popoverPresentationController {
+                popoverVC.sourceView = self.view
+            }
+            
             self.present(vc, animated: true, completion: nil)
         }
     }
@@ -408,6 +418,11 @@ extension MultiPlayerViewController {
     func presentWaitingForOponentWord(completion: @escaping () -> Void) {
         tryDismissAlertAndPresent {
             let vc = UIAlertController(title: "Opponent is typing word", message: "please wait ...", preferredStyle: .actionSheet)
+            
+            if let popoverVC = vc.popoverPresentationController {
+                popoverVC.sourceView = self.view
+            }
+            
             self.present(vc, animated: true, completion: completion)
         }
     }
@@ -416,6 +431,11 @@ extension MultiPlayerViewController {
         tryDismissAlertAndPresent {
             let alertVC = UIAlertController(title: "The word \"\(word)\" has been used", message: nil, preferredStyle: .actionSheet)
             alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            
+            if let popoverVC = alertVC.popoverPresentationController {
+                popoverVC.sourceView = self.view
+            }
+            
             self.present(alertVC, animated: true, completion: nil)
         }
     }
@@ -424,6 +444,11 @@ extension MultiPlayerViewController {
         tryDismissAlertAndPresent {
             let alertVC = UIAlertController(title: "Oooops, this word have to start with\n\n\(leftchar)", message: nil, preferredStyle: .actionSheet)
             alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            
+            if let popoverVC = alertVC.popoverPresentationController {
+                popoverVC.sourceView = self.view
+            }
+            
             self.present(alertVC, animated: true, completion: nil)
         }
     }
@@ -432,6 +457,11 @@ extension MultiPlayerViewController {
         tryDismissAlertAndPresent {
             let alertVC = UIAlertController(title: "\"\(word)\" is not in my dictionary", message: "Try another", preferredStyle: .actionSheet)
             alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            
+            if let popoverVC = alertVC.popoverPresentationController {
+                popoverVC.sourceView = self.view
+            }
+            
             self.present(alertVC, animated: true, completion: nil)
         }
     }
@@ -444,6 +474,11 @@ extension MultiPlayerViewController {
             alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (_) in
                 self.presentingViewController?.dismiss(animated: true, completion: nil)
             }))
+            
+            if let popoverVC = alertVC.popoverPresentationController {
+                popoverVC.sourceView = self.view
+            }
+            
             self.present(alertVC, animated: true, completion: nil)
         }
     }
@@ -471,6 +506,11 @@ extension MultiPlayerViewController {
                 vc.presentingVC = self
                 self.present(vc, animated: true, completion: nil)
             }))
+            
+            if let popoverVC = alertVC.popoverPresentationController {
+                popoverVC.sourceView = self.view
+            }
+            
             self.present(alertVC, animated: true, completion: nil)
         }
     }

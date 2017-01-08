@@ -317,12 +317,22 @@ extension SinglePlayerViewController {
                 self.rewardAd.ad.present(fromRootViewController: self)
             }))
         }
+        
+        if let popoverVC = alertVC.popoverPresentationController {
+            popoverVC.sourceView = view
+        }
+        
         present(alertVC, animated: true, completion: nil)
     }
     
     func presentCharacterAreNotEqual(leftchar: String, rightChar: String) {
         let alertVC = UIAlertController(title: "Oooops, this word have to start with\n\n\(leftchar)", message: nil, preferredStyle: .actionSheet)
         alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        
+        if let popoverVC = alertVC.popoverPresentationController {
+            popoverVC.sourceView = view
+        }
+        
         present(alertVC, animated: true, completion: nil)
     }
     
@@ -337,6 +347,11 @@ extension SinglePlayerViewController {
                 self.rewardAd.ad.present(fromRootViewController: self)
             }))
         }
+        
+        if let popoverVC = alertVC.popoverPresentationController {
+            popoverVC.sourceView = view
+        }
+        
         self.present(alertVC, animated: true, completion: nil)
     }
     
