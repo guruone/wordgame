@@ -106,7 +106,7 @@ class MultiPlayerViewController: UIViewController, GameViewController, UITextFie
             pointForCurrentWordLabel.text = "\(pointsForCurrentWord!)"
             
             let bonusInPerc = bonus.currBonusInPerc
-            bonusLabel.text = "BONUS \(bonusInPerc)%"
+            bonusLabel.text = "+\(bonusInPerc)%"
             
             let wordsToNextBonus = bonus.nextBonusStepRemaining
             let nextBonusInPerc = bonus.nextBonusInPerc
