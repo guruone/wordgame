@@ -42,4 +42,6 @@ class HowToMenuViewController: BaseViewController {
             view.extRemoveWithAnimation(layer: viewMask)
         }
     }
+    
+    @IBAction func unwindToHowToMenuVC(segue: UIStoryboardSegue) {}
 }

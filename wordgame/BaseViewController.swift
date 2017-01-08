@@ -107,6 +107,11 @@ extension BaseViewController: MatchMakerDelegate {
 extension BaseViewController: PresentingViewController {
     
     func dismissPresentedVC() {
+        // MARK: ak je zobrazeny menu controller pokusi sa po skonceni hry zobrazit reklamu
+        if let menuVC = self as? MenuViewController {
+            menuVC.countToInterstitialAd()
+        }
+        
         dismiss(animated: true, completion: nil)
     }
 }

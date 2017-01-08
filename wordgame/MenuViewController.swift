@@ -139,7 +139,7 @@ extension MenuViewController {
         }
     }
     
-    @IBAction func unwindToMenuVCWithAd(segue: UIStoryboardSegue) {
+    func countToInterstitialAd() {
         // MARK: VIDEO OD GOOGLE + CNT
         let kPlayInterstitialAd = "MenuVC.PlayInterstitialAd"
         var adCnt = UserDefaults.standard.integer(forKey: kPlayInterstitialAd)
