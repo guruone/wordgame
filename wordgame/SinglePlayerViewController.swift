@@ -307,7 +307,7 @@ extension SinglePlayerViewController {
     }
     
     func presentAlreadyUsed(word: String) {
-        let alertVC = UIAlertController(title: "The word \"\(word)\" has been used", message: nil, preferredStyle: .actionSheet)
+        let alertVC = UIAlertController(title: "The word \"\(word)\" has been used", message: nil, preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "Try another word", style: .cancel, handler: nil))
         if rewardAd.ad.isReady {
             alertVC.addAction(UIAlertAction(title: "Want use again? Watch me!", style: .default, handler: { (action: UIAlertAction) in
@@ -318,26 +318,30 @@ extension SinglePlayerViewController {
             }))
         }
         
+        alertVC.modalPresentationStyle = .popover
         if let popoverVC = alertVC.popoverPresentationController {
             popoverVC.sourceView = view
+            popoverVC.sourceRect = view.frame
         }
         
         present(alertVC, animated: true, completion: nil)
     }
     
     func presentCharacterAreNotEqual(leftchar: String, rightChar: String) {
-        let alertVC = UIAlertController(title: "Oooops, this word have to start with\n\n\(leftchar)", message: nil, preferredStyle: .actionSheet)
+        let alertVC = UIAlertController(title: "Oooops, this word have to start with\n\n\(leftchar)", message: nil, preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         
+        alertVC.modalPresentationStyle = .popover
         if let popoverVC = alertVC.popoverPresentationController {
             popoverVC.sourceView = view
+            popoverVC.sourceRect = view.frame
         }
         
         present(alertVC, animated: true, completion: nil)
     }
     
     func presentWordDoesNotExists(_ word: String) {
-        let alertVC = UIAlertController(title: "\"\(word)\" is not in my dictionary", message: nil, preferredStyle: .actionSheet)
+        let alertVC = UIAlertController(title: "\"\(word)\" is not in my dictionary", message: nil, preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "Try another word", style: .cancel, handler: nil))
         if rewardAd.ad.isReady {
             alertVC.addAction(UIAlertAction(title: "Need hint? Watch me!", style: .default, handler: { (action: UIAlertAction) in
@@ -348,9 +352,12 @@ extension SinglePlayerViewController {
             }))
         }
         
+        alertVC.modalPresentationStyle = .popover
         if let popoverVC = alertVC.popoverPresentationController {
             popoverVC.sourceView = view
+            popoverVC.sourceRect = view.frame
         }
+
         
         self.present(alertVC, animated: true, completion: nil)
     }
@@ -362,6 +369,7 @@ extension SinglePlayerViewController {
             let vc = storyboard?.instantiateViewController(withIdentifier: String(describing: GameSumaryViewController.self)) as! GameSumaryViewController
             vc.earnedPoints = yourPoints
             vc.presentingVC = self
+            
             present(vc, animated: true, completion: nil)
         }
         

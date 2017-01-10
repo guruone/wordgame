@@ -144,7 +144,7 @@ extension MenuViewController {
         let kPlayInterstitialAd = "MenuVC.PlayInterstitialAd"
         var adCnt = UserDefaults.standard.integer(forKey: kPlayInterstitialAd)
         adCnt += 1
-        if adCnt > 1 && interstitialAd.ad.isReady {
+        if adCnt > 3 && interstitialAd.ad.isReady {
             adCnt = 0
             presentInterstitialAd = true
         }

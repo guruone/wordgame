@@ -386,10 +386,12 @@ extension MultiPlayerViewController {
     
     func presentGameInit(completion: @escaping () -> Void) {
         tryDismissAlertAndPresent {
-            let vc = UIAlertController(title: "The game is initializing", message: "please wait ...", preferredStyle: .actionSheet)
+            let vc = UIAlertController(title: "The game is initializing", message: "please wait ...", preferredStyle: .alert)
             
+            vc.modalPresentationStyle = .popover
             if let popoverVC = vc.popoverPresentationController {
                 popoverVC.sourceView = self.view
+                popoverVC.sourceRect = self.view.frame
             }
             
             self.present(vc, animated: true, completion: completion)
@@ -398,10 +400,12 @@ extension MultiPlayerViewController {
     
     func presentWaitingForCategoryFromOponent() {
         tryDismissAlertAndPresent {
-            let vc = UIAlertController(title: "Opponent is choosing category", message: "please wait ...", preferredStyle: .actionSheet)
+            let vc = UIAlertController(title: "Opponent is choosing category", message: "please wait ...", preferredStyle: .alert)
             
+            vc.modalPresentationStyle = .popover
             if let popoverVC = vc.popoverPresentationController {
                 popoverVC.sourceView = self.view
+                popoverVC.sourceRect = self.view.frame
             }
             
             self.present(vc, animated: true, completion: nil)
@@ -417,10 +421,12 @@ extension MultiPlayerViewController {
     
     func presentWaitingForOponentWord(completion: @escaping () -> Void) {
         tryDismissAlertAndPresent {
-            let vc = UIAlertController(title: "Opponent is typing word", message: "please wait ...", preferredStyle: .actionSheet)
+            let vc = UIAlertController(title: "Opponent is typing word", message: "please wait ...", preferredStyle: .alert)
             
+            vc.modalPresentationStyle = .popover
             if let popoverVC = vc.popoverPresentationController {
                 popoverVC.sourceView = self.view
+                popoverVC.sourceRect = self.view.frame
             }
             
             self.present(vc, animated: true, completion: completion)
@@ -429,11 +435,13 @@ extension MultiPlayerViewController {
     
     func presentAlreadyUsed(word: String) {
         tryDismissAlertAndPresent {
-            let alertVC = UIAlertController(title: "The word \"\(word)\" has been used", message: nil, preferredStyle: .actionSheet)
+            let alertVC = UIAlertController(title: "The word \"\(word)\" has been used", message: nil, preferredStyle: .alert)
             alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
             
+            alertVC.modalPresentationStyle = .popover
             if let popoverVC = alertVC.popoverPresentationController {
                 popoverVC.sourceView = self.view
+                popoverVC.sourceRect = self.view.frame
             }
             
             self.present(alertVC, animated: true, completion: nil)
@@ -442,11 +450,13 @@ extension MultiPlayerViewController {
     
     func presentCharacterAreNotEqual(leftchar: String, rightChar: String) {
         tryDismissAlertAndPresent {
-            let alertVC = UIAlertController(title: "Oooops, this word have to start with\n\n\(leftchar)", message: nil, preferredStyle: .actionSheet)
+            let alertVC = UIAlertController(title: "Oooops, this word have to start with\n\n\(leftchar)", message: nil, preferredStyle: .alert)
             alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
             
+            alertVC.modalPresentationStyle = .popover
             if let popoverVC = alertVC.popoverPresentationController {
                 popoverVC.sourceView = self.view
+                popoverVC.sourceRect = self.view.frame
             }
             
             self.present(alertVC, animated: true, completion: nil)
@@ -455,11 +465,13 @@ extension MultiPlayerViewController {
     
     func presentWordDoesNotExists(_ word: String) {
         tryDismissAlertAndPresent {
-            let alertVC = UIAlertController(title: "\"\(word)\" is not in my dictionary", message: "Try another", preferredStyle: .actionSheet)
+            let alertVC = UIAlertController(title: "\"\(word)\" is not in my dictionary", message: "Try another", preferredStyle: .alert)
             alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
             
+            alertVC.modalPresentationStyle = .popover
             if let popoverVC = alertVC.popoverPresentationController {
                 popoverVC.sourceView = self.view
+                popoverVC.sourceRect = self.view.frame
             }
             
             self.present(alertVC, animated: true, completion: nil)
@@ -470,13 +482,15 @@ extension MultiPlayerViewController {
         gameState = .gameOver
         tryDismissAlertAndPresent {
             self.bonus.clearBonus()
-            let alertVC = UIAlertController(title: "🐢 Ooops, you lose this game 🐢", message: nil, preferredStyle: .actionSheet)
+            let alertVC = UIAlertController(title: "🐢 Ooops, you lose this game 🐢", message: nil, preferredStyle: .alert)
             alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (_) in
                 self.presentingViewController?.dismiss(animated: true, completion: nil)
             }))
             
+            alertVC.modalPresentationStyle = .popover
             if let popoverVC = alertVC.popoverPresentationController {
                 popoverVC.sourceView = self.view
+                popoverVC.sourceRect = self.view.frame
             }
             
             self.present(alertVC, animated: true, completion: nil)
@@ -499,7 +513,7 @@ extension MultiPlayerViewController {
         gameState = .gameOver
         tryDismissAlertAndPresent {
             self.bonus.clearBonus()
-            let alertVC = UIAlertController(title: "Opponent left the game", message: "congratulation, you win all points", preferredStyle: .actionSheet)
+            let alertVC = UIAlertController(title: "Opponent left the game", message: "congratulation, you win all points", preferredStyle: .alert)
             alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (_) in
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: String(describing: GameSumaryViewController.self)) as! GameSumaryViewController
                 vc.earnedPoints = yourPoints
@@ -507,8 +521,10 @@ extension MultiPlayerViewController {
                 self.present(vc, animated: true, completion: nil)
             }))
             
+            alertVC.modalPresentationStyle = .popover
             if let popoverVC = alertVC.popoverPresentationController {
                 popoverVC.sourceView = self.view
+                popoverVC.sourceRect = self.view.frame
             }
             
             self.present(alertVC, animated: true, completion: nil)
